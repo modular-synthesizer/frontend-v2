@@ -15,7 +15,3 @@ type Emits = {
 }
 const emit = defineEmits<Emits>();
 </script>
-
-<style>
-
-</style>
