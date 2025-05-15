@@ -5,4 +5,5 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  imports: { dirs: [ 'stories/**', 'types/**', 'utils/**' ] },
 })
