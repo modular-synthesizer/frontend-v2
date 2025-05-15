@@ -2,13 +2,25 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+
   build: {
     transpile: ['vuetify'],
   },
+
   imports: { dirs: [ 'stories/**', 'types/**', 'utils/**' ] },
+
   runtimeConfig: {
     public: {
       api_uri: process.env.API_URL || 'https://synple.app/api',
     }
   },
+
+  modules: ['@nuxtjs/i18n'],
+
+  i18n: {
+    defaultLocale: 'fr',
+    locales: [
+      { code: 'fr', name: 'Français', file: 'fr.json' },
+    ]
+  }
 })

@@ -14,10 +14,10 @@ export function attemptLogin(loginRequester: LoginRequester, snacker: Snacker) {
   return async (username: string, password: string) => {
     const response = await loginRequester(username, password);
     if (response.ok) {
-      snacker.success("login");
+      snacker.success("login.success");
     }
     else {
-      snacker.error(`${response.key}.${response.message}`)
+      snacker.error(`login.${response.key}.${response.message}`)
     }
   }
 }

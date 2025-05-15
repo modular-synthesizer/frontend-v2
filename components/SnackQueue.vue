@@ -1,12 +1,7 @@
 <template>
-  <v-btn @click="add">Add</v-btn>
-  <v-snackbar-queue v-model="useSnack().state.value.queue" />
-  <pre>{{ useSnack().state.value.queue }}</pre>
+  <v-snackbar-queue v-model="useSnack().state.value.queue">
+    <template #text="{ item }">
+      {{ $t(item.text) }}
+    </template>
+  </v-snackbar-queue>
 </template>
-
-<script lang="ts" setup>
-
-function add() {
-  useSnack().success('test')
-}
-</script>

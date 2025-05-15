@@ -1,0 +1,8 @@
+{
+  "login": {
+    "success": "Vous vous êtes connecté avec succès",
+    "username": {
+      "unknown": "Ce nom d'utilisateur est inconnu"
+    }
+  }
+}
