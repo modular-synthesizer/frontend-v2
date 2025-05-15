@@ -1,10 +1,11 @@
 export type AsyncSuccess<T> = {
-  ok: true,
+  ok: true
   data: T
 }
 
 export type Failure = {
-  ok: false,
+  ok: false
+  key: string
   message: string
 }
 

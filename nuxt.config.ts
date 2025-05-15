@@ -6,4 +6,9 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   imports: { dirs: [ 'stories/**', 'types/**', 'utils/**' ] },
+  runtimeConfig: {
+    public: {
+      api_uri: process.env.API_URL || 'https://synple.app/api',
+    }
+  },
 })
