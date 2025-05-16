@@ -3,7 +3,7 @@ type LoginRequester = (username: string, password: string) => void
 type Snacker = {
   success: (text: string) => void
   error: (text: string) => void
-  apiError: (failure: HttpFailure) => void
+  asyncError: (failure: AsyncFailure) => void
 }
 
 /**
