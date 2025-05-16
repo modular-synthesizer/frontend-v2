@@ -3,13 +3,13 @@ export type AsyncSuccess<T> = {
   data: T
 }
 
-export type Failure = {
+export type AsyncFailure = {
   ok: false
   key: string
   message: string
 }
 
-export type AsyncResult<T> = Promise<AsyncFailure<T> | AsyncSuccess>
+export type AsyncResult<T> = Promise<AsyncFailure | AsyncSuccess<T>>
 
 type HttpPayload = Record<string, unknown>
 

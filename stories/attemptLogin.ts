@@ -3,6 +3,7 @@ type LoginRequester = (username: string, password: string) => void
 type Snacker = {
   success: (text: string) => void
   error: (text: string) => void
+  apiError: (failure: HttpFailure) => void
 }
 
 /**
@@ -13,11 +14,7 @@ type Snacker = {
 export function attemptLogin(loginRequester: LoginRequester, snacker: Snacker) {
   return async (username: string, password: string) => {
     const response = await loginRequester(username, password);
-    if (response.ok) {
-      snacker.success("login.success");
-    }
-    else {
-      snacker.error(`login.${response.key}.${response.message}`)
-    }
+    // Display the correct message in the snackbar queue depending on the state of the response.
+    response.ok ? snacker.success("login.success") : snacker.asyncError(response)
   }
 }
