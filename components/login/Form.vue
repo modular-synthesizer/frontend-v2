@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-text-field v-model="username" />
-    <v-text-field v-model="password" />
+    <v-text-field v-model="password" type="password" />
     <v-btn @click="emit('submit', username, password)">Valider</v-btn>
   </div>
 </template>
