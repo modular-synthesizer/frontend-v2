@@ -1,6 +1,8 @@
 {
   "common": {
+    "brand": "Synple",
     "verbs": {
+      "login": "Me connecter",
       "validate": "Valider"
     }
   },
@@ -19,5 +21,8 @@
     "username": {
       "unknown": "Ce nom d'utilisateur est inconnu"
     }
+  },
+  "menu": {
+    "synthesizers": "Mes synthétiseurs"
   }
 }
