@@ -1,0 +1,1 @@
+export type Eventual<T> = T | undefined

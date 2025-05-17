@@ -12,6 +12,8 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@nuxtjs/i18n": "9.5.4",
+    "@vueuse/core": "^13.2.0",
+    "@vueuse/nuxt": "^13.2.0",
     "axios": "^1.9.0",
     "nuxt": "^3.17.3",
     "sass": "^1.89.0",
