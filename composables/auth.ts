@@ -1,19 +1,23 @@
 import { useStorage } from '@vueuse/core'
 
-const defaultSession = { token: '', admin: false, created_at: (new Date()), duration: 0 }
+function defaultSession() {
+  return { token: '', admin: false, created_at: (new Date()), duration: 0 }
+}
 
 const storage = useStorage('user-session', defaultSession)
 
-function store(session: Session) {
-  storage.value = session
-}
-
-export const useAuth = () => {
-  return {
+export function useAuthTemplate(storage: Ref<Session>, generator: () => Session) {
+  return () => ({
     get authenticated() {
       return storage.value.token !== ''
     },
-    reset: () => store(defaultSession),
-    store,
-  }
+    reset() {
+      storage.value = generator()
+    },
+    store(session: Session) {
+      storage.value = session
+    }
+  })
 }
+
+export const useAuth = useAuthTemplate(storage, defaultSession);
