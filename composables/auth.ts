@@ -1,19 +1,19 @@
 import { useStorage } from '@vueuse/core'
 
-function session(): Eventual<Session> {
-  try {
-    return JSON.parse(useStorage('user-session').value);
-  }
-  catch(_) {
-    return undefined;
-  }
+const defaultSession = { token: '', admin: false, created_at: (new Date()), duration: 0 }
+
+const storage = useStorage('user-session', defaultSession)
+
+function store(session: Session) {
+  storage.value = session
 }
 
 export const useAuth = () => {
   return {
     get authenticated() {
-      return session() !== undefined
+      return storage.value.token !== ''
     },
-    session
+    reset: () => store(defaultSession),
+    store,
   }
 }

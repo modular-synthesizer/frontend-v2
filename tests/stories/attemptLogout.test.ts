@@ -6,22 +6,21 @@ const fakeSession = ref({ foo: 'bar' })
 
 const fakes = {
   navigator: (path: string) => { },
-  storage: (name: string, content: unknown) => fakeSession
+  reset: () => { },
 }
 
 afterEach(() => vi.restoreAllMocks())
 
 test('Logging out correctly deletes the session', async () => {
-  const storageSpy = vi.spyOn(fakes, "storage")
-  const logout = attemptLogout(fakes.navigator, fakes.storage)
+  const resetSpy = vi.spyOn(fakes, "reset")
+  const logout = attemptLogout(fakes.navigator, fakes.reset)
   await logout()
-  expect(storageSpy).toHaveBeenCalledExactlyOnceWith('user-session')
-  expect(fakeSession.value).toBe(null)
+  expect(resetSpy).toHaveBeenCalledExactlyOnceWith()
 })
 
 test("Logging out correctly redirects the user to the home page", async () => {
   const navigatorSpy = vi.spyOn(fakes, "navigator")
-  const logout = attemptLogout(fakes.navigator, fakes.storage)
+  const logout = attemptLogout(fakes.navigator, fakes.reset)
   await logout()
   expect(navigatorSpy).toHaveBeenCalledExactlyOnceWith('/')
 })

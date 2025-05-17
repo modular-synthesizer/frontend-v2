@@ -3,6 +3,7 @@
     "brand": "Synple",
     "verbs": {
       "login": "Me connecter",
+      "logout": "Me déconnecter",
       "validate": "Valider"
     }
   },

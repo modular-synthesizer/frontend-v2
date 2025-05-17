@@ -1,9 +1,8 @@
 import type { Navigator, Storage } from "../attemptLogin"
 
-export function attemptLogout(navigator: Navigator, storage: Storage) {
+export function attemptLogout(navigator: Navigator, reset: () => void) {
   return async () => {
-    const session = storage("user-session")
-    session.value = null
+    reset()
     navigator('/')
   }
 }

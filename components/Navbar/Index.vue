@@ -1,7 +1,7 @@
 <template>
-  <navbar-logic #default="{ authenticated }">
-    <navbar-mobile v-if="mobile" :authenticated />
-    <navbar-desktop v-else :authenticated />
+  <navbar-logic #default="{ authenticated, logout }">
+    <navbar-mobile v-if="mobile" :authenticated :logout />
+    <navbar-desktop v-else :authenticated :logout />
   </navbar-logic>
 </template>
 
