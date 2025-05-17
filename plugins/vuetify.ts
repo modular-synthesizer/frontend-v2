@@ -3,6 +3,7 @@ import { md3 } from "vuetify/blueprints"
 import * as labs from 'vuetify/labs/components';
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import '@/assets/styles/main.scss'
 
 export default defineNuxtPlugin(nuxtApp => {
   const opt: VuetifyOptions = {

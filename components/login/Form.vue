@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-text-field v-model="username" />
+    <v-text-field v-model="username" variant="outlined" :label="$t('login.form.labels.username')" />
     <v-text-field v-model="password" type="password" />
-    <v-btn @click="emit('submit', username, password)">Valider</v-btn>
+    <v-btn @click="emit('submit', username, password)">{{ $t('common.verbs.validate') }}</v-btn>
   </div>
 </template>
 

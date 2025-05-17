@@ -14,6 +14,11 @@ export default defineNuxtConfig({
       api_uri: process.env.API_URL || 'https://synple.app/api',
     }
   },
+  
+  css: [
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css',
+  ],
 
   modules: ['@nuxtjs/i18n'],
 

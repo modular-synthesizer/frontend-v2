@@ -1,5 +1,15 @@
 {
+  "common": {
+    "verbs": {
+      "validate": "Valider"
+    }
+  },
   "login": {
+    "form": {
+      "labels": {
+        "username": "Nom d'utilisateur"
+      }
+    },
     "success": "Vous vous êtes connecté avec succès",
     "username": {
       "unknown": "Ce nom d'utilisateur est inconnu"
