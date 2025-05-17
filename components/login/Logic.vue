@@ -1,8 +1,3 @@
 <template>
-  <slot :submit="attemptLogin(api.sessions.new, useSnack())"></slot>
+  <slot :submit="attemptLogin(api.sessions.new, useSnack(), navigateTo)"></slot>
 </template>
-
-
-<script lang="ts" setup>
-const queue = useState<QueueItem[]>('snackbar')
-</script>
