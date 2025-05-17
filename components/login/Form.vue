@@ -1,9 +1,23 @@
 <template>
-  <div>
-    <v-text-field v-model="username" variant="outlined" :label="$t('login.form.labels.username')" />
-    <v-text-field v-model="password" type="password" />
-    <v-btn @click="emit('submit', username, password)">{{ $t('common.verbs.validate') }}</v-btn>
-  </div>
+  <v-form @submit.prevent.stop="submit">
+    <v-text-field
+      autocomplete="username"
+      class="mb-3"
+      :label="$t('login.form.labels.username')"
+      :placeholder="$t('login.form.placeholders.username')"
+      v-model="username"
+      variant="outlined"
+    />
+    <v-text-field
+      autocomplete="password"
+      class="mb-3"
+      :label="$t('login.form.labels.password')"
+      :placeholder="$t('login.form.placeholders.password')"
+      type="password"
+      v-model="password"
+    />
+    <v-btn type="submit">{{ $t('common.verbs.validate') }}</v-btn>
+  </v-form>
 </template>
 
 <script lang="ts" setup>
@@ -14,4 +28,8 @@ type Emits = {
   submit: [ string, string ]
 }
 const emit = defineEmits<Emits>();
+
+function submit() {
+  emit('submit', username.value, password.value)
+}
 </script>
