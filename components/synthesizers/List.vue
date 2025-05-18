@@ -1,7 +1,7 @@
 <template>
   <v-row>
-    <v-col cols="12" sm="6" md="4">
-      <synthesizers-card :synthesizer v-for="synthesizer in synthesizers" :key="synthesizer.id" />
+    <v-col cols="12" sm="6" md="4" v-for="synthesizer in synthesizers" :key="synthesizer.id">
+      <slot name="synthesizer" v-bind="synthesizer" />
     </v-col>
   </v-row>
 </template>

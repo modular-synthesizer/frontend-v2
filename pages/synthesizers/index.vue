@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <div class="text-h3">Synthétiseurs</div>
-    <synthesizers-list :synthesizers />
+    <synthesizers-list :synthesizers>
+      <template #synthesizer="synthesizer">
+        <synthesizers-card :synthesizer />
+      </template>
+    </synthesizers-list>
   </v-container>
 </template>
 
