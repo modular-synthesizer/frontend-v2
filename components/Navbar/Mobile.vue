@@ -1,10 +1,10 @@
 <template>
-  <v-btn icon to="/" aria-label="home link">
-    <v-icon>mdi-home</v-icon>
-  </v-btn>
   <v-app-bar color="deep-purple darken-2">
-    <template v-slot:prepend v-if="authenticated">
-      <v-btn icon to="/synthesizers" class="ml-2" aria-label="synthesizers list">
+    <template v-slot:prepend>
+      <v-btn icon to="/" aria-label="home link">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <v-btn icon to="/synthesizers" class="ml-2" aria-label="synthesizers list"  v-if="authenticated">
         <v-icon>mdi-piano</v-icon>
       </v-btn>
     </template>
