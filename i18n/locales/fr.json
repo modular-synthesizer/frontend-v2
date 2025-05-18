@@ -2,6 +2,8 @@
   "common": {
     "brand": "Synple",
     "verbs": {
+      "add": "Ajouter",
+      "close": "Fermer",
       "login": "Me connecter",
       "logout": "Me déconnecter",
       "validate": "Valider"
@@ -27,6 +29,17 @@
     "synthesizers": "Mes synthétiseurs"
   },
   "synthesizers": {
+    "create": {
+      "title": "Nouveau synthétiseur",
+      "labels": {
+        "name": "Nom du synthétiseur",
+        "voices": "Voix de polyphonie"
+      },
+      "placeholders": {
+        "name": "Entrez un nom explicite pour ce synthétiseur",
+        "voices": "Entrez le nombre de voix de polyphonie"
+      }
+    },
     "errors": {
       "list": "Impossible de récupérer la liste de vos synthétiseurs, veuillez réessayer dans un court instant."
     }

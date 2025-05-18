@@ -8,32 +8,40 @@ const fakeSynthesizer = {
   members: [ ]
 }
 
+const fakeList = []
+
 const fakes = {
   requestError: (name: string, voices: number) => fakeError,
   requestSuccess: (name: string, voices: number) => ({ ok: true, data: fakeSynthesizer }),
 }
 
-test("Correctly creates the synthesizer when valid data are given", async () => {
+test("Correctly sends a success notification when the synthesizer is correctly created", async () => {
   const snackerSpy = vi.spyOn(fakeSnacker, "success")
-  const story = createSynthesizer(fakes.requestSuccess, fakeSnacker)
+  const story = createSynthesizer(fakes.requestSuccess, fakeSnacker, fakeList)
   await story("Synthesizer name", 16)
   expect(snackerSpy).toHaveBeenCalledExactlyOnceWith("synthesizers.create.success")
 })
 
-test("Correctly sends a success notification when the synthesizer is correctly created", async () => {
-  const story = createSynthesizer(fakes.requestSuccess, fakeSnacker)
+test("Correctly creates the synthesizer when valid data are given", async () => {
+  const story = createSynthesizer(fakes.requestSuccess, fakeSnacker, fakeList)
   const synthesizer: Synthesizer = await story("Synthesizer name", 16)
   expect(synthesizer.id).toEqual("synthesizerId")
 })
 
+test("Adds the newly created synthesizer to the given list", async () => {
+  const story = createSynthesizer(fakes.requestSuccess, fakeSnacker, fakeList)
+  await story("Synthesizer name", 16)
+  expect(fakeList[0].id).toEqual("synthesizerId")
+})
+
 test("Returns undefined when the synthesizer is not correctly created", async () => {
   const snackerSpy = vi.spyOn(fakeSnacker, "error")
-  const story = createSynthesizer(fakes.requestError, fakeSnacker)
+  const story = createSynthesizer(fakes.requestError, fakeSnacker, fakeList)
   await story("Bad name", 16)
   expect(snackerSpy).toHaveBeenCalledExactlyOnceWith("synthesizers.errors.create")
 })
 
 test("Sends an error notification when the synthesizer is not correctly created", async () => {
-  const story = createSynthesizer(fakes.requestError, fakeSnacker)
+  const story = createSynthesizer(fakes.requestError, fakeSnacker, fakeList)
   expect(await story("Bad name", 16)).toBeUndefined()
 })

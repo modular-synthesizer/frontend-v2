@@ -3,7 +3,7 @@ export const api = {
     new: createSessions(makeRequest),
   },
   synthesizers: {
-    create: createSynthesizer(makeRequest),
+    new: newSynthesizer(makeRequest),
     list: listSynthesizers(makeRequest),
   },
 }
