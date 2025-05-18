@@ -3,4 +3,5 @@ export type Session = {
   admin: boolean
   created_at: Date
   duration: number
+  account: Account
 }

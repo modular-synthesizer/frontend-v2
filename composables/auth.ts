@@ -20,6 +20,9 @@ export function useAuthTemplate(storage: Ref<Session>, generator: () => Session)
     get token(): string {
       return storage.value.token
     },
+    get username(): string {
+      return storage.value.account.username
+    },
   })
 }
 
