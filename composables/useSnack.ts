@@ -1,5 +1,11 @@
 type QueueItem = { text: string, timeout: number, color: string }
 
+export type Snacker = {
+  success: (text: string) => void
+  error: (text: string) => void
+  asyncError: (failure: AsyncFailure) => void
+}
+
 export const useSnack = () => {
 
   const queue = useState<QueueItem[]>('snackbar').value

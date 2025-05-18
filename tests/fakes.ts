@@ -1,3 +1,6 @@
+import { Snacker } from "../composables/useSnack"
+import { Session } from "../types/session"
+
 export const fakeError = { ok: false, key: 'username', message: 'unknown' }
 
 export const fakeNavigator = (path: string) => { }
