@@ -1,23 +1,12 @@
 import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogin } from "../../stories/attemptLogin"
-
-const fakeError = { ok: false, key: 'username', message: 'unknown' }
-
-const fakeSession = { token: 'testToken' }
+import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore } from "../fakes"
 
 const fakes = {
   requestError: (username: string, password: string) => fakeError,
-  requestSuccess: (username: string, password: string) => {
-    return { ok: true, data: fakeSession }
-  },
-  navigator: (path: string) => { },
-  store: (session: Session) => { }
-}
-
-const fakeSnacker: Snacker = {
-  success(test: string) { },
-  error(test: string) { },
-  asyncError(failure: AsyncFailure) { },
+  requestSuccess: (username: string, password: string) => ({ ok: true, data: fakeSession }),
+  navigator: fakeNavigator,
+  store: fakeStore,
 }
 
 afterEach(() => vi.restoreAllMocks())

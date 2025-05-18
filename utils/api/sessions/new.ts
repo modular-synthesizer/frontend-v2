@@ -1,4 +1,4 @@
-import { type AsyncResult, makeRequest } from "~/utils/requesters/makeRequest"
+import { type AsyncResult } from "~/utils/requesters/makeRequest"
 
 export function createSessions(requester: Requester<Session>) {
   return async (username: string, password: string): AsyncResult<Session> => {

@@ -8,7 +8,7 @@ const storage = useStorage('user-session', defaultSession)
 
 export function useAuthTemplate(storage: Ref<Session>, generator: () => Session) {
   return () => ({
-    get authenticated() {
+    get authenticated(): boolean {
       return storage.value.token !== ''
     },
     reset() {
@@ -16,7 +16,10 @@ export function useAuthTemplate(storage: Ref<Session>, generator: () => Session)
     },
     store(session: Session) {
       storage.value = session
-    }
+    },
+    get token(): string {
+      return storage.value.token
+    },
   })
 }
 

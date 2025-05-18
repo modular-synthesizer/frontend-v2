@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core'
 
-type LoginRequester = (username: string, password: string) => void
+type LoginRequester = (username: string, password: string) => AsyncResult<Session>
 
 type Snacker = {
   success: (text: string) => void

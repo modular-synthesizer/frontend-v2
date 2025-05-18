@@ -3,10 +3,11 @@ type Requester<T> = (method: HttpMethod, url: string, parameters: HttpPayload, b
 /**
  * Makes a request on the API and builds a standard response from it.
  */
-export async function makeRequest<T>(method: HttpMethod, url: string, parameters: HttpPayload, body: HttpPayload): AsyncResult<T> {
+export async function makeRequest<T>(method: HttpMethod, url: string, parameters: HttpPayload = {}, body: HttpPayload = {}): AsyncResult<T> {
   try {
     const params = new URLSearchParams(parameters);
-    const response = await fetch(`/proxy${url}?${params.toString()}`, { method, body: JSON.stringify(body) })
+    const options = { method, ...(method !== 'GET' ? { body: JSON.stringify(body) } : {}) }
+    const response = await fetch(`/proxy${url}?${params.toString()}`, options)
     if (response.status > 299) {
       const body = await response.json();
       return { ok: false, message: body.message, key: body.key }
