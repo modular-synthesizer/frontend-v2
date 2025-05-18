@@ -8,9 +8,8 @@ function isAnonymous(route) {
 }
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  // TODO implement the authenticated function to correctly check the state.
-  const authenticated = false;
-  const anonymous = isAnonymous(to)
-  if (import.meta.client || anonymous || authenticated) return;
-  return navigateTo('/');
-})
+  if (isAnonymous(to)) return;
+  if (import.meta.client) {
+    if (!to.name.startsWith("index__") && !useAuth().authenticated) return navigateTo('/');
+  }
+});

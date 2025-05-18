@@ -4,12 +4,17 @@ export const useSnack = () => {
 
   const queue = useState<QueueItem[]>('snackbar').value
 
-  function success(text: string) {
+  function pushToQueue(text: string, color: string, timeout: number = 2500) {
+    if (import.meta.server || queue === undefined) return;
     queue.push({ text, color: 'success', timeout: 2500 })
   }
 
+  function success(text: string) {
+    pushToQueue(text, 'success')
+  }
+
   function error(text: string) {
-    queue.push({ text, color: 'error', timeout: 2500 })
+    pushToQueue(text, 'error')
   }
 
   function asyncError({ key, message }: AsyncFailure) {
