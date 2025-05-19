@@ -1,7 +1,8 @@
 import { useStorage } from '@vueuse/core'
 
 function defaultSession() {
-  return { token: '', admin: false, created_at: (new Date()), duration: 0 }
+  const account: Account = { id: '', username: '', email: '' }
+  return { token: '', admin: false, created_at: (new Date()), duration: 0, account }
 }
 
 const storage = useStorage('user-session', defaultSession)

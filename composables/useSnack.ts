@@ -1,3 +1,5 @@
+import { useStorage } from '@vueuse/core'
+
 type QueueItem = { text: string, timeout: number, color: string }
 
 export type Snacker = {
@@ -8,11 +10,10 @@ export type Snacker = {
 
 export const useSnack = () => {
 
-  const queue = useState<QueueItem[]>('snackbar').value
+  const queue = useState<QueueItem[]>('snacks', () => [])
 
   function pushToQueue(text: string, color: string, timeout: number = 2500) {
-    if (import.meta.server || queue === undefined) return;
-    queue.push({ text, color: 'success', timeout: 2500 })
+    setTimeout(() => queue.value.push({ text, color, timeout }), 100)
   }
 
   function success(text: string) {
@@ -24,8 +25,13 @@ export const useSnack = () => {
   }
 
   function asyncError({ key, message }: AsyncFailure) {
-    error(`login.${key}.${message}`)
+    pushToQueue(`login.${key}.${message}`, 'error')
   }
 
-  return { asyncError, error, success }
+  return {
+    asyncError,
+    error,
+    success,
+    queue
+  }
 }

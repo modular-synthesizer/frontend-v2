@@ -27,5 +27,7 @@ export default defineNuxtConfig({
     locales: [
       { code: 'fr', name: 'Français', file: 'fr.json' },
     ]
-  }
+  },
+
+  ssr: false,
 })

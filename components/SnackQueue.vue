@@ -1,11 +1,8 @@
 <template>
-  <v-snackbar-queue v-model="queue">
+  <v-snackbar-queue v-model="useSnack().queue.value">
     <template #text="{ item }">
       {{ $t(item.text) }}
     </template>
   </v-snackbar-queue>
 </template>
 
-<script lang="ts" setup>
-const queue = useState<QueueItem[]>('snackbar', () => [])
-</script>
