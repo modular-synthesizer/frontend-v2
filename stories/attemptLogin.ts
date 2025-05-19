@@ -16,7 +16,7 @@ export function attemptLogin(loginRequester: LoginRequester, snacker: Snacker, n
     const response = await loginRequester(username, password);
     if (response.ok) {
       store(response.data);
-      snacker.success("Connexion")
+      snacker.success("login.success")
       return navigator('/')
     }
     return snacker.asyncError(response)
