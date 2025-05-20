@@ -6,7 +6,7 @@
       <template #synthesizer="synthesizer">
         <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">
           <template #actions>
-            <icon-button @click="() => deletion(synthesizer.id)" icon="mdi-delete" />
+            <confirm-delete @submit="deletion(synthesizer.id)" />
           </template>
         </synthesizers-card>
       </template>
@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 const fetch = fetchSynthesizers(api.synthesizers.list, useSnack());
 const synthesizers: Ref<Synthesizer[]> = ref(await fetch());
-const creation = ref({ name: '', voices: 16 })
+const creation = ref({ id: '', name: '', voices: 16, members: [] })
 const create = createSynthesizer(api.synthesizers.new, useSnack(), synthesizers.value);
 const deletion = removeSynthesizer(api.synthesizers.delete, useSnack(), synthesizers.value)
 

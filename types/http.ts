@@ -9,7 +9,7 @@ export type AsyncFailure = {
   message: string
 }
 
-export type AsyncResult<T> = Promise<AsyncFailure | AsyncSuccess<T>>
+export type AsyncResult<T> = AsyncFailure | AsyncSuccess<T>
 
 type HttpPayload = Record<string, unknown>
 
