@@ -1,4 +1,5 @@
 import { type VuetifyOptions, createVuetify } from 'vuetify'
+import { createRulesPlugin } from 'vuetify/labs/rules'
 import { md3 } from "vuetify/blueprints"
 import * as labs from 'vuetify/labs/components';
 import * as components from 'vuetify/components'
@@ -17,5 +18,7 @@ export default defineNuxtPlugin(nuxtApp => {
     directives,
     blueprint: md3
   }
-  nuxtApp.vueApp.use(createVuetify(opt))
+  const vuetify = createVuetify(opt)
+  nuxtApp.vueApp.use(vuetify)
+  nuxtApp.vueApp.use(createRulesPlugin({ }, vuetify.locale))
 })

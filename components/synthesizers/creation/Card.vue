@@ -1,19 +1,23 @@
 <template>
-  <v-form @submit.prevent.stop="submit">
+  <v-form @submit.prevent.stop="submit($event as unknown as SubmissionEvent)">
     <v-card>
       <v-card-title>{{ $t('synthesizers.create.title') }}</v-card-title>
       <v-card-text>
         <v-text-field
+          class="mb-3"
           :label="$t('synthesizers.create.labels.name')"
           :placeholder="$t('synthesizers.create.placeholders.name')"
+          :rules="[rules.required(), rules.minLength(6)]"
           variant="outlined"
           v-model="name"
         />
         <v-text-field
+          class="mb-3"
           :label="$t('synthesizers.create.labels.voices')"
           max="256"
           min="1"
           :placeholder="$t('synthesizers.create.placeholders.voices')"
+          :rules="[rules.required(), rules.integer()]"
           type="number"
           v-model="voices"
         />
@@ -27,6 +31,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useRules, type RuleAliases } from 'vuetify/labs/rules';
+import type { SubmissionEvent } from '~/types/forms';
+
 type Props = {
   name: string,
   voices: number
@@ -41,8 +48,10 @@ const emit = defineEmits<Emits>()
 
 const name = ref(props.name)
 const voices = ref(props.voices)
+const rules: RuleAliases = useRules() as RuleAliases
 
-function submit() {
-  emit("submit", name.value, voices.value)
+async function submit(event: SubmissionEvent) {
+  const form = await event;
+  if (form.valid) emit("submit", name.value, voices.value)
 }
 </script>
