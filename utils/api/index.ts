@@ -6,6 +6,7 @@ export const api = {
   },
   synthesizers: {
     delete: deleteSynthesizer(makeRequest, useAuth()),
+    get: getSynthesizer(makeRequest, useAuth()),
     list: listSynthesizers(makeRequest, useAuth()),
     new: newSynthesizer(makeRequest, useAuth()),
   },
