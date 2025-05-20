@@ -1,0 +1,47 @@
+{
+  "common": {
+    "brand": "Synple",
+    "verbs": {
+      "add": "Ajouter",
+      "close": "Fermer",
+      "login": "Me connecter",
+      "logout": "Me déconnecter",
+      "validate": "Valider"
+    }
+  },
+  "login": {
+    "form": {
+      "labels": {
+        "password": "Mot de passe",
+        "username": "Nom d'utilisateur"
+      },
+      "placeholders": {
+        "password": "Entrez le mot de passe correspondant",
+        "username": "Entrez un nom d'utilisateur existant"
+      }
+    },
+    "success": "Vous vous êtes connecté avec succès",
+    "username": {
+      "unknown": "Ce nom d'utilisateur est inconnu"
+    }
+  },
+  "menu": {
+    "synthesizers": "Mes synthétiseurs"
+  },
+  "synthesizers": {
+    "create": {
+      "title": "Nouveau synthétiseur",
+      "labels": {
+        "name": "Nom du synthétiseur",
+        "voices": "Voix de polyphonie"
+      },
+      "placeholders": {
+        "name": "Entrez un nom explicite pour ce synthétiseur",
+        "voices": "Entrez le nombre de voix de polyphonie"
+      }
+    },
+    "errors": {
+      "list": "Impossible de récupérer la liste de vos synthétiseurs, veuillez réessayer dans un court instant."
+    }
+  }
+}

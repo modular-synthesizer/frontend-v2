@@ -1,8 +1,11 @@
+import type { RouteLocationNormalizedGeneric } from "vue-router";
+
 const NO_AUTH = [ 'index', 'login', 'register' ]
 
-function isAnonymous(route) {
+function isAnonymous(route: RouteLocationNormalizedGeneric) {
   for (const name of NO_AUTH) {
-    if (route.name.startsWith(`${name}__`)) return true;
+    const routeName: string =  String(route.name)
+    if (routeName.startsWith(`${name}__`)) return true;
   }
   return false;
 }
@@ -10,6 +13,7 @@ function isAnonymous(route) {
 export default defineNuxtRouteMiddleware(async (to, _from) => {
   if (isAnonymous(to)) return;
   if (import.meta.client) {
-    if (!to.name.startsWith("index__") && !useAuth().authenticated) return navigateTo('/');
+    const routeName: string =  String(to.name)
+    if (routeName && !routeName.startsWith("index__") && !useAuth().authenticated) return navigateTo('/login');
   }
 });

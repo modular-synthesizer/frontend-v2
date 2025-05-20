@@ -1,3 +1,5 @@
+import localesConfig from "./locales.config"
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -22,12 +24,7 @@ export default defineNuxtConfig({
 
   modules: [ '@nuxtjs/i18n', '@vueuse/nuxt' ],
 
-  i18n: {
-    defaultLocale: 'fr',
-    locales: [
-      { code: 'fr', name: 'Français', file: 'fr.json' },
-    ]
-  },
+  i18n: { ...localesConfig, defaultLocale: 'fr' },
 
   ssr: false,
 })
