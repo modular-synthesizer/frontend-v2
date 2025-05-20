@@ -5,7 +5,8 @@ export const api = {
     new: createSessions(makeRequest),
   },
   synthesizers: {
-    new: newSynthesizer(makeRequest, useAuth()),
+    delete: deleteSynthesizer(makeRequest, useAuth()),
     list: listSynthesizers(makeRequest, useAuth()),
+    new: newSynthesizer(makeRequest, useAuth()),
   },
 }

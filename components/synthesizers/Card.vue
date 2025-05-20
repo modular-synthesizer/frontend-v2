@@ -2,7 +2,9 @@
   <v-card>
     <template v-slot:title>{{ synthesizer.name }}</template>
     <template v-slot:subtitle>{{ synthesizer.id }}</template>
-    <v-card-text>{{ membership }}</v-card-text>
+    <v-card-actions>
+      <slot name="actions" />
+    </v-card-actions>
   </v-card>
 </template>
 
