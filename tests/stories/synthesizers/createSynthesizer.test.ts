@@ -2,17 +2,18 @@ import { expect, test, vi } from "vitest"
 import { fakeError, fakeSnacker } from "../../fakes"
 import { createSynthesizer } from "../../../stories/synthesizers/createSynthesizer"
 
-const fakeSynthesizer = {
+const fakeSynthesizer: Synthesizer = {
   id: "synthesizerId",
   name: "Synthesizer name",
-  members: [ ]
+  members: [ ],
+  voices: 1
 }
 
-const fakeList = []
+const fakeList: Synthesizer[] = []
 
 const fakes = {
-  requestError: (name: string, voices: number) => fakeError,
-  requestSuccess: (name: string, voices: number) => ({ ok: true, data: fakeSynthesizer }),
+  requestError: (name: string, voices: number): AsyncFailure => fakeError,
+  requestSuccess: (name: string, voices: number): AsyncSuccess<Synthesizer> => ({ ok: true, data: fakeSynthesizer }),
 }
 
 test("Correctly sends a success notification when the synthesizer is correctly created", async () => {
@@ -24,7 +25,7 @@ test("Correctly sends a success notification when the synthesizer is correctly c
 
 test("Correctly creates the synthesizer when valid data are given", async () => {
   const story = createSynthesizer(fakes.requestSuccess, fakeSnacker, fakeList)
-  const synthesizer: Synthesizer = await story("Synthesizer name", 16)
+  const synthesizer: Synthesizer = await story("Synthesizer name", 16) as Synthesizer
   expect(synthesizer.id).toEqual("synthesizerId")
 })
 

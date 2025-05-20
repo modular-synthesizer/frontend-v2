@@ -2,10 +2,8 @@ import { ref } from "vue"
 import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogout } from "../../stories/attemptLogout"
 
-const fakeSession = ref({ foo: 'bar' })
-
 const fakes = {
-  navigator: (path: string) => { },
+  navigator: (_: string) => { },
   reset: () => { },
 }
 

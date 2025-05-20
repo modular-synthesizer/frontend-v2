@@ -3,8 +3,8 @@ import { attemptLogin } from "../../stories/attemptLogin"
 import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore } from "../fakes"
 
 const fakes = {
-  requestError: (username: string, password: string) => fakeError,
-  requestSuccess: (username: string, password: string) => ({ ok: true, data: fakeSession }),
+  requestError: (_: string, _2: string): AsyncFailure => fakeError,
+  requestSuccess: (_: string, _2: string): AsyncSuccess<Session> => ({ ok: true, data: fakeSession }),
   navigator: fakeNavigator,
   store: fakeStore,
 }

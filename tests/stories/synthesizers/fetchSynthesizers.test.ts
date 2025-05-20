@@ -1,15 +1,17 @@
 import { afterEach, expect, test, vi } from "vitest"
-import { fetchSynthesizers } from "../../../stories/synthesizers/fetchSynthesizers.ts"
+import { fetchSynthesizers } from "../../../stories/synthesizers/fetchSynthesizers"
 import { fakeError, fakeSnacker } from "../../fakes"
 
 const fakeSynthesizer = {
   id: "testId",
-  name: "testName"
+  name: "testName",
+  voices: 1,
+  members: [ ]
 }
 
 const fakes = {
-  requestError: () => fakeError,
-  requestSuccess: () => ({ ok: true, data: [ fakeSynthesizer ] }),
+  requestError: (): AsyncFailure => fakeError,
+  requestSuccess: (): AsyncSuccess<Synthesizer[]> => ({ ok: true, data: [ fakeSynthesizer ] }),
 }
 
 afterEach(() => vi.restoreAllMocks())

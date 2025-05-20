@@ -1,17 +1,17 @@
 import { afterEach, expect, test, vi } from 'vitest'
 import { fakeError, fakeSnacker } from '../../fakes'
-import { removeSynthesizer } from "../../../stories/synthesizers/removeSynthesizer.ts"
+import { removeSynthesizer } from "../../../stories/synthesizers/removeSynthesizer"
 
-const fakeData = function() {
+const fakeData = () => {
   return [
-    { id: 'firstSynth', name: 'First Synth', members: [ ]},
-    { id: 'secondSynth', name: 'Second Synth', members: [ ]},
+    { id: 'firstSynth', voices: 1, name: 'First Synth', members: [ ]},
+    { id: 'secondSynth', voices: 1, name: 'Second Synth', members: [ ]},
   ]
 }
 
 const fakes = {
-  requestError: () => fakeError,
-  requestSuccess: () => ({ ok: true, data: undefined }),
+  requestError: (): AsyncFailure => fakeError,
+  requestSuccess: (): AsyncSuccess<void> => ({ ok: true, data: undefined }),
 }
 
 afterEach(() => vi.restoreAllMocks())
