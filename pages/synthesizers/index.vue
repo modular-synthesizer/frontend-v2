@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div class="text-h3">{{ $t('menu.synthesizers') }}</div>
-    <synthesizers-creation-modal :synthesizer="creation" @submit="submit" />
+    <div class="text-h3 mb-1">{{ $t('menu.synthesizers') }}</div>
+    <synthesizers-creation-modal :synthesizer="creation" @submit="submit" class="mb-3" />
     <synthesizers-list :synthesizers>
       <template #synthesizer="synthesizer">
         <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">

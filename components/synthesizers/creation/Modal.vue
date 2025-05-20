@@ -1,8 +1,10 @@
 <template>
-  <v-btn @click="display = true">{{ $t('common.verbs.add') }}</v-btn>
-  <v-dialog v-model="display" max-width="500">
-    <synthesizers-creation-card v-bind="props.synthesizer" @close="display = false" @submit="submit" />
-  </v-dialog>
+  <div>
+    <v-btn @click="display = true">{{ $t('common.verbs.add') }}</v-btn>
+    <v-dialog v-model="display" max-width="500">
+      <synthesizers-creation-card v-bind="props.synthesizer" @close="display = false" @submit="submit" />
+    </v-dialog>
+  </div>
 </template>
 
 <script lang="ts" setup>
