@@ -9,7 +9,11 @@
       "placeholders": {
         "name": "Entrez un nom explicite pour ce synthétiseur",
         "voices": "Entrez le nombre de voix de polyphonie"
-      }
+      },
+      "success": "Synthétiseur créé avec succès !"
+    },
+    "deletion": {
+      "success": "Synthétiseur supprimé avec succès"
     },
     "errors": {
       "list": "Impossible de récupérer la liste de vos synthétiseurs, veuillez réessayer dans un court instant."

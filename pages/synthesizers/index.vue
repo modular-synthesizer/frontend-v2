@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <div class="text-h3 mb-1">{{ $t('menu.synthesizers') }}</div>
-    <synthesizers-creation-modal :synthesizer="creation" @submit="submit" class="mb-3" />
+    <synthesizers-creation-modal :synthesizer="creation" @submit="create" class="mb-3" />
     <synthesizers-list :synthesizers>
       <template #synthesizer="synthesizer">
         <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">
           <template #actions>
-            <confirm-delete @submit="deletion(synthesizer.id)" />
+            <confirm-delete @submit="remove(synthesizer.id)" />
           </template>
         </synthesizers-card>
       </template>
@@ -19,9 +19,5 @@ const fetch = fetchSynthesizers(api.synthesizers.list, useSnack());
 const synthesizers: Ref<Synthesizer[]> = ref(await fetch());
 const creation = ref({ id: '', name: '', voices: 16, members: [] })
 const create = createSynthesizer(api.synthesizers.new, useSnack(), synthesizers.value);
-const deletion = removeSynthesizer(api.synthesizers.delete, useSnack(), synthesizers.value)
-
-async function submit(name: string, voices: number) {
-  await create(name, voices)
-}
+const remove = removeSynthesizer(api.synthesizers.delete, useSnack(), synthesizers.value)
 </script>
