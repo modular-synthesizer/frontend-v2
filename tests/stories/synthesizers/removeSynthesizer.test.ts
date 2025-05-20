@@ -36,8 +36,8 @@ test('Displays an error snack if the synthesizer fails to be deleted', async () 
   expect(snackerSpy).toHaveBeenCalledExactlyOnceWith("synthesizers.deletion.error")
 })
 
-test('Does not delete any synthesizer in the list if the API fails', async () => {
+test('Does not delete any synthesizer in the list if the synthesizer is not in it', async () => {
   const data = fakeData()
-  await removeSynthesizer(fakes.requestError, fakeSnacker, data)("firstSynth")
+  await removeSynthesizer(fakes.requestError, fakeSnacker, data)("thirdSynth")
   expect(data.length).toBe(2)
 })

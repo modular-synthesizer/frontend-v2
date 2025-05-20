@@ -13,6 +13,7 @@
       "success": "Synthétiseur créé avec succès !"
     },
     "deletion": {
+      "error": "Une erreur est survenue lors de la suppression du synthétiseur",
       "success": "Synthétiseur supprimé avec succès"
     },
     "errors": {

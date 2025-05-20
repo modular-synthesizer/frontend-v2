@@ -15,10 +15,10 @@ export function deleteSynthesizerFromlist(id: string, list: Synthesizer[]) {
 
 export function removeSynthesizer(requester: Requester, snacker: Snacker, list: Synthesizer[]) {
   return async (id: string) => {
+    deleteSynthesizerFromlist(id, list)
     const response: AsyncResult<void> = await requester(id);
     if (response.ok) {
       snacker.success('synthesizers.deletion.success');
-      deleteSynthesizerFromlist(id, list)
     }
     else {
       snacker.error('synthesizers.deletion.error');
