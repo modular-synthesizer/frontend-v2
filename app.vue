@@ -8,3 +8,7 @@
     </v-layout>
   </v-app>
 </template>
+
+<style>
+html { overflow: auto; }
+</style>
