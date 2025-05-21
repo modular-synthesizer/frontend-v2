@@ -36,4 +36,9 @@ export type HttpPayload = Payload<string>
 /**
  * A fetcher is a function able to make requests on a route and returning the result wrapped as a generic type.
  */
-export type Fetcher<Entity> = (method: HttpVerb, url: string, parameters: HttpPayload, body: HttpPayload) => ExpectedResult<Entity>;
+export type Fetcher<Entity> = (method: HttpVerb, url: string, parameters?: HttpPayload, body?: HttpPayload) => ExpectedResult<Entity>;
+
+/**
+ * The simplest authentication type used to get the auth token on the corresponding composable.
+ */
+export type Auth = { token: string }
