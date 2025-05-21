@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     '@mdi/font/css/materialdesignicons.min.css',
   ],
 
-  modules: [ '@nuxtjs/i18n', '@vueuse/nuxt' ],
+  modules: [ '@nuxtjs/i18n', '@vueuse/nuxt', '@nuxt/test-utils/module' ],
 
   i18n: { ...localesConfig, defaultLocale: 'fr' },
 

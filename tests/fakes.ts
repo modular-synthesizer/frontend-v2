@@ -1,4 +1,4 @@
-import type { Snacker } from "../composables/useSnack"
+import type { Snacker } from "../composables/snack"
 import type { Session } from "~/core/business/Session.type"
 
 export const fakeError: AsyncFailure = { ok: false, key: 'username', message: 'unknown' }

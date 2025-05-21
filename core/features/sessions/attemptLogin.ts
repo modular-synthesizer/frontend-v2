@@ -17,6 +17,6 @@ export function attemptLogin(loginRequester: LoginRequester, snacker: Snacker, n
       snacker.success("login.success")
       return navigator('/')
     }
-    return snacker.asyncError(response)
+    return snacker.asyncError(response, 'login')
   }
 }

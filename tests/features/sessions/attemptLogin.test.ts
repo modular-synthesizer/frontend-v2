@@ -1,6 +1,6 @@
 import { afterEach, expect, test, vi } from "vitest"
-import { attemptLogin } from "../../core/features/sessions/attemptLogin"
-import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore, type ExpectedFailure, type ExpectedSuccess } from "../fakes"
+import { attemptLogin } from "../../../core/features/sessions/attemptLogin"
+import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore, type ExpectedFailure, type ExpectedSuccess } from "../../fakes"
 
 const fakes = {
   requestError: async (_: string, _2: string): ExpectedFailure => fakeError,
@@ -22,7 +22,7 @@ test("Fails if the underlying asynchronous call is not successful", async () => 
   const errorSpy = vi.spyOn(fakeSnacker, "asyncError")
   const story = attemptLogin(fakes.requestError, fakeSnacker, fakes.navigator, fakes.store)
   await story("wrongUsername", "wrongPassword")
-  expect(errorSpy).toHaveBeenCalledExactlyOnceWith(fakeError)
+  expect(errorSpy).toHaveBeenCalledExactlyOnceWith(fakeError, 'login')
 })
 
 test("Stores the session if the underlying asynchronous call is successful", async () => {

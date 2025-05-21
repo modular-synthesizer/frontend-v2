@@ -23,5 +23,10 @@
     "vue-router": "^4.5.1",
     "vuetify": "^3.8.5"
   },
-  "packageManager": "pnpm@8.11.0+sha1.01bf39424f1008f29012bbae851d2acb8a20a0d0"
+  "packageManager": "pnpm@8.11.0+sha1.01bf39424f1008f29012bbae851d2acb8a20a0d0",
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.19.0",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^17.4.7"
+  }
 }
