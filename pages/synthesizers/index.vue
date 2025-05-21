@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-const { fetch, create, remove } = features.synthesizers;
-const synthesizers: Ref<Synthesizer[]> = ref(await fetch());
+const { list, create, remove } = features.synthesizers;
+const synthesizers: Ref<Synthesizer[]> = ref(await list());
 const creation = ref({ id: '', name: '', voices: 16, members: [] })
 
 function createAndPush(name: string, voices: number) {

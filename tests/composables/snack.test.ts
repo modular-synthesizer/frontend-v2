@@ -26,6 +26,13 @@ test("Correctly adds an asynchronous error to the list of snacks", async () => {
   expect(snacker().queue.value).toEqual([{ text: "testKey.testMessage", color: "error", timeout: 2500 }])
 })
 
+test("Correctly adds an asynchronous error with a prefix", async () => {
+  const snacker = useSnackTemplate(ref([]));
+  const failure: AsyncFailure = { ok: false, key: 'testKey', message: 'testMessage' }
+  snacker().asyncError(failure, 'prefix')
+  expect(snacker().queue.value).toEqual([{ text: "prefix.testKey.testMessage", color: "error", timeout: 2500 }])
+})
+
 test("Can add more than one snack in the correct order", async () => {
   const snacker = useSnackTemplate(ref([]))
   snacker().success('first')

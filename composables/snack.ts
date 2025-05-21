@@ -23,7 +23,7 @@ export const useSnackTemplate = (queue: Ref<QueueItem[]>): (() => Snacker) => {
     }
 
     function asyncError({ key, message }: AsyncFailure, prefix?: string) {
-      pushToQueue(`${prefix ? `.${prefix}` : ''}${key}.${message}`, 'error')
+      pushToQueue(`${prefix ? `${prefix}.` : ''}${key}.${message}`, 'error')
     }
 
     return {
@@ -35,4 +35,4 @@ export const useSnackTemplate = (queue: Ref<QueueItem[]>): (() => Snacker) => {
   }
 }
 
-export const useSnack = useSnackTemplate(useState<QueueItem[]>('snacks', () => []))
+export const useSnack = useSnackTemplate(ref([]))
