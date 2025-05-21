@@ -15,7 +15,8 @@ export function createFetcher<Entity>(fetchFunction: Fetch) {
   return async (method: HttpVerb, url: string, parameters: HttpPayload = {}, body: HttpPayload = {}): ExpectedResult<Entity> => {
     try {
       const params = new URLSearchParams(parameters);
-      const options = { method, ...(method !== 'GET' ? { body: JSON.stringify(body) } : {}) }
+      const hasBody = !['GET', 'DELETE'].includes(method)
+      const options = { method, ...(hasBody ? { body: JSON.stringify(body) } : {}) }
       const response = await fetchFunction(`/proxy${url}?${params.toString()}`, options)
       if (response.status > 299) {
         const body = await getBody(response);
