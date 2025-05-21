@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
 
-  imports: { dirs: [ 'stories/**', 'types/**', 'utils/**' ] },
+  imports: { dirs: [ 'core/**', 'stories/**', 'types/**', 'utils/**' ] },
 
   runtimeConfig: {
     public: {

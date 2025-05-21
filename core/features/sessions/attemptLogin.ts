@@ -1,4 +1,4 @@
-type LoginRequester = (username: string, password: string) => AsyncResult<Session>
+type LoginRequester = (username: string, password: string) => ExpectedResult<Session>
 
 type Navigator = typeof navigateTo;
 
