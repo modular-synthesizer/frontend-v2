@@ -2,7 +2,7 @@ import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
 import { listModules } from "./synthesizers/modules/list";
 
-type Api = {
+export type ApiSchema = {
   modules: { list: ModuleListFetcher },
   sessions: { new: SessionCreationFetcher },
   synthesizers: {
@@ -13,7 +13,7 @@ type Api = {
   }
 }
 
-export const api: Api = {
+export const api: ApiSchema = {
   modules: {
     list: listModules(createFetcher<Module[]>(fetch), useAuth()),
   },
