@@ -1,7 +1,22 @@
 import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
+import { listModules } from "./synthesizers/modules/list";
 
-export const api = {
+type Api = {
+  modules: { list: ModuleListFetcher },
+  sessions: { new: SessionCreationFetcher },
+  synthesizers: {
+    delete: SynthesizerDeleteFetcher,
+    get: SynthesizerGetFetcher,
+    new: SynthesizerCreationFetcher,
+    list: SynthesizerListFetcher
+  }
+}
+
+export const api: Api = {
+  modules: {
+    list: listModules(createFetcher<Module[]>(fetch), useAuth()),
+  },
   sessions: {
     new: newSessionApi(createFetcher<Session>(fetch))
   },
