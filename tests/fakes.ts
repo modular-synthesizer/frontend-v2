@@ -1,7 +1,6 @@
-import type { Snacker } from "../composables/snack"
 import type { Session } from "~/core/business/Session.type"
 
-export const fakeError: AsyncFailure = { ok: false, key: 'username', message: 'unknown' }
+export const fakeError = failure('username', 'unknown')
 
 export type ExpectedFailure = Promise<AsyncFailure>;
 
@@ -11,12 +10,7 @@ type FakeNavigator = typeof navigateTo;
 
 export const fakeNavigator: FakeNavigator = ((_path: string) => { }) as unknown as FakeNavigator
 
-export const fakeSnacker: Snacker = {
-  success(_: string) { },
-  error(_: string) { },
-  asyncError(_: AsyncFailure) { },
-  queue: ref([]),
-}
+export const fakeSnacker = useSnackTemplate(ref([]))()
 
 export const fakeAccount: Account = {
   id: '1',
@@ -43,16 +37,16 @@ export const fakeStore = (_session: Session) => { }
 
 export const fakeSuccessApi: ApiSchema = {
   modules: {
-    list: async () => ({ ok: true, data: [] }),
+    list: async () => success([]),
   },
   sessions: {
-    new: async (_usr: string, _pwd: string) => ({ ok: true, data: fakeSession }),
+    new: async (_usr: string, _pwd: string) => success(fakeSession),
   },
   synthesizers: {
-    list: async () => ({ ok: true, data: [] }),
-    get: async (_id: string) => ({ ok: true, data: fakeSynthesizer }),
-    new: async (_nme: string, _vcs: number) => ({ ok: true, data: fakeSynthesizer }),
-    delete: async(_id: string) => ({ ok: true, data: undefined }),
+    list: async () => success([ fakeSynthesizer ]),
+    get: async (_id: string) => success(fakeSynthesizer),
+    new: async (_nme: string, _vcs: number) => success(fakeSynthesizer),
+    delete: async(_id: string) => success(undefined)
   },
 }
 
