@@ -1,8 +1,8 @@
 export const features = {
   synthesizers: {
-    create: createSynthesizer(api.synthesizers.new, useSnack()),
-    fetch: fetchSynthesizer(api.synthesizers.get, navigateTo),
-    list: fetchSynthesizers(api.synthesizers.list, useSnack()),
-    remove: removeSynthesizer(api.synthesizers.delete, useSnack()),
+    create: createSynthesizer(api, useSnack()),
+    fetch: fetchSynthesizer(api, navigateTo),
+    list: fetchSynthesizers(api, useSnack()),
+    remove: removeSynthesizer(api, useSnack()),
   }
 }

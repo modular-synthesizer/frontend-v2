@@ -1,8 +1,6 @@
-type Requester = (id: string) => ExpectedResult<Synthesizer>
-
-export function fetchSynthesizer(requester: Requester, navigator: Redirector) {
+export function fetchSynthesizer(api: ApiSchema, navigator: Redirector) {
   return async (id: string): Eventual<Synthesizer> => {
-    const response = await requester(id)
+    const response = await api.synthesizers.get(id)
     if (response.ok) return response.data;
     navigator('/synthesizers')
   }

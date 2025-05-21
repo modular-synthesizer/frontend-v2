@@ -13,10 +13,10 @@ export function deleteSynthesizerFromlist(id: string, list: Synthesizer[]) {
   if (index >= 0) list.splice(index, 1)
 }
 
-export function removeSynthesizer(requester: Requester, snacker: Snacker) {
+export function removeSynthesizer(api: ApiSchema, snacker: Snacker) {
   return async (id: string, list: Synthesizer[]) => {
     deleteSynthesizerFromlist(id, list)
-    const response: AsyncResult<void> = await requester(id);
+    const response: AsyncResult<void> = await api.synthesizers.delete(id);
     if (response.ok) {
       snacker.success('synthesizers.deletion.success');
     }

@@ -1,8 +1,6 @@
-type Requester = (name: string, voices: number) => ExpectedResult<Synthesizer>
-
-export function createSynthesizer(requester: Requester, snack: Snacker) {
+export function createSynthesizer(api: ApiSchema, snack: Snacker) {
   return async (name: string, voices: number, list: Synthesizer[]): Eventual<Synthesizer> => {
-    const response: AsyncResult<Synthesizer> = await requester(name, voices)
+    const response: AsyncResult<Synthesizer> = await api.synthesizers.new(name, voices)
     if (response.ok) {
       snack.success('synthesizers.create.success')
       list.push(response.data)

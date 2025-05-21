@@ -6,9 +6,7 @@ export type ExpectedFailure = Promise<AsyncFailure>;
 
 export type ExpectedSuccess<T> = Promise<AsyncSuccess<T>>
 
-type FakeNavigator = typeof navigateTo;
-
-export const fakeNavigator: FakeNavigator = ((_path: string) => { }) as unknown as FakeNavigator
+export const fakeNavigator: Redirector = ((_path: string) => { }) as Redirector
 
 export const fakeSnacker = useSnackTemplate(ref([]))()
 
