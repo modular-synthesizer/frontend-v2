@@ -1,5 +1,5 @@
 import { expect, test, describe } from 'vitest'
-import { getMembership } from "../../utils/synthesizers"
+import { getMembership } from "../../core/functions/synthesizers/getMembership"
 
 const membership: Membership = {
   id: "membershipId", username: "Player", type: 'read'

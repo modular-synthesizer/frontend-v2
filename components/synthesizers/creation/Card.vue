@@ -32,7 +32,7 @@
 
 <script lang="ts" setup>
 import { useRules, type RuleAliases } from 'vuetify/labs/rules';
-import type { SubmissionEvent } from '~/types/forms';
+import type { SubmissionEvent } from '~/core/types/forms';
 
 type Props = {
   name: string,
