@@ -8,6 +8,7 @@ export const api = {
   synthesizers: {
     delete: deleteSynthesizer(createFetcher<void>(fetch), useAuth()),
     get: getSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
+    new: newSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
     list: listSynthesizers(createFetcher<Synthesizer[]>(fetch), useAuth()),
   },
 }

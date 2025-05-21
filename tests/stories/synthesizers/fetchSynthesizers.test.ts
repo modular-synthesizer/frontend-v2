@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from "vitest"
-import { fetchSynthesizers } from "../../../stories/synthesizers/fetchSynthesizers"
+import { fetchSynthesizers } from "../../../core/features/synthesizers/fetchSynthesizers"
 import { fakeError, fakeSnacker } from "../../fakes"
 
 const fakeSynthesizer = {

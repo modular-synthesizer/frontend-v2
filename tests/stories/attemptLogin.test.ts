@@ -1,10 +1,10 @@
 import { afterEach, expect, test, vi } from "vitest"
-import { attemptLogin } from "../../stories/attemptLogin"
-import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore } from "../fakes"
+import { attemptLogin } from "../../core/features/sessions/attemptLogin"
+import { fakeError, fakeNavigator, fakeSession, fakeSnacker, fakeStore, type ExpectedFailure, type ExpectedSuccess } from "../fakes"
 
 const fakes = {
-  requestError: (_: string, _2: string): AsyncFailure => fakeError,
-  requestSuccess: (_: string, _2: string): AsyncSuccess<Session> => ({ ok: true, data: fakeSession }),
+  requestError: async (_: string, _2: string): ExpectedFailure => fakeError,
+  requestSuccess: async (_: string, _2: string): ExpectedSuccess<Session> => ({ ok: true, data: fakeSession }),
   navigator: fakeNavigator,
   store: fakeStore,
 }

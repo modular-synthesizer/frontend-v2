@@ -1,9 +1,14 @@
 import type { Snacker } from "../composables/useSnack"
-import type { Session } from "../types/session"
+import type { Session } from "~/core/business/Session.type"
 
 export const fakeError: AsyncFailure = { ok: false, key: 'username', message: 'unknown' }
 
+export type ExpectedFailure = Promise<AsyncFailure>;
+
+export type ExpectedSuccess<T> = Promise<AsyncSuccess<T>>
+
 type FakeNavigator = typeof navigateTo;
+
 export const fakeNavigator: FakeNavigator = ((path: string) => { }) as unknown as FakeNavigator
 
 export const fakeSnacker: Snacker = {

@@ -42,3 +42,10 @@ export type Fetcher<Entity> = (method: HttpVerb, url: string, parameters?: HttpP
  * The simplest authentication type used to get the auth token on the corresponding composable.
  */
 export type Auth = { token: string }
+
+/**
+ * Syntaxic sugar to avoid remaking the same type everywhere
+ */
+export type Eventual<Entity> = Promise<Entity | undefined>
+
+export type Redirector = typeof navigateTo

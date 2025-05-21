@@ -1,4 +1,4 @@
-type Requester = (id: string) => AsyncResult<void>
+type Requester = (id: string) => ExpectedResult<void>
 
 /**
  * This story is used in several cases :
@@ -13,8 +13,8 @@ export function deleteSynthesizerFromlist(id: string, list: Synthesizer[]) {
   if (index >= 0) list.splice(index, 1)
 }
 
-export function removeSynthesizer(requester: Requester, snacker: Snacker, list: Synthesizer[]) {
-  return async (id: string) => {
+export function removeSynthesizer(requester: Requester, snacker: Snacker) {
+  return async (id: string, list: Synthesizer[]) => {
     deleteSynthesizerFromlist(id, list)
     const response: AsyncResult<void> = await requester(id);
     if (response.ok) {
