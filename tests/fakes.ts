@@ -10,6 +10,13 @@ export const fakeNavigator: Redirector = ((_path: string) => { }) as Redirector
 
 export const fakeSnacker = useSnackTemplate(ref([]))()
 
+export const fakeTimeout: TimeoutFunction = (callback: () => void, timeout: number) => {
+  callback()
+  return 42
+}
+
+export const fakeClear: ClearFunction = (timeout: number) => { }
+
 export const fakeAccount: Account = {
   id: '1',
   username: 'FakeAccount',
@@ -28,7 +35,8 @@ export const fakeSynthesizer: Synthesizer = {
   name: 'test synthétiseur',
   voices: 16,
   members: [ ],
-  id: 'synthesizerId'
+  id: 'synthesizerId',
+  scale: 1.0
 }
 
 export const fakeStore = (_session: Session) => { }
@@ -44,7 +52,8 @@ export const fakeSuccessApi: ApiSchema = {
     list: async () => success([ fakeSynthesizer ]),
     get: async (_id: string) => success(fakeSynthesizer),
     new: async (_nme: string, _vcs: number) => success(fakeSynthesizer),
-    delete: async(_id: string) => success(undefined)
+    delete: async(_id: string) => success(undefined),
+    update: async(_id: string, payload: Partial<Synthesizer>) => success({ ... fakeSynthesizer, ...payload })
   },
 }
 
@@ -60,5 +69,6 @@ export const fakeErrorApi: ApiSchema = {
     get: async (_id: string) => fakeError,
     new: async (_nme: string, _vcs: number) => fakeError,
     delete: async(_id: string) => fakeError,
+    update: async(_id: string, payload: Partial<Synthesizer>) => fakeError,
   },
 }

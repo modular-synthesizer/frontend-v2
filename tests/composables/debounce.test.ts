@@ -1,9 +1,6 @@
 import { afterEach, expect, test, vi } from "vitest"
 import { useDebounceTemplate } from "../../composables/debounce"
-
-const fakeTimeout: TimeoutFunction = (callback: () => void, timeout: number) => 42
-
-const fakeClear: ClearFunction = (timeout: number) => { }
+import { fakeTimeout, fakeClear } from "../fakes"
 
 const fakes = {
   callback: () => { }
@@ -11,7 +8,7 @@ const fakes = {
 
 afterEach(() => vi.restoreAllMocks())
 
-test("It correctly stores a callback in the list of callbaks", () => {
+test("It correctly stores a callback in the list of callbacks", () => {
   const fakeDebounce = useDebounceTemplate(fakeTimeout, fakeClear)
   fakeDebounce().debounce("test", 1000, () => { })
   expect(fakeDebounce().debouncers.value).toEqual({ test: 42 })
