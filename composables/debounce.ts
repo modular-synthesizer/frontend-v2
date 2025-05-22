@@ -2,12 +2,19 @@ export type TimeoutFunction = typeof window.setTimeout
 
 export type ClearFunction = typeof window.clearTimeout
 
+export type Debouncer = {
+  debounce: (name: string, delay: number, callback: () => void) => void,
+  cancel: (name: string) => void,
+  debouncers: Ref<Record<string, number>>
+}
+
+
 export function useDebounceTemplate(timeout: TimeoutFunction, clear: ClearFunction) {
 
   const debouncers = ref({ })
   
-  return () => ({
-    debounce(name: string, delay: number, callback: Function) {
+  return (): Debouncer => ({
+    debounce(name: string, delay: number, callback: () => void) {
       if (name in debouncers.value) clear(debouncers.value[name])
       debouncers.value[name] = timeout(callback, delay)
     },
@@ -18,4 +25,4 @@ export function useDebounceTemplate(timeout: TimeoutFunction, clear: ClearFuncti
   })
 }
 
-const useDebounce = useDebounceTemplate(setTimeout, clearTimeout)
+export const useDebounce = useDebounceTemplate(setTimeout, clearTimeout)

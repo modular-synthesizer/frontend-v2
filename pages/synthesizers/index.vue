@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 const { list, create, remove } = features.synthesizers;
 const synthesizers: Ref<Synthesizer[]> = ref(await list());
-const creation = ref({ id: '', name: '', voices: 16, members: [] })
+const creation = ref({ id: '', name: '', voices: 16, members: [], scale: 1.0 })
 
 function createAndPush(name: string, voices: number) {
   create(name, voices, synthesizers.value)

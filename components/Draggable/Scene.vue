@@ -1,22 +1,21 @@
 <template>
-  <div class="scene-wrapper">
+  <div class="scene-wrapper" @wheel.capture.passive="emit('scaled', $event.deltaY)">
     <slot name="layers" />
   </div>
 </template>
 
 <script setup lang="ts">
-type Props = {
-  width: string
-  height: string
-  color: string
-}
-const { height = '100vh', width = '100vw', color = 'silver' } = defineProps<Props>()
+type Props = { color: string }
+const { color = 'silver' } = defineProps<Props>()
+
+type Emits = { scaled: [ number ] }
+const emit = defineEmits<Emits>()
 </script>
 
 <style scoped>
 .scene-wrapper {
-  height: v-bind(height);
-  width: v-bind(width);
+  height: 100vh;
+  width: 100vw;
   background-color: v-bind(color);
 }
 </style>

@@ -9,7 +9,8 @@ export type ApiSchema = {
     delete: SynthesizerDeleteFetcher,
     get: SynthesizerGetFetcher,
     new: SynthesizerCreationFetcher,
-    list: SynthesizerListFetcher
+    list: SynthesizerListFetcher,
+    update: SynthesizerUpdateFetcher,
   }
 }
 
@@ -25,5 +26,6 @@ export const api: ApiSchema = {
     get: getSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
     new: newSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
     list: listSynthesizers(createFetcher<Synthesizer[]>(fetch), useAuth()),
+    update: updateSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
   },
 }
