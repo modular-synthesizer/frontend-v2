@@ -8,7 +8,6 @@ export type Debouncer = {
   debouncers: Ref<Record<string, number>>
 }
 
-
 export function useDebounceTemplate(timeout: TimeoutFunction, clear: ClearFunction) {
 
   const debouncers = ref({ })
