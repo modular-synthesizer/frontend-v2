@@ -17,3 +17,7 @@ export function inRef(coords: Coordinates, reference: ScaledCoordinates) {
     y: coords.y / reference.scale - reference.y
   }
 }
+
+export function fromEvent({ clientX, clientY }: MouseEvent) {
+  return { x: clientX, y: clientY }
+}

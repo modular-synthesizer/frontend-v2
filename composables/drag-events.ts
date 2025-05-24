@@ -10,6 +10,13 @@ type State = {
   callbacks: Callbacks,
 }
 
+export type DragEventsHandler = {
+  start: (reference: ScaledCoordinates, coords: Coordinates, callbacks: Callbacks) => void
+  move: (event: Coordinates) => void
+  end: (event: Coordinates) => void,
+  state: State
+}
+
 export function useDragEventsTemplate() {
 
   function defaultState() {
@@ -22,7 +29,7 @@ export function useDragEventsTemplate() {
 
   const state = ref(defaultState())
 
-  return () => ({
+  return (): DragEventsHandler => ({
     /**
      * Sets the origin of a drag'n'drop event. The origin is made in the DOM itself, but in the synthesizer too,
      * and these are two different referentials. We store both the origin as the ratio between both of them will

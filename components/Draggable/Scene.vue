@@ -1,5 +1,11 @@
 <template>
-  <div class="scene-wrapper" @wheel.capture.passive="emit('scaled', $event.deltaY)">
+  <div
+    class="scene-wrapper"
+    @mousedown.prevent.stop="emit('drag', fromEvent($event))"
+    @mousemove.prevent.stop="emit('moved', fromEvent($event))"
+    @mouseup.prevent.stop="emit('drop', fromEvent($event))"
+    @wheel.capture.passive="emit('scaled', $event.deltaY)"
+  >
     <slot name="layers" />
   </div>
 </template>
@@ -8,7 +14,12 @@
 type Props = { color: string }
 const { color = 'silver' } = defineProps<Props>()
 
-type Emits = { scaled: [ number ] }
+type Emits = {
+  drag: [ Coordinates ],
+  drop: [ Coordinates ],
+  moved: [ Coordinates ],
+  scaled: [ number ]
+}
 const emit = defineEmits<Emits>()
 </script>
 
