@@ -20,8 +20,8 @@ async function rescale(deltaY: number) {
   await features.synthesizers.rescale(synthesizer.value, deltaY)
 }
 
-async function drop() {
-  console.log(synthesizer.value.x, synthesizer.value.y)
+async function drop({ x, y }: Coordinates) {
+  features.synthesizers.move(synthesizer.value, { x, y })
 }
 
 async function move({ x, y }: Coordinates) {
