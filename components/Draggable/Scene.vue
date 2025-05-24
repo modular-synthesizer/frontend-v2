@@ -6,7 +6,7 @@
     @mouseup.prevent.stop="emit('drop', fromEvent($event))"
     @wheel.capture.passive="emit('scaled', $event.deltaY)"
   >
-    <slot name="layers" />
+    <slot />
   </div>
 </template>
 

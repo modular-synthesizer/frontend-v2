@@ -6,8 +6,10 @@
     @scaled="rescale"
     v-if="synthesizer"
   >
-    <div class="test" />
-  </draggable-screen>
+    <draggable-layer-svg :reference="synthesizer">
+      <rect width="100" height="100" fill="red" />
+    </draggable-layer-svg>
+  </draggable-scene>
 </template>
 
 <script setup lang="ts">
