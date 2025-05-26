@@ -7,7 +7,7 @@
     v-if="synthesizer"
   >
     <draggable-layer-svg :reference="synthesizer">
-      <rect width="100" height="100" fill="red" />
+      <modules-wrapper v-for="module in synthesizer.modules" :key="module.id" :module="module" />
     </draggable-layer-svg>
   </draggable-scene>
 </template>

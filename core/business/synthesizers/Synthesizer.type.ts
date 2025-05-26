@@ -3,5 +3,6 @@ export type Synthesizer = {
   name: string
   voices: number
   members: Membership[],
-  scale: number
+  scale: number,
+  modules: Module[],
 }

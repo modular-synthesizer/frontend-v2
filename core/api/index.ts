@@ -1,6 +1,5 @@
 import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
-import { listModules } from "./synthesizers/modules/list";
 
 export type ApiSchema = {
   modules: { list: ModuleListFetcher },

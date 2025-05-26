@@ -36,14 +36,22 @@ export const fakeSynthesizer: Synthesizer = {
   voices: 16,
   members: [ ],
   id: 'synthesizerId',
-  scale: 1.0
+  scale: 1.0,
+  modules: [ ]
+}
+
+export const fakeModule = {
+  id: "moduleId",
+  slot: 12,
+  slots: 2,
+  rack: 0,
 }
 
 export const fakeStore = (_session: Session) => { }
 
 export const fakeSuccessApi: ApiSchema = {
   modules: {
-    list: async () => success([]),
+    list: async () => success([ fakeModule ]),
   },
   sessions: {
     new: async (_usr: string, _pwd: string) => success(fakeSession),

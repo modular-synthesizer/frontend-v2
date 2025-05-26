@@ -1,1 +1,5 @@
-export type Module = Identified
+export type Module = Identified & {
+  rack: number
+  slot: number
+  slots: number
+}
