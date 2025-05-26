@@ -25,6 +25,7 @@
   },
   "packageManager": "pnpm@8.11.0+sha1.01bf39424f1008f29012bbae851d2acb8a20a0d0",
   "devDependencies": {
+    "@factory-js/factory": "^0.4.0",
     "@nuxt/test-utils": "^3.19.0",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^17.4.7"
