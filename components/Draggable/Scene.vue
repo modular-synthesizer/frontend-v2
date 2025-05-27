@@ -1,26 +1,37 @@
 <template>
   <div
     class="scene-wrapper"
-    @mousedown.prevent.stop="emit('drag', fromEvent($event))"
-    @mousemove.prevent.stop="emit('moved', fromEvent($event))"
-    @mouseup.prevent.stop="emit('drop', fromEvent($event))"
-    @wheel.capture.passive="emit('scaled', $event.deltaY)"
+    @mousedown.prevent.stop="c => useDragEvents().start(referenceFrame, c, { drop, move })"
+    @mousemove.prevent.stop="c => useDragEvents().move(c)"
+    @mouseup.prevent.stop="c => useDragEvents().end(c)"
+    @mouseout.prevent.stop="c => useDragEvents().end(c)"
+    @wheel.capture.passive="emit('rescale', $event.deltaY)"
   >
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-type Props = { color: string }
-const { color = 'silver' } = defineProps<Props>()
+type Props = {
+  color: string,
+  referenceFrame: ScaledCoordinates
+}
+const { color = 'silver', referenceFrame } = defineProps<Props>()
 
 type Emits = {
-  drag: [ Coordinates ],
   drop: [ Coordinates ],
-  moved: [ Coordinates ],
-  scaled: [ number ]
+  rescale: [ number ]
 }
 const emit = defineEmits<Emits>()
+
+async function move({ x, y }: Coordinates) {
+  referenceFrame.x = x;
+  referenceFrame.y = y;
+}
+
+async function drop({ x, y }: Coordinates) {
+  emit('drop', { x, y })
+}
 </script>
 
 <style scoped>
