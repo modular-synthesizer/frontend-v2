@@ -1,6 +1,9 @@
 import { useDebounce } from '~/composables/debounce'
 
 export const features = {
+  modules: {
+    save: saveModule(api, useSnack()),
+  },
   synthesizers: {
     create: createSynthesizer(api, useSnack()),
     fetch: fetchSynthesizer(api, navigateTo),

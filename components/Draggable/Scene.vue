@@ -4,7 +4,7 @@
     @mousedown.prevent.stop="c => useDragEvents().start(referenceFrame, c, { drop, move })"
     @mousemove.prevent.stop="c => useDragEvents().move(c)"
     @mouseup.prevent.stop="c => useDragEvents().end(c)"
-    @mouseout.prevent.stop="c => useDragEvents().end(c)"
+    @mouseleave.prevent.stop="c => useDragEvents().end(c)"
     @wheel.capture.passive="emit('rescale', $event.deltaY)"
   >
     <slot />
@@ -32,6 +32,8 @@ async function move({ x, y }: Coordinates) {
 async function drop({ x, y }: Coordinates) {
   emit('drop', { x, y })
 }
+
+provide<ScaledCoordinates>("reference-frame", referenceFrame)
 </script>
 
 <style scoped>

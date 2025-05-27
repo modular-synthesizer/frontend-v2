@@ -2,7 +2,10 @@ import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
 
 export type ApiSchema = {
-  modules: { list: ModuleListFetcher },
+  modules: {
+    list: ModuleListFetcher,
+    update: ModuleUpdateFetdcher,
+  },
   sessions: { new: SessionCreationFetcher },
   synthesizers: {
     delete: SynthesizerDeleteFetcher,
@@ -16,6 +19,7 @@ export type ApiSchema = {
 export const api: ApiSchema = {
   modules: {
     list: listModules(createFetcher<Module[]>(fetch), useAuth()),
+    update: updateModule(createFetcher<Module>(fetch), useAuth()),
   },
   sessions: {
     new: newSessionApi(createFetcher<Session>(fetch))
