@@ -3,7 +3,7 @@ import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogout } from "../../../core/features/sessions/attemptLogout"
 
 const fakes = {
-  navigator: (_: string) => { },
+  navigator: ((_?: string|undefined|null) => { }) as typeof navigateTo,
   reset: () => { },
 }
 

@@ -10,9 +10,9 @@ describe("Feature to scale up or down the synthesizer", async () => {
 
   const synthesizer = await factories.synthesizers.build()
 
-  const api = {
-    synthesizers: { update: async(id: string) => [ synthesizer ] }
-  }
+  const api: ApiSchema = {
+    synthesizers: { update: async(id: string) => success(synthesizer) }
+  } as unknown as ApiSchema
 
   test("Calls the API with the correct parameters", async () => {
     const apiSpy = vi.spyOn(api.synthesizers, "update")

@@ -5,7 +5,7 @@ describe("success", () => {
     expect(success<number>(42)).toEqual({ ok: true, data: 42 })
   })
   test("Creates a success with an object", () => {
-    expect(success<{ fo: string }>({ foo: 'bar' })).toEqual({ ok: true, data: { foo: 'bar' }})
+    expect(success<{ foo: string }>({ foo: 'bar' })).toEqual({ ok: true, data: { foo: 'bar' }})
   })
 })
 
