@@ -10,7 +10,7 @@ export type Debouncer = {
 
 export function useDebounceTemplate(timeout: TimeoutFunction, clear: ClearFunction) {
 
-  const debouncers = ref({ })
+  const debouncers: Ref<Record<string, number>> = ref({ })
   
   return (): Debouncer => ({
     debounce(name: string, delay: number, callback: () => void) {
