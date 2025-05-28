@@ -1,14 +1,7 @@
 <template>
   <draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
     <draggable-layer-svg :reference="synthesizer">
-      <draggable-box
-        v-for="module in synthesizer.modules"
-        :key="module.id"
-        :item="module"
-        @drop="features.modules.save(module)"
-      >
-        <modules-wrapper :module="module" />
-      </draggable-box>
+      <modules-wrapper v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer />
     </draggable-layer-svg>
   </draggable-scene>
 </template>

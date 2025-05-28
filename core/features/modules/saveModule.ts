@@ -1,5 +1,7 @@
 export function saveModule(api: ApiSchema, snacker: Snacker) {
   return async (module: Module) => {
-    await api.modules.update(module.id, { slot: module.slot, rack: module.rack })
+    const payload: Partial<Module> = { slot: module.slot, rack: module.rack }
+    const response = api.modules.update(module.id, payload)
+    if (!response.ok) snacker.error("modules.save.error")
   }
 }

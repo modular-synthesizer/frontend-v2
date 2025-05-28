@@ -10,27 +10,22 @@
 <script lang="ts" setup>
 
 type Props = {
-  item: Coordinates
+  coordinates: Coordinates
 }
-const { item } = defineProps<Props>()
+const { coordinates } = defineProps<Props>()
 
-type Emits = { drop: [ ] }
+type Emits = { drop: [ ], move: [ Coordinates ] }
 const emit = defineEmits<Emits>()
 
 const referenceFrame = inject<ScaledCoordinates>('reference-frame', { x: 0, y: 0, scale: 1.0 })
 
 function drag({ x, y }: Coordinates) {
-  const delta: Coordinates = {
-    x: item.slot * 20,
-    y: item.rack * 400,
-    scale: referenceFrame.scale,
-  }
-  useDragEvents().start(delta, { x, y }, { move, drop })
+  const origin: ScaledCoordinates = { ...coordinates, scale: referenceFrame.scale }
+  useDragEvents().start(origin, { x, y }, { move, drop })
 }
 
 function move({ x, y }: Coordinates) {
-  item.slot = (x - (x % 20)) / 20
-  item.rack = (y - (y % 400)) / 400
+  emit('move', { x, y })
 }
 
 function drop(_: Coordinates) {

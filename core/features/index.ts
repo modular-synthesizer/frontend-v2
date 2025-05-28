@@ -2,6 +2,7 @@ import { useDebounce } from '~/composables/debounce'
 
 export const features = {
   modules: {
+    move: moveModule(),
     save: saveModule(api, useSnack()),
   },
   synthesizers: {
@@ -10,6 +11,6 @@ export const features = {
     list: fetchSynthesizers(api, useSnack()),
     move: moveSynthesizer(api, useSnack()),
     remove: removeSynthesizer(api, useSnack()),
-    rescale: rescaleSynthesizer(api, useDebounce())
+    rescale: rescaleSynthesizer(api, useDebounce(), useSnack())
   }
 }
