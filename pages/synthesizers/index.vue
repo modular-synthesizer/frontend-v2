@@ -7,7 +7,7 @@
         <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">
           <template #actions>
             <confirm-delete @submit="remove(synthesizer.id, synthesizers)" />
-            <v-btn  :to="`/synthesizers/${synthesizer.id}`" icon v-tooltip:bottom="$t('common.verbs.play')">
+            <v-btn :to="`/synthesizers/${synthesizer.id}`" icon v-tooltip:bottom="$t('common.verbs.play')">
               <v-icon>mdi-music</v-icon>
             </v-btn>
           </template>
