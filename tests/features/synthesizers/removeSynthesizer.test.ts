@@ -4,8 +4,8 @@ import { removeSynthesizer } from "../../../core/features/synthesizers/removeSyn
 
 const fakeData = () => {
   return [
-    { id: 'firstSynth', voices: 1, name: 'First Synth', members: [ ]},
-    { id: 'secondSynth', voices: 1, name: 'Second Synth', members: [ ]},
+    { id: 'firstSynth', voices: 1, name: 'First Synth', members: [ ], modules: [ ], scale: 1.0 },
+    { id: 'secondSynth', voices: 1, name: 'Second Synth', members: [ ], modules: [ ], scale: 1.0 },
   ]
 }
 

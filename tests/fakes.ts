@@ -15,7 +15,7 @@ export const fakeTimeout: TimeoutFunction = (callback: () => void, timeout: numb
   return 42
 }
 
-export const fakeClear: ClearFunction = (timeout: number) => { }
+export const fakeClear: ClearFunction = (_timeout?: number) => { }
 
 export const fakeAccount: Account = {
   id: '1',
@@ -52,6 +52,7 @@ export const fakeStore = (_session: Session) => { }
 export const fakeSuccessApi: ApiSchema = {
   modules: {
     list: async () => success([ fakeModule ]),
+    update: async (_id: string, payload: Partial<Module>) => success({ ...fakeModule, ...payload })
   },
   sessions: {
     new: async (_usr: string, _pwd: string) => success(fakeSession),
@@ -68,6 +69,7 @@ export const fakeSuccessApi: ApiSchema = {
 export const fakeErrorApi: ApiSchema = {
   modules: {
     list: async () => fakeError,
+    update: async (_id: string, _payload: Partial<Module>) => fakeError,
   },
   sessions: {
     new: async (_usr: string, _pwd: string) => fakeError,
@@ -77,6 +79,6 @@ export const fakeErrorApi: ApiSchema = {
     get: async (_id: string) => fakeError,
     new: async (_nme: string, _vcs: number) => fakeError,
     delete: async(_id: string) => fakeError,
-    update: async(_id: string, payload: Partial<Synthesizer>) => fakeError,
+    update: async(_id: string, _payload: Partial<Synthesizer>) => fakeError,
   },
 }
