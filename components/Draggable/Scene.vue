@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 type Props = {
-  color: string,
+  color?: string,
   referenceFrame: ScaledCoordinates
 }
 const { color = 'silver', referenceFrame } = defineProps<Props>()

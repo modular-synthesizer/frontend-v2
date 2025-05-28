@@ -11,10 +11,12 @@ definePageMeta({ layout: false })
 const synthesizer = ref(await features.synthesizers.fetch(`${useRoute().params.id}`))
 
 async function rescale(deltaY: number) {
+  if(!synthesizer.value) return
   await features.synthesizers.rescale(synthesizer.value, deltaY)
 }
 
 async function drop({ x, y }: Coordinates) {
+  if(!synthesizer.value) return
   features.synthesizers.move(synthesizer.value, { x, y })
 }
 </script>

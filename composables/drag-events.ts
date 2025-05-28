@@ -1,4 +1,4 @@
-type DragCallback = (x: number, y: number) => void
+type DragCallback = (coordinates: Coordinates) => void
 
 type Callbacks = { move?: DragCallback, drop?: DragCallback }
 
@@ -14,7 +14,7 @@ export type DragEventsHandler = {
   start: (reference: ScaledCoordinates, coords: Coordinates, callbacks: Callbacks) => void
   move: (event: Coordinates) => void
   end: (event: Coordinates) => void,
-  state: State
+  state: Ref<State>
 }
 
 export function useDragEventsTemplate() {
@@ -23,7 +23,7 @@ export function useDragEventsTemplate() {
     return {
       reference: { x: 0, y: 0, scale: 1.0 },
       origin: { x: 0, y: 0 },
-      callbacks: {}
+      callbacks: {} as Callbacks
     }
   }
 
@@ -45,15 +45,15 @@ export function useDragEventsTemplate() {
     move(event: Coordinates) {
       const { reference, callbacks, origin } = state.value
       const delta = subtract(inRef(event, reference), origin)
-      callbacks.move && callbacks.move(add(reference, delta))
+      callbacks.move?.(add(reference, delta))
     },
     end(event: Coordinates) {
       const { reference, callbacks, origin } = state.value
       const delta = subtract(inRef(event, reference), origin)
-      callbacks.drop && callbacks.drop(add(reference, delta))
+      callbacks.drop?.(add(reference, delta))
       state.value = defaultState()
     },
-    state
+    state,
   })
 }
 
