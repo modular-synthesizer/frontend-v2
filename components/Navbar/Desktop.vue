@@ -25,7 +25,7 @@
 <script setup lang="ts">
 type Props = {
   authenticated: boolean
-  logout: (name: string, data: unknown) => void
+  logout: () => void
 }
 const props = defineProps<Props>()
 </script>
