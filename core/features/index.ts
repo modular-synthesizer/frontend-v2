@@ -4,6 +4,7 @@ export const features = {
   modules: {
     move: moveModule(),
     save: saveModule(api, useSnack()),
+    select: selectModule(useSelection()),
   },
   synthesizers: {
     create: createSynthesizer(api, useSnack()),

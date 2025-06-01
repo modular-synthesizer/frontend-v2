@@ -6,6 +6,7 @@
     @mouseup.prevent.stop="c => useDragEvents().end(c)"
     @mouseleave.prevent.stop="c => useDragEvents().end(c)"
     @wheel.capture.passive="emit('rescale', $event.deltaY)"
+    @mouseover.stop.prevent="useSelection().reset()"
   >
     <slot />
   </div>
