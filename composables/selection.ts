@@ -15,7 +15,6 @@ export function useSelectionTemplate() {
   return (): Selector => ({
     select(item: Identified) {
       state.value.id = item.id
-      console.log(state.value.id)
     },
     reset() {
       state.value.id = undefined;
