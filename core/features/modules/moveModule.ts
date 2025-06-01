@@ -6,16 +6,18 @@ function collides(collider: module, { id, rack, slot, slots }: subject): boolean
   return true;
 }
 
+function collidesAny(module: Module, colliders: Module[]) {
+  for (const collider of colliders) {
+    if (collides(collider, module)) return true;
+  }
+  return false
+}
+
 export function moveModule() {
   return async (module: Module, { x, y }: Coordinates, collidesWith: Module[] = []) => {
-
     const slot = (x - (x % 20)) / 20
     const rack = (y - (y % 400)) / 400
-
-    for (const collider of collidesWith) {
-      if (collides(collider, { ...module, rack, slot })) return;
-    }
-
+    if (collidesAny({ ...module, rack, slot }, collidesWith)) return;
     module.slot = slot
     module.rack = rack
   }
