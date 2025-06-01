@@ -17,7 +17,7 @@ const emit = defineEmits<Emits>()
 const coords = computed(() => ({ ...getCoordinates(module), scale: synthesizer.scale }))
 
 function move({ x, y }: Coordinates) {
-  features.modules.move(module, { x, y })
+  features.modules.move(module, { x, y }, synthesizer.modules)
 }
 
 function drop() {
