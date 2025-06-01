@@ -2,6 +2,7 @@
   <g
     v-if="referenceFrame"
     @mousedown.prevent.stop="drag"
+    :transform
   >
     <slot />
   </g>
@@ -23,6 +24,8 @@ function drag({ x, y }: Coordinates) {
   const origin: ScaledCoordinates = { ...coordinates, scale: referenceFrame.scale }
   useDragEvents().start(origin, { x, y }, { move, drop })
 }
+
+const transform = computed(() => `translate(${coordinates.x} ${coordinates.y})`)
 
 function move({ x, y }: Coordinates) {
   emit('move', { x, y })
