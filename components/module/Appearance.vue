@@ -1,6 +1,5 @@
 <template>
-  <rect
-    v-bind="{ width, height }" :fill="selected ? 'red' : 'green'" stroke="black" @mouseover.stop.prevent="emit('select', module)" />
+  <div :class="['module', { selected }]" @mouseover.stop.prevent="emit('select', module)" />
 </template>
 
 <script setup lang="ts">
@@ -16,7 +15,18 @@ type Emits = {
 }
 const emit = defineEmits<Emits>()
 
-const width = computed(() => 20 * props.module.slots)
+const width = computed(() => `${20 * props.module.slots}px`)
 
-const height = RACK_HEIGHT
+const height = `${RACK_HEIGHT}px`
 </script>
+
+<style scoped>
+.module {
+  width: v-bind(width);
+  height: v-bind(height);
+  background-color: red;
+}
+.selected {
+  background-color: green;
+}
+</style>

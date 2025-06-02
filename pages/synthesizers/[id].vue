@@ -1,12 +1,12 @@
 <template>
   <draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
-    <draggable-layer-svg :reference="synthesizer">
+    <draggable-layer-html :reference="synthesizer">
       <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer>
         <template #default="{ select, selected }">
           <module-appearance @select="select(module)" :selected="selected" :module="module" :synthesizer="synthesizer" />
         </template>
       </module-logic>
-    </draggable-layer-svg>
+    </draggable-layer-html>
   </draggable-scene>
 </template>
 
@@ -24,3 +24,11 @@ async function drop({ x, y }: Coordinates) {
   features.synthesizers.move(synthesizer.value, { x, y })
 }
 </script>
+
+<style scoped>
+.test {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+</style>

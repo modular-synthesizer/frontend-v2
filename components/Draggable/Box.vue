@@ -1,11 +1,12 @@
 <template>
-  <g
-    v-if="referenceFrame"
-    @mousedown.prevent.stop="drag"
-    :transform
-  >
-    <slot />
-  </g>
+  <template v-if="referenceFrame">
+    <g v-if="kind === 'svg'" @mousedown.prevent.stop="drag" :transform >
+      <slot />
+    </g>
+    <div v-if="kind === 'html'" class="box-wrapper"  @mousedown.prevent.stop="drag">
+      <slot />
+    </div>
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -27,6 +28,8 @@ function drag({ x, y }: Coordinates) {
 
 const transform = computed(() => `translate(${coordinates.x} ${coordinates.y})`)
 
+const htmlTransform = computed(() => `${coordinates.x}px ${coordinates.y}px`)
+
 function move({ x, y }: Coordinates) {
   emit('move', { x, y })
 }
@@ -34,4 +37,13 @@ function move({ x, y }: Coordinates) {
 function drop(_: Coordinates) {
   emit('drop')
 }
+
+const kind: LayerKind = inject('layer-kind', 'svg')
 </script>
+
+<style scoped>
+.box-wrapper {
+  translate: v-bind(htmlTransform);
+  position: absolute;
+}
+</style>

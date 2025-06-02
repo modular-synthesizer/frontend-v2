@@ -16,6 +16,8 @@ const { reference } = defineProps<Props>()
 
 const scale = computed(() => `scale(${reference.scale} ${reference.scale})`)
 const translate = computed(() => `translate(${reference.x} ${reference.y})`)
+
+provide<LayerKind>('layer-kind', 'svg')
 </script>
 
 <style scoped>
