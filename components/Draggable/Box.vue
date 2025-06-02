@@ -45,5 +45,6 @@ const kind: LayerKind = inject('layer-kind', 'svg')
 .box-wrapper {
   translate: v-bind(htmlTransform);
   position: absolute;
+  pointer-events: all;
 }
 </style>

@@ -27,5 +27,6 @@ provide<LayerKind>('layer-kind', 'svg')
   height: 100vh;
   top: 0px;
   left: 0px;
+  pointer-events: none;
 }
 </style>

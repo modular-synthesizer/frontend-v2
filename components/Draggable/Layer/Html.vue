@@ -27,6 +27,7 @@ provide<LayerKind>('layer-kind', 'html')
   left: 0;
   width: 100vw;
   height: 100vh;
+  pointer-events: none;
 }
 .layer-scale {
   scale: v-bind(scale);
