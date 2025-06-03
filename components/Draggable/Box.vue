@@ -39,7 +39,7 @@ function drop(_: Coordinates) {
   emit('drop')
 }
 
-const kind: LayerKind = inject('layer-kind', 'svg')
+const kind: LayerKind = inject<LayerKind>('layer-kind', 'svg')
 </script>
 
 <style scoped>
