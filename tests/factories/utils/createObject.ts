@@ -1,14 +1,14 @@
-type Overrides = Record<string, () => unknown>
+type Overrides<T> = Record<keyof T, () => unknown>
 
-type Factory = {
-  props: (o: Overrides) => Factory
+export type Factory<T> = {
+  props: (o: Overrides<T>) => Factory<T>
   build: () => void
 }
 
-export function createObject<T>(factory: Factory) {
-  return async (overloads: Record<string, unknown>): Promise<T> => {
+export function createObject<T>(factory: Factory<T>) {
+  return async (overloads: Partial<T>): Promise<T> => {
     const entries = Object.entries(overloads).map(([ k, v ]) => [ k, () => v])
-    const overrides: Overrides = Object.fromEntries(entries)
+    const overrides: Overrides<T> = Object.fromEntries(entries)
     return (await factory.props(overrides).build()) as T
   }
 }
