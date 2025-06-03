@@ -3,9 +3,9 @@ type State = {
 }
 
 export type Selector = {
-  select: (item: Identifiable) => void
+  select: (item: Identified) => void
   reset: () => void
-  selected: (item: Identifiable) => vois
+  selected: (item: Identified) => boolean
 }
 
 export function useSelectionTemplate() {
@@ -14,6 +14,7 @@ export function useSelectionTemplate() {
 
   return (): Selector => ({
     select(item: Identified) {
+      console.log(item.id)
       state.value.id = item.id
     },
     reset() {
