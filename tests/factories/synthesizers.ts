@@ -1,4 +1,5 @@
 import { factory } from "@factory-js/factory";
+import { createObject } from "./utils/createObject";
 
 export const SynthesizerFactory = factory.define({
   props: {
@@ -13,3 +14,5 @@ export const SynthesizerFactory = factory.define({
   },
   vars: { }
 })
+
+export const synthesizerFactory = createObject<Synthesizer>(SynthesizerFactory)

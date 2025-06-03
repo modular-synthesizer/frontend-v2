@@ -1,17 +1,19 @@
 import { expect, test, describe } from 'vitest'
 import { getMembership } from "../../core/functions/synthesizers/getMembership"
+import { synthesizerFactory } from '../factories/synthesizers'
 
 const membership: Membership = {
   id: "membershipId", username: "Player", type: 'read'
 }
 
-const synthesizer: Synthesizer = {
-  id: "synthesizerId",
-  name: "Synthesizer name",
-  members: [ membership ],
-}
+describe('getMembership', async () => {
 
-describe('getMembership', () => {
+  const synthesizer: Synthesizer = await synthesizerFactory({
+    id: "synthesizerId",
+    name: "Synthesizer name",
+    members: [ membership ],
+  })
+
   test('Gets the correct membership in the synthesizer', () => {
     const m: Membership = getMembership(synthesizer, 'Player');
     expect(m.id).toEqual('membershipId')
