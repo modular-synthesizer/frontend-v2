@@ -1,6 +1,6 @@
 // @vitest-environment nuxt
 import { describe, expect, test, vi } from "vitest"
-import { fakeError, fakeErrorApi, fakeSuccessApi, fakeTimeout, fakeClear, fakeSnacker, fakeSynthesizer } from "../../fakes"
+import { fakeError, fakeErrorApi, fakeTimeout, fakeClear, fakeSnacker } from "../../fakes"
 import { factories } from "../../factories"
 import { rescaleSynthesizer } from "../../../core/features/synthesizers/scaleSynthesizer"
 

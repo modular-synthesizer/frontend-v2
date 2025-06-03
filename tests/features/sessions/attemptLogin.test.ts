@@ -1,6 +1,6 @@
 import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogin } from "../../../core/features/sessions/attemptLogin"
-import { fakeError, fakeErrorApi, fakeNavigator, fakeSession, fakeSnacker, fakeStore, fakeSuccessApi, type ExpectedFailure, type ExpectedSuccess } from "../../fakes"
+import { fakeError, fakeErrorApi, fakeNavigator, fakeSession, fakeSnacker, fakeStore, fakeSuccessApi } from "../../fakes"
 
 const fakes = {
   navigator: fakeNavigator,

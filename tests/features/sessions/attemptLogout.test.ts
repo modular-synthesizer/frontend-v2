@@ -1,4 +1,3 @@
-import { ref } from "vue"
 import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogout } from "../../../core/features/sessions/attemptLogout"
 

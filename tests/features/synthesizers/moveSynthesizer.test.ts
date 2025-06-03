@@ -1,5 +1,5 @@
 // @vitest-environment nuxt
-import { describe, expect, test, vi } from "vitest"
+import { expect, test, vi } from "vitest"
 import { fakeError, fakeErrorApi, fakeSuccessApi, fakeSnacker, fakeSynthesizer } from "../../fakes"
 import { moveSynthesizer } from "../../../core/features/synthesizers/moveSynthesizer"
 
