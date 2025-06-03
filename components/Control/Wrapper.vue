@@ -29,6 +29,7 @@ const radius = computed(() => `${RADIUS}px`)
   border-radius: v-bind(radius);
 }
 .selected {
-  background-color: black;
+  box-sizing: border-box;
+  border: 5px solid black;
 }
 </style>
