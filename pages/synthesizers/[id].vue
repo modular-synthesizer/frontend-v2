@@ -3,7 +3,9 @@
     <draggable-layer-html :reference="synthesizer">
       <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer>
         <template #default="{ select, selected }">
-          <module-appearance @select="select(module)" :selected="selected" :module="module" :synthesizer="synthesizer" />
+          <module-appearance @select="select(module)" :selected="selected" :module="module" :synthesizer="synthesizer">
+            <control-wrapper :control="control" v-for="control in module.controls" />
+          </module-appearance>
         </template>
       </module-logic>
     </draggable-layer-html>
@@ -24,11 +26,3 @@ async function drop({ x, y }: Coordinates) {
   features.synthesizers.move(synthesizer.value, { x, y })
 }
 </script>
-
-<style scoped>
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-}
-</style>

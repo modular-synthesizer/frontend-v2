@@ -7,5 +7,4 @@ export type Synthesizer = {
   modules: Module[]
   x: number
   y: number
-  controls: Control[]
 }

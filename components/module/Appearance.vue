@@ -1,5 +1,7 @@
 <template>
-  <div :class="['module', { selected }]" @mouseover.stop.prevent="emit('select', module)" />
+  <div :class="['module', { selected }]" @mouseover.stop.prevent="emit('select', module)">
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">
