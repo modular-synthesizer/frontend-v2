@@ -3,8 +3,8 @@
     class="scene-wrapper"
     @mousedown.prevent.stop="c => useDragEvents().start(referenceFrame, c, { drop, move })"
     @mousemove.prevent.stop="c => useDragEvents().move(c)"
-    @mouseup.prevent.stop="c => useDragEvents().end(c)"
-    @mouseleave.prevent.stop="c => useDragEvents().end(c)"
+    @mouseup.prevent.stop="endEvents"
+    @mouseleave.prevent.stop="endEvents"
     @wheel.capture.passive="emit('rescale', $event.deltaY)"
     @mouseover.stop.prevent="useSelection().reset()"
   >
@@ -32,6 +32,11 @@ async function move({ x, y }: Coordinates) {
 
 async function drop({ x, y }: Coordinates) {
   emit('drop', { x, y })
+}
+
+async function endEvents(coordinates: Coordinates) {
+  useDragEvents().end(coordinates)
+  useSelection().unlock()
 }
 
 provide<ScaledCoordinates>("reference-frame", referenceFrame)

@@ -23,6 +23,7 @@ const referenceFrame = inject<ScaledCoordinates>('reference-frame', { x: 0, y: 0
 
 function drag({ x, y }: Coordinates) {
   const origin: ScaledCoordinates = { ...coordinates, scale: referenceFrame.scale }
+  useSelection().lock()
   useDragEvents().start(origin, { x, y }, { move, drop })
 }
 
