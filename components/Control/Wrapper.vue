@@ -1,35 +1,23 @@
 <template>
-  <div :class="['wrapper', { selected }]" @mouseover.prevent.stop="useSelection().select(control)" />
+  <ControlLogic>
+    <template #default="{ click }">
+      <ControlAppearance :selected="selected" :control="control" @click="click" />
+    </template>
+  </ControlLogic>
 </template>
 
 <script lang="ts" setup>
+import { controls } from '.';
+
 type Props = {
   control: Control
   selected: boolean
 }
 const props = defineProps<Props>()
 
-const RADIUS = 15;
-const DIAMETER = RADIUS * 2
+const name: string = props.control.component
+const descriptor = name in controls ? controls[name] : controls.Default
 
-const x = computed(() => +props.control.payload.x - RADIUS)
-const y = computed(() => +props.control.payload.y - RADIUS)
-const translate = computed(() => `${x.value}px ${y.value}px`)
-const diameter = computed(() => `${DIAMETER}px`)
-const radius = computed(() => `${RADIUS}px`)
+const ControlAppearance = descriptor.appearance
+const ControlLogic = descriptor.logic
 </script>
-
-<style scoped>
-.wrapper {
-  width: v-bind(diameter);
-  height: v-bind(diameter);
-  translate: v-bind(translate);
-  position: absolute;
-  background-color: white;
-  border-radius: v-bind(radius);
-}
-.selected {
-  box-sizing: border-box;
-  border: 5px solid black;
-}
-</style>
