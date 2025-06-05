@@ -1,4 +1,4 @@
-type ModuleUpdateFetdcher = (id: string, infos: Partial<Module>) => ExpectedResult<Module>
+export type ModuleUpdateFetcher = (id: string, infos: Partial<Module>) => ExpectedResult<Module>
 
 export function updateModule(fetcher: Fetcher<Module>, auth: Auth) {
   return async (id: string, { rack, slot }: Partial<Module>) => {

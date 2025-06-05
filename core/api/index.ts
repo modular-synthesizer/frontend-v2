@@ -4,15 +4,20 @@ import { newSessionApi } from "./sessions/new.api";
 export type ApiSchema = {
   modules: {
     list: ModuleListFetcher,
-    update: ModuleUpdateFetdcher,
+    update: ModuleUpdateFetcher,
   },
-  sessions: { new: SessionCreationFetcher },
+  sessions: {
+    new: SessionCreationFetcher
+  },
   synthesizers: {
     delete: SynthesizerDeleteFetcher,
     get: SynthesizerGetFetcher,
     new: SynthesizerCreationFetcher,
     list: SynthesizerListFetcher,
     update: SynthesizerUpdateFetcher,
+  },
+  tools: {
+    list: ToolsListFetcher
   }
 }
 
@@ -30,5 +35,8 @@ export const api: ApiSchema = {
     new: newSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
     list: listSynthesizers(createFetcher<Synthesizer[]>(fetch), useAuth()),
     update: updateSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
+  },
+  tools: {
+    list: listTools(createFetcher<Tool[]>(fetch), useAuth()),
   },
 }

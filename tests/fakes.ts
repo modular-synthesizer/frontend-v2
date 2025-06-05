@@ -37,7 +37,9 @@ export const fakeSynthesizer: Synthesizer = {
   members: [ ],
   id: 'synthesizerId',
   scale: 1.0,
-  modules: [ ]
+  modules: [ ],
+  x: 0,
+  y: 0
 }
 
 export const fakeModule = {
@@ -45,6 +47,7 @@ export const fakeModule = {
   slot: 12,
   slots: 2,
   rack: 0,
+  controls: []
 }
 
 export const fakeStore = (_session: Session) => { }
@@ -64,6 +67,9 @@ export const fakeSuccessApi: ApiSchema = {
     delete: async(_id: string) => success(undefined),
     update: async(_id: string, payload: Partial<Synthesizer>) => success({ ... fakeSynthesizer, ...payload })
   },
+  tools: {
+    list: async () => success([ { id: 'toolId', controls: [] }])
+  },
 }
 
 export const fakeErrorApi: ApiSchema = {
@@ -80,5 +86,8 @@ export const fakeErrorApi: ApiSchema = {
     new: async (_nme: string, _vcs: number) => fakeError,
     delete: async(_id: string) => fakeError,
     update: async(_id: string, _payload: Partial<Synthesizer>) => fakeError,
+  },
+  tools: {
+    list: async () => fakeError
   },
 }
