@@ -13,5 +13,8 @@ export const features = {
     move: moveSynthesizer(api, useSnack()),
     remove: removeSynthesizer(api, useSnack()),
     rescale: rescaleSynthesizer(api, useDebounce(), useSnack())
+  },
+  tools: {
+    fetch: fetchTools(api, useSnack())
   }
 }
