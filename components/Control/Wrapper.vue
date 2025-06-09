@@ -1,6 +1,6 @@
 <template>
   <ControlLogic :control :module :synthesizer>
-    <ControlAppearance :selected :control />
+    <ControlAppearance :selected :control :module />
   </ControlLogic>
 </template>
 

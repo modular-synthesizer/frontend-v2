@@ -1,13 +1,15 @@
 <template>
   <div :class="['item', 'wrapper', { selected }]"></div>
-  <div class="item value">12</div>
+  <div class="item value" v-if="parameter">{{ value }}</div>
 </template>
 
 <script lang="ts" setup>
 import type { KnobControl } from '~/core/business/tools/Control.type';
+import { getParameter, getValue } from '~/core/functions/modules/parameters';
 
 type Props = {
   control: KnobControl
+  module: Module
   selected: boolean
 }
 const props = defineProps<Props>()
@@ -20,6 +22,9 @@ const y = computed(() => +props.control.payload.y - RADIUS)
 const translate = computed(() => `${x.value}px ${y.value}px`)
 const diameter = computed(() => `${DIAMETER}px`)
 const radius = computed(() => `${RADIUS}px`)
+
+const parameter = getParameter(props.module, props.control.payload.target)
+const value = computed(() => getValue(parameter))
 </script>
 
 <style scoped>
