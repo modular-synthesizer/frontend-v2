@@ -3,8 +3,13 @@
     <draggable-layer-html :reference="synthesizer">
       <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer>
         <template #default="{ select, selected }">
-          <module-appearance @select="select(module)" :selected="selected" :module="module" :synthesizer="synthesizer">
-            <control-wrapper :control="control" v-for="control in module.controls" :selected="useSelection().selected(control)" />
+          <module-appearance @select="select(module)" :selected :module :synthesizer>
+            <control-wrapper
+              :control
+              :module
+              :selected="useSelection().selected(control)"
+              :synthesizer
+              v-for="control in module.controls"/>
           </module-appearance>
         </template>
       </module-logic>

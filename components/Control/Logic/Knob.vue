@@ -1,9 +1,17 @@
 <template>
-  <slot :click="click" />
+  <component v-if="tag" :is="tag" @mouseover.prevent.stop="useSelection().select(control)">
+    <slot />
+  </component>
 </template>
 
 <script setup lang="ts">
-function click($event: MouseEvent) {
-  alert("test")
+type Props = {
+  control: Control
+  module: Module,
+  synthesizer: Synthesizer
 }
+const { control, module, synthesizer } = defineProps<Props>()
+
+const kind: LayerKind = inject<LayerKind>('layer-kind', 'html')
+const tag: string = kind === 'html' ? 'div' : 'g'
 </script>

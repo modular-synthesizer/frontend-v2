@@ -8,7 +8,7 @@
 <script setup lang="ts">
 type Props = {
   selected: boolean
-  synthesizer: ScaledCoordinates,
+  synthesizer: ScaledCoordinates
   module: Module
 }
 const props = defineProps<Props>()

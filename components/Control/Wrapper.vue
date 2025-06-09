@@ -1,8 +1,6 @@
 <template>
-  <ControlLogic>
-    <template #default="{ click }">
-      <ControlAppearance :selected="selected" :control="control" @click="click" />
-    </template>
+  <ControlLogic :control :module :synthesizer>
+    <ControlAppearance :selected :control />
   </ControlLogic>
 </template>
 
@@ -10,6 +8,8 @@
 import { controls } from '.';
 
 type Props = {
+  synthesizer: Synthesizer
+  module: Module
   control: Control
   selected: boolean
 }

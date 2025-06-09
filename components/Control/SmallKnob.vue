@@ -1,22 +1,16 @@
 <template>
-  <div
-    :class="['wrapper', { selected }]"
-    @mousedown.prevent.stop="emit('click', $event)"
-    @mouseover.prevent.stop="useSelection().select(control)"
-  />
+  <div :class="['item', 'wrapper', { selected }]"></div>
+  <div class="item value">12</div>
 </template>
 
 <script lang="ts" setup>
+import type { KnobControl } from '~/core/business/tools/Control.type';
+
 type Props = {
-  control: Control
+  control: KnobControl
   selected: boolean
 }
 const props = defineProps<Props>()
-
-type Emits = {
-  click: [ MouseEvent ]
-}
-const emit = defineEmits<Emits>()
 
 const RADIUS = 15;
 const DIAMETER = RADIUS * 2
@@ -29,16 +23,23 @@ const radius = computed(() => `${RADIUS}px`)
 </script>
 
 <style scoped>
-.wrapper {
+.item {
   width: v-bind(diameter);
   height: v-bind(diameter);
-  translate: v-bind(translate);
   position: absolute;
+  translate: v-bind(translate);
+}
+.wrapper {
   background-color: pink;
   border-radius: v-bind(radius);
 }
 .selected {
   box-sizing: border-box;
   border: 5px solid red;
+}
+.value {
+  text-align: center;
+  line-height: v-bind(diameter);
+  user-select: none;
 }
 </style>
