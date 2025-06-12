@@ -1,4 +1,9 @@
-export type ControlComponent = 'SmallKnob'|'Knob'|'LargeKnob'|'Port'|'Fader'
+export type ControlComponent =
+	| "SmallKnob"
+	| "Knob"
+	| "LargeKnob"
+	| "Port"
+	| "Fader";
 
 // export type Control = Identified & {
 //   component: ControlComponent,
@@ -6,8 +11,8 @@ export type ControlComponent = 'SmallKnob'|'Knob'|'LargeKnob'|'Port'|'Fader'
 // }
 
 export type KnobControl = {
-  component: 'SmallKnob'|'Knob'|'LargeKnob',
-  payload: { x: number, y: number, target: string }
-}
+	component: "SmallKnob" | "Knob" | "LargeKnob";
+	payload: { x: number; y: number; target: string };
+};
 
-export type Control = Identified & (KnobControl)
+export type Control = Identified & KnobControl;
