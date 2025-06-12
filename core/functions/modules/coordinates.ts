@@ -6,8 +6,8 @@ import { SLOT_WIDTH, RACK_HEIGHT } from "~/core/constants";
  * @returns the set of coordinates to place the module in the synthesizer
  */
 export function getCoordinates(module: Module): Coordinates {
-  return {
-    x: module.slot * SLOT_WIDTH,
-    y: module.rack * RACK_HEIGHT,
-  }
+	return {
+		x: module.slot * SLOT_WIDTH,
+		y: module.rack * RACK_HEIGHT,
+	};
 }
