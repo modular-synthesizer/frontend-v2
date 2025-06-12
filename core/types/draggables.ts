@@ -1,1 +1,1 @@
-export type LayerKind = 'html'|'svg'
+export type LayerKind = "html" | "svg";

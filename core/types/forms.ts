@@ -1,9 +1,9 @@
 export type SubmissionError = {
-  errorMessages: string[]
-  id: string
-}
+	errorMessages: string[];
+	id: string;
+};
 
 export type SubmissionEvent = Promise<{
-  valid: boolean,
-  errors: SubmissionError[]
-}>
+	valid: boolean;
+	errors: SubmissionError[];
+}>;
