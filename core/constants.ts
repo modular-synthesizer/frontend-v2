@@ -12,7 +12,7 @@ export const MAX_ZOOM_OUT = 0.5;
 export const MAX_ZOOM_IN = 2;
 
 // The height of a rack in pixels when zooming at scale 1.0
-export const RACK_HEIGHT=400
+export const RACK_HEIGHT = 400
 
 // The width of an HP (slot) in pixels when zooming at scale 1.0
-export const SLOT_WIDTH=20
+export const SLOT_WIDTH = 20
