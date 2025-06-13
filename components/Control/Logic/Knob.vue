@@ -3,6 +3,7 @@
     v-if="tag" :is="tag"
     @mousedown.prevent.stop="onmousedown"
     @mouseover.prevent.stop="useSelection().select(control)"
+    @wheel.passive.stop="onwheelevent"
   >
     <slot />
   </component>
@@ -28,15 +29,20 @@ function onmousedown($event: MouseEvent) {
   useDragEvents().start(synthesizer, control.payload, { drop, move })
   origin.value.y = inRef(fromEvent($event), synthesizer).y
   origin.value.value = parameter.value
-  console.log(origin.value.y, control.payload.y)
 }
 
 function move(coordinates: Coordinates) {
   const delta = Math.round((origin.value.y - coordinates.y) / 10)
-  parameter.value = origin.value.value + (delta * parameter.step)
+  const value = origin.value.value + (delta * parameter.step)
+  features.modules.parameters.setValue(parameter, value)
 }
 
 function drop() {
   origin.value.value = parameter.value
+}
+
+function onwheelevent(event: WheelEvent) {
+  const delta = event.deltaY / Math.abs(event.deltaY)
+  features.modules.parameters.moveValue(parameter, delta * parameter.step)
 }
 </script>
