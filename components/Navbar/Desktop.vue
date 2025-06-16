@@ -5,9 +5,14 @@
       <v-btn icon to="/" aria-label="home link" class="ml-1">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn variant="text" to="/synthesizers" class="ml-2">{{ $t('menu.synthesizers') }}</v-btn>
+      <rights-check right="synthesizers::read">
+        <v-btn variant="text" to="/synthesizers" class="ml-2">{{ $t('menu.synthesizers') }}</v-btn>
+      </rights-check>
     </template>
     <template v-slot:append>
+      <rights-check right="tools::read">
+        <v-btn to="/tools" aria-label="tools link">{{ $t('menu.tools') }}</v-btn>
+      </rights-check>
       <v-btn aria-label="logout link" @click="logout()">{{ $t('common.verbs.logout') }}</v-btn>
     </template>
   </v-app-bar>

@@ -4,9 +4,16 @@
       <v-btn icon to="/" aria-label="home link">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn icon to="/synthesizers" class="ml-2" aria-label="synthesizers list"  v-if="authenticated">
-        <v-icon>mdi-piano</v-icon>
-      </v-btn>
+      <rights-check right="synthesizers::read">
+        <v-btn icon to="/synthesizers" class="ml-2" aria-label="synthesizers list"  v-if="authenticated">
+          <v-icon>mdi-piano</v-icon>
+        </v-btn>
+      </rights-check>
+      <rights-check right="tools::read">
+        <v-btn icon to="/tools" class="ml-2" aria-label="tools list"  v-if="authenticated">
+          <v-icon>mdi-wrench</v-icon>
+        </v-btn>
+      </rights-check>
     </template>
     <template v-slot:append>
       <v-menu>
