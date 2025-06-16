@@ -1,4 +1,4 @@
-import type { Session } from "~/core/business/Session.type"
+import type { Session } from "~/core/business/sessions/Session.type"
 
 export const fakeError = failure('username', 'unknown')
 

@@ -1,20 +1,22 @@
 <template>
-  <v-container>
-    <div class="text-h3 mb-1">{{ $t('menu.synthesizers') }}</div>
-    <synthesizers-creation-modal :synthesizer="creation" @submit="createAndPush" class="mb-3" />
-    <synthesizers-list :synthesizers>
-      <template #synthesizer="synthesizer">
-        <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">
-          <template #actions>
-            <confirm-delete @submit="remove(synthesizer.id, synthesizers)" />
-            <v-btn :to="`/synthesizers/${synthesizer.id}`" icon v-tooltip:bottom="$t('common.verbs.play')">
-              <v-icon>mdi-music</v-icon>
-            </v-btn>
-          </template>
-        </synthesizers-card>
-      </template>
-    </synthesizers-list>
-  </v-container>
+  <rights-check right="synthesizers::read">
+    <v-container>
+      <div class="text-h3 mb-1">{{ $t('menu.synthesizers') }}</div>
+      <synthesizers-creation-modal :synthesizer="creation" @submit="createAndPush" class="mb-3" />
+      <synthesizers-list :synthesizers>
+        <template #synthesizer="synthesizer">
+          <synthesizers-card :synthesizer :membership="getMembership(synthesizer, useAuth().username)">
+            <template #actions>
+              <confirm-delete @submit="remove(synthesizer.id, synthesizers)" />
+              <v-btn :to="`/synthesizers/${synthesizer.id}`" icon v-tooltip:bottom="$t('common.verbs.play')">
+                <v-icon>mdi-music</v-icon>
+              </v-btn>
+            </template>
+          </synthesizers-card>
+        </template>
+      </synthesizers-list>
+    </v-container>
+  </rights-check>
 </template>
 
 <script lang="ts" setup>

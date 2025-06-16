@@ -4,4 +4,5 @@ export type Session = {
 	created_at: Date;
 	duration: number;
 	account: Account;
+	rights: Right[]
 };
