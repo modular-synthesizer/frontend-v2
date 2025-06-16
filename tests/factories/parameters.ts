@@ -8,6 +8,7 @@ export const ParametersFactory = factory.define({
     minimum: () => 0,
     maximum: () => 100,
     precision: () => 0,
+    step: () => 1,
   },
   vars: { }
 })
