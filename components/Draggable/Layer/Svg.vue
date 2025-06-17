@@ -9,10 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-type Props = {
-  reference: ScaledCoordinates
-}
-const { reference } = defineProps<Props>()
+const reference = inject<ScaledCoordinates>('reference-frame', { x: 0, y: 0, scale: 1.0 })
 
 const scale = computed(() => `scale(${reference.scale} ${reference.scale})`)
 const translate = computed(() => `translate(${reference.x} ${reference.y})`)

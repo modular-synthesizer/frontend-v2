@@ -1,4 +1,5 @@
 import { useDebounce } from "~/composables/debounce";
+import { rescaleTool } from "./tools/rescaleTool";
 
 export const features = {
   modules: {
@@ -16,10 +17,11 @@ export const features = {
     list: fetchSynthesizers(api, useSnack()),
     move: moveSynthesizer(api, useSnack()),
     remove: removeSynthesizer(api, useSnack()),
-    rescale: rescaleSynthesizer(api, useDebounce(), useSnack())
+    rescale: rescaleSynthesizer(api, useDebounce(), useSnack()),
   },
   tools: {
     fetch: fetchTool(api, navigateTo),
     list: fetchTools(api, useSnack()),
+    rescale: rescaleTool(api, useDebounce(), useSnack()),
   }
 }

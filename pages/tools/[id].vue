@@ -33,5 +33,6 @@ const tool = ref(await features.tools.fetch(`${useRoute().params.id}`))
 .autoscroll {
   max-height: calc(100vh - 48px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

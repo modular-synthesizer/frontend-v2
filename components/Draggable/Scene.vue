@@ -16,8 +16,10 @@
 type Props = {
   color?: string,
   referenceFrame: ScaledCoordinates
+  height?: string
+  width?: string
 }
-const { color = 'silver', referenceFrame } = defineProps<Props>()
+const { color = 'silver', referenceFrame, height = '100vh', width = '100vw' } = defineProps<Props>()
 
 type Emits = {
   drop: [ Coordinates ],
@@ -44,8 +46,8 @@ provide<ScaledCoordinates>("reference-frame", referenceFrame)
 
 <style scoped>
 .scene-wrapper {
-  height: 100vh;
-  width: 100vw;
+  height: v-bind(height);
+  width: v-bind(width);
   background-color: v-bind(color);
 }
 </style>

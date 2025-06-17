@@ -1,6 +1,6 @@
 export type SynthesizerUpdateFetcher = (
 	id: string,
-	parameters: Partial<Synthesizer>,
+	parameters: Partial<Synthesizer> & { auth_token: string },
 ) => ExpectedResult<Synthesizer>;
 
 export function updateSynthesizer(

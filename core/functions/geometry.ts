@@ -21,3 +21,8 @@ export function inRef(coords: Coordinates, reference: ScaledCoordinates) {
 export function fromEvent({ clientX, clientY }: MouseEvent) {
 	return { x: clientX, y: clientY };
 }
+
+export function computeScale(reference: ScaledCoordinates, deltaY: number) {
+	const unbound: number = Math.abs(reference.scale + deltaY * -ZOOM_RATIO);
+	return Math.min(Math.max(MAX_ZOOM_OUT, unbound), MAX_ZOOM_IN);
+}
