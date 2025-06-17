@@ -1,4 +1,4 @@
-const fileNames = ['common', 'login', 'menu', 'synthesizers'];
+const fileNames = ['common', 'login', 'menu', 'synthesizers', 'tools'];
 
 function getFileList(locale: string) {
   return fileNames.map(name => `${locale}/${name}.json`);

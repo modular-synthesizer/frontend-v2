@@ -17,6 +17,7 @@ export type ApiSchema = {
 		update: SynthesizerUpdateFetcher;
 	};
 	tools: {
+		get: ToolFetcher;
 		list: ToolsListFetcher;
 	};
 };
@@ -37,6 +38,7 @@ export const api: ApiSchema = {
 		update: updateSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
 	},
 	tools: {
+		get: getTool(createFetcher<Tool>(fetch), useAuth()),
 		list: listTools(createFetcher<Tool[]>(fetch), useAuth()),
 	},
 };

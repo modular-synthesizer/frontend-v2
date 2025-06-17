@@ -3,5 +3,5 @@
 </template>
 
 <script lang="ts" setup>
-const tools = await features.tools.fetch()
+const tools = await features.tools.list()
 </script>
