@@ -16,8 +16,8 @@ const { tool } = defineProps<Props>()
 const height = "calc(100vh - 48px)"
 
 function move(n: ToolNode, { x, y }: Coordinates) {
-  n.x = x;
-  n.y = y;
+  n.x = x - (x % 5);
+  n.y = y - (y % 5);
 }
 
 function rescale(deltaY: number) {

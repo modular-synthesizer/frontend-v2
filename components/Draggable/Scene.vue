@@ -14,10 +14,10 @@
 
 <script setup lang="ts">
 type Props = {
-  color?: string,
-  referenceFrame: ScaledCoordinates
-  height?: string
-  width?: string
+  color?: string;
+  referenceFrame: ScaledCoordinates;
+  height?: string;
+  width?: string;
 }
 const { color = 'silver', referenceFrame, height = '100vh', width = '100vw' } = defineProps<Props>()
 
