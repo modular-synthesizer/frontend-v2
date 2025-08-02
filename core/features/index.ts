@@ -11,6 +11,9 @@ export const features = {
       setValue: setParameterValue(),
     }
   },
+  sessions: {
+    logout: attemptLogout(navigateTo, useAuth().reset)
+  },
   synthesizers: {
     create: createSynthesizer(api, useSnack()),
     fetch: fetchSynthesizer(api, navigateTo),

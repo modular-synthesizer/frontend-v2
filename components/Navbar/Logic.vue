@@ -6,5 +6,5 @@
 import { useDisplay } from 'vuetify'
 const mobile: Ref<boolean> = useDisplay().smAndDown
 const authenticated: ComputedRef<boolean> = computed(() => useAuth().authenticated);
-const logout = attemptLogout(navigateTo, useAuth().reset)
+const logout = features.sessions.logout
 </script>

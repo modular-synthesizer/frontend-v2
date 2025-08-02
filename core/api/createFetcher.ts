@@ -28,6 +28,10 @@ export function createFetcher<Entity>(fetchFunction: Fetch) {
 				`/proxy${url}?${params.toString()}`,
 				options,
 			);
+			if (response.status === 403) {
+				features.sessions.logout();
+				return { ok: false, message: 'logout', key: 'session_id' };
+			}
 			if (response.status > 299) {
 				const body = await getBody(response);
 				return { ok: false, message: body.message, key: body.key };
