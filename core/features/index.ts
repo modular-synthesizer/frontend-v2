@@ -20,6 +20,7 @@ export const features = {
     rescale: rescaleSynthesizer(api, useDebounce(), useSnack()),
   },
   tools: {
+    create: createTool(api, useSnack()),
     fetch: fetchTool(api, navigateTo),
     list: fetchTools(api, useSnack()),
     rescale: rescaleTool(api, useDebounce(), useSnack()),

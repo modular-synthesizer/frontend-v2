@@ -1,6 +1,7 @@
 import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
 import type { ToolUpdateFetcher } from "./tools/update";
+import { newTool, type ToolCreator } from "./tools/create";
 
 export type ApiSchema = {
 	modules: {
@@ -18,6 +19,7 @@ export type ApiSchema = {
 		update: SynthesizerUpdateFetcher;
 	};
 	tools: {
+		new: ToolCreator;
 		get: ToolFetcher;
 		list: ToolsListFetcher;
 		update: ToolUpdateFetcher;
@@ -42,6 +44,7 @@ export const api: ApiSchema = {
 	tools: {
 		get: getTool(createFetcher<Tool>(fetch), useAuth()),
 		list: listTools(createFetcher<Tool[]>(fetch), useAuth()),
+		new: newTool(createFetcher<Tool>(fetch), useAuth()),
 		update: updateTool(createFetcher<Tool>(fetch), useAuth()),
 	},
 };

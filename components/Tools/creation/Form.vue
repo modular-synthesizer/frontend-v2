@@ -1,16 +1,10 @@
 <template>
-  <v-btn @click="submit">pouet</v-btn>
+  <v-text-field v-model="tool.name" placeholder="Ce nom sera utilisé comme clef de traduction" label="Nom de l'outil" />
+  <v-slider v-model="tool.slots" :min="2" :max="50" :step="1" thumb-label label="Emplacements" />
 </template>
 
 <script setup lang="ts">
+const { tool } = defineProps<{ tool: Tool }>()
 
-const emit = defineEmits<{ submit: [ ] }>()
-
-const submit = () => {
-  if (confirm("on ferme ?")) {
-    emit("submit")
-  }
-}
-
-defineExpose({ submit })
+defineExpose({ tool })
 </script>
