@@ -13,8 +13,9 @@ const creation = ref(createTool())
 const form = ref()
 const dialog = ref()
 
-async function submit(tool: Tool, validate: () => boolean) {
+async function submit({ name, slots, categoryId}: Tool, validate: () => boolean) {
   if (await validate()) {
+    await features.tools.create(tools.value, name, categoryId, slots)
     dialog.value.close()
     creation.value = createTool()
   }
