@@ -1,7 +1,17 @@
 <template>
   <v-form ref="form">
-    <v-text-field :rules="rules.name" v-model="tool.name" placeholder="Ce nom sera utilisé comme clef de traduction" label="Nom de l'outil" />
-    <v-slider v-model="tool.slots" :min="2" :max="50" :step="1" thumb-label label="Emplacements" />
+    <v-text-field
+      :rules="rules.name"
+      v-model="tool.name"
+      :placeholder="t('tools.create.placeholders.name')"
+      :label="t('tools.create.labels.name')"
+    />
+    <v-slider
+      v-model="tool.slots"
+      :min="2" :max="50" :step="1"
+      thumb-label
+      :label="t('tools.create.labels.slots')"
+    />
     <categories-list v-model="tool.categoryId" />
   </v-form>
 </template>
