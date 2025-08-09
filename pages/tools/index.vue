@@ -1,5 +1,5 @@
 <template>
-  <dialog-button ref="dialog" @validate="submit(form.tool)">
+  <dialog-button ref="dialog" @validate="submit(form.tool, form.validate)">
     <tools-creation-form ref="form" :tool="creation" />
   </dialog-button>
   <v-data-table v-if="tools" :items="tools" />
@@ -13,9 +13,10 @@ const creation = ref(createTool())
 const form = ref()
 const dialog = ref()
 
-function submit(tool: Tool) {
-  features.tools.create(tools.value, tool.name, tool.categoryId, tool.slots)
-  dialog.value.close()
-  creation.value = createTool()
+async function submit(tool: Tool, validate: () => boolean) {
+  if (await validate()) {
+    dialog.value.close()
+    creation.value = createTool()
+  }
 }
 </script>
