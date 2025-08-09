@@ -14,7 +14,7 @@ const form = ref()
 const dialog = ref()
 
 function submit(tool: Tool) {
-  features.tools.create(tools.value, tool.name, tool.slots)
+  features.tools.create(tools.value, tool.name, tool.categoryId, tool.slots)
   dialog.value.close()
   creation.value = createTool()
 }

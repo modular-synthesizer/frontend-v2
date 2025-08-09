@@ -1,6 +1,6 @@
 export function createTool(api: ApiSchema, snack: Snacker) {
-  return async (list: Tool[], name: string, slots = 2): Eventual<Tool> => {
-    const response = await api.tools.new(name, slots)
+  return async (list: Tool[], name: string, categoryId: string, slots = 2): Eventual<Tool> => {
+    const response = await api.tools.new(name, categoryId, slots)
     if (response.ok) {
       snack.success("tools.create.success")
       list.push(response.data)
