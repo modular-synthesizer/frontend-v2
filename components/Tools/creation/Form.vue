@@ -20,7 +20,7 @@ defineExpose({ validate, tool })
 
 const rules = {
   name: [
-    (value: string) => value ?? t("tools.create.name.required")
+    (value: string) => value || t("tools.create.name.required")
   ]
 }
 </script>

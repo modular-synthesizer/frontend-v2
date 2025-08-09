@@ -1,14 +1,15 @@
 <template>
-  <v-select v-model="model" :items :disabled="loading" item-title="name" item-value="id" />
+  <v-select v-model="model" :items item-title="name" item-value="id" :rules />
 </template>
 
 <script setup lang="ts">
-import type { Category } from '~/core/business/tools/Category.type';
+const { t } = useI18n()
 
-const model = defineModel()
+const rules = [
+  (value: string) => !!value || t("tools.create.category.required")
+]
 
-const loading = ref(true)
-const items: Ref<Category[]> = ref([])
-items.value = await features.tools.categories.list();
-loading.value = false
-</script>
+const model = defineModel<string>({ required: true })
+
+const items = ref(await features.tools.categories.list())
+</script> 

@@ -1,5 +1,15 @@
 {
   "tools": {
+    "create": {
+      "category": {
+        "required": "Vous devez placer cet outil dans une catégorie"
+      },
+      "error": "Une erreur est survenue lors de la création de l'outil",
+      "name": {
+        "required": "Le nom de l'outil est requis"
+      },
+      "success": "L'outil a été créé avec succès"
+    },
     "tabs": {
       "controls": "Contrôles",
       "informations": "Informations générales",
