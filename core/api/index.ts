@@ -2,8 +2,13 @@ import { createFetcher } from "~/core/api/createFetcher";
 import { newSessionApi } from "./sessions/new.api";
 import type { ToolUpdateFetcher } from "./tools/update";
 import { newTool, type ToolCreator } from "./tools/create";
+import { listCategories, type CategoryListFetcher } from "./categories/list";
+import type { Category } from "../business/tools/Category.type";
 
 export type ApiSchema = {
+	categories: {
+		list: CategoryListFetcher
+	},
 	modules: {
 		list: ModuleListFetcher;
 		update: ModuleUpdateFetcher;
@@ -27,6 +32,9 @@ export type ApiSchema = {
 };
 
 export const api: ApiSchema = {
+	categories: {
+		list: listCategories(createFetcher<Category[]>(fetch), useAuth()),
+	},
 	modules: {
 		list: listModules(createFetcher<Module[]>(fetch), useAuth()),
 		update: updateModule(createFetcher<Module>(fetch), useAuth()),

@@ -3,4 +3,5 @@ export type Tool = Identified & ScaledCoordinates & {
 	slots: number;
 	controls: Control[];
 	nodes: ToolNode[];
+	categoryId: string;
 };
