@@ -1,5 +1,22 @@
 {
   "tools": {
+    "create": {
+      "category": {
+        "required": "Vous devez placer cet outil dans une catégorie"
+      },
+      "error": "Une erreur est survenue lors de la création de l'outil",
+      "labels": {
+        "name": "Nom de l'outil",
+        "slots": "Nombre d'emplacements (HP) de largeur"
+      },
+      "name": {
+        "required": "Le nom de l'outil est requis"
+      },
+      "placeholders": {
+        "name": "Ce nom sera utilisé comme clef de traduction"
+      },
+      "success": "L'outil a été créé avec succès"
+    },
     "tabs": {
       "controls": "Contrôles",
       "informations": "Informations générales",

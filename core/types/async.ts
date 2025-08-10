@@ -31,7 +31,7 @@ export type Payload<Entity> = Record<string, Entity>;
 /**
  * An HTTP payload used to create querystrings only contains strings as values.
  */
-export type HttpPayload = Payload<string>;
+export type HttpPayload = Payload<string|number>;
 
 /**
  * A fetcher is a function able to make requests on a route and returning the result wrapped as a generic type.

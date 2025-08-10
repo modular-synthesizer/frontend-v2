@@ -5,7 +5,7 @@ export function listModules(
 	auth: Auth,
 ): ModuleListFetcher {
 	return async (synthesizerId: string) => {
-		return await fetcher("GET", `/modules`, {
+		return await fetcher("GET", "/modules", {
 			auth_token: auth.token,
 			synthesizer_id: synthesizerId,
 		});
