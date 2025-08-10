@@ -1,4 +1,5 @@
 import type { Session } from "~/core/business/sessions/Session.type"
+import { toolFactory } from "~/core/factories/tools";
 
 export const fakeError = failure('username', 'unknown')
 
@@ -29,6 +30,7 @@ export const fakeSession: Session = {
   created_at: new Date(),
   account: fakeAccount,
   duration: 10000,
+  rights: []
 }
 
 export const fakeSynthesizer: Synthesizer = {
@@ -42,17 +44,21 @@ export const fakeSynthesizer: Synthesizer = {
   y: 0
 }
 
-export const fakeModule = {
+export const fakeModule: Module = {
   id: "moduleId",
   slot: 12,
   slots: 2,
   rack: 0,
-  controls: []
+  controls: [],
+  parameters: []
 }
 
 export const fakeStore = (_session: Session) => { }
 
 export const fakeSuccessApi: ApiSchema = {
+  categories: {
+    list: async () => success([{ name: 'categoryName' }] as Category[]),
+  },
   modules: {
     list: async () => success([ fakeModule ]),
     update: async (_id: string, payload: Partial<Module>) => success({ ...fakeModule, ...payload })
@@ -68,11 +74,17 @@ export const fakeSuccessApi: ApiSchema = {
     update: async(_id: string, payload: Partial<Synthesizer>) => success({ ... fakeSynthesizer, ...payload })
   },
   tools: {
-    list: async () => success([ { id: 'toolId', controls: [] }])
+    get: async (_id) => success(toolFactory({ id: 'toolId' })),
+    new: async (__name, _cateId, _slots) => success(toolFactory({ id: 'toolId' })),
+    update: async(_id, _payload: Partial<Tool>) => success(toolFactory({ id: 'toolId' })),
+    list: async () => success([ toolFactory({ id: 'toolId' }) ])
   },
 }
 
 export const fakeErrorApi: ApiSchema = {
+  categories: {
+    list: async () => fakeError,
+  },
   modules: {
     list: async () => fakeError,
     update: async (_id: string, _payload: Partial<Module>) => fakeError,
@@ -88,6 +100,9 @@ export const fakeErrorApi: ApiSchema = {
     update: async(_id: string, _payload: Partial<Synthesizer>) => fakeError,
   },
   tools: {
-    list: async () => fakeError
+    get: async (_id: string) => fakeError,
+    list: async () => fakeError,
+    new: async (__name: string, _cateId: string, _slots: number) => fakeError,
+    update: async(_id: string, _payload: Partial<Tool>) => fakeError,
   },
 }
