@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts" setup>
-import { createTool } from '~/core/factories/tools'
+import { toolFactory } from '~/core/factories/tools'
 
 const tools = ref(await features.tools.list())
-const creation = ref(createTool())
+const creation = ref(toolFactory())
 const form = ref()
 const dialog = ref()
 
@@ -17,7 +17,7 @@ async function submit({ name, slots, categoryId}: Tool, validate: () => boolean)
   if (await validate()) {
     await features.tools.create(tools.value, name, categoryId, slots)
     dialog.value.close()
-    creation.value = createTool()
+    creation.value = toolFactory()
   }
 }
 </script>
