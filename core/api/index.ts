@@ -4,6 +4,7 @@ import type { ToolUpdateFetcher } from "./tools/update";
 import { newTool, type ToolCreator } from "./tools/create";
 import { listCategories, type CategoryListFetcher } from "./categories/list";
 import type { Category } from "../business/tools/Category.type";
+import { deleteTool, type ToolDeleter } from "./tools/delete";
 
 export type ApiSchema = {
 	categories: {
@@ -24,6 +25,7 @@ export type ApiSchema = {
 		update: SynthesizerUpdateFetcher;
 	};
 	tools: {
+		delete: ToolDeleter,
 		new: ToolCreator;
 		get: ToolFetcher;
 		list: ToolsListFetcher;
@@ -50,6 +52,7 @@ export const api: ApiSchema = {
 		update: updateSynthesizer(createFetcher<Synthesizer>(fetch), useAuth()),
 	},
 	tools: {
+		delete: deleteTool(createFetcher<void>(fetch), useAuth()),
 		get: getTool(createFetcher<Tool>(fetch), useAuth()),
 		list: listTools(createFetcher<Tool[]>(fetch), useAuth()),
 		new: newTool(createFetcher<Tool>(fetch), useAuth()),
