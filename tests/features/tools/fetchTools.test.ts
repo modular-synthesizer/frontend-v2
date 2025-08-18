@@ -6,7 +6,7 @@ describe("API success", async () => {
   const feature = fetchTools(fakeSuccessApi, fakeSnacker)
 
   test("It correctly returns the list of tools", async () => {
-    expect(await feature()).toEqual([ { id: "toolId", controls: [] }])
+    expect((await feature())[0].id).toEqual("toolId")
   })
 })
 

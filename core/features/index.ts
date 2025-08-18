@@ -1,5 +1,6 @@
 import { useDebounce } from "~/composables/debounce";
 import { rescaleTool } from "./tools/rescaleTool";
+import { fetchCategories } from "./categories/fetchCategories";
 
 export const features = {
   modules: {
@@ -23,6 +24,10 @@ export const features = {
     rescale: rescaleSynthesizer(api, useDebounce(), useSnack()),
   },
   tools: {
+    categories: {
+      list: fetchCategories(api, useSnack())
+    },
+    create: createTool(api, useSnack()),
     fetch: fetchTool(api, navigateTo),
     list: fetchTools(api, useSnack()),
     rescale: rescaleTool(api, useDebounce(), useSnack()),
