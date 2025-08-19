@@ -11,6 +11,9 @@
     </template>
     <template #item.actions="{ item }">
       <confirm-delete @submit="remove(item.id, tools)" />
+      <v-btn icon :to="`/tools/${item.id}`" variant="text" color="white" density="comfortable">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
     </template>
   </v-data-table>
 </template>
