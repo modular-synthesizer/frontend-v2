@@ -1,9 +1,12 @@
 import { useDebounce } from "~/composables/debounce";
 import { rescaleTool } from "./tools/rescaleTool";
 import { fetchCategories } from "./categories/fetchCategories";
+import { loadModule } from "./modules/loadModule";
+import { usePorts } from "~/composables/cables/ports";
 
 export const features = {
   modules: {
+    load: loadModule(usePorts()),
     move: moveModule(),
     save: saveModule(api, useSnack()),
     select: selectModule(useSelection()),

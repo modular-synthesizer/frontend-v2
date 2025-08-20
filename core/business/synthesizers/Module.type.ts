@@ -6,4 +6,5 @@ export type Module = Identified & {
 	slots: number;
 	controls: Control[];
 	parameters: Parameter[];
+	ports: Port[];
 };

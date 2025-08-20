@@ -5,8 +5,13 @@ import { newTool, type ToolCreator } from "./tools/create";
 import { listCategories, type CategoryListFetcher } from "./categories/list";
 import type { Category } from "../business/tools/Category.type";
 import { deleteTool, type ToolDeleter } from "./tools/delete";
+import { listCables, type CableListFetcher } from "./cables/list"
+import type { Cable } from "../business/synthesizers/Cable.type";
 
 export type ApiSchema = {
+	cables: {
+		list: CableListFetcher,
+	},
 	categories: {
 		list: CategoryListFetcher
 	},
@@ -34,6 +39,9 @@ export type ApiSchema = {
 };
 
 export const api: ApiSchema = {
+	cables: {
+		list: listCables(createFetcher<Cable[]>(fetch), useAuth()),
+	},
 	categories: {
 		list: listCategories(createFetcher<Category[]>(fetch), useAuth()),
 	},

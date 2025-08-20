@@ -11,7 +11,7 @@ type Props = {
 }
 const { module, synthesizer } = defineProps<Props>()
 
-type Emits = { drop: [ Module ]}
+type Emits = { loaded: [ Module ] }
 const emit = defineEmits<Emits>()
 
 const coords = computed(() => ({ ...getCoordinates(module), scale: synthesizer.scale }))
@@ -23,4 +23,6 @@ function move({ x, y }: Coordinates) {
 function drop() {
   features.modules.save(module)
 }
+
+setTimeout(() => emit('loaded', module), Math.random() * 3000)
 </script>

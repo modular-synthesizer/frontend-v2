@@ -2,7 +2,7 @@
   <rights-check right="synthesizers::read" type="redirect" uri="/synthesizers">
     <draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
       <draggable-layer-html :reference="synthesizer">
-        <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer>
+        <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer @loaded="features.modules.load(module, synthesizer)">
           <template #default="{ select, selected }">
             <module-appearance @select="select(module)" :selected :module :synthesizer>
               <control-wrapper
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+
 definePageMeta({ layout: false })
 const synthesizer = ref(await features.synthesizers.fetch(`${useRoute().params.id}`))
 
