@@ -7,8 +7,11 @@ export function fetchSynthesizer(api: ApiSchema, navigator: Redirector) {
 		}
 
 		const synthesizer = response.data;
-		const modules = await api.modules.list(id);
-		const cables = await api.cables.list(id)
+
+		const [ modules, cables ] = await Promise.all([
+			api.modules.list(id),
+			api.cables.list(id)
+		])
 
 		synthesizer.modules = modules.ok ? modules.data : [];
 		synthesizer.cables = cables.ok ? cables.data : [];
