@@ -32,12 +32,9 @@ async function loadNodes(module: Module, generators: GeneratorsComposable) {
   const ctx = new AudioContext()
   for(const node of module.nodes) {
     const generator = generators.generator(node.generator)
-    // biome-ignore lint/complexity/useArrowFunction: <explanation>
-        const executor = {func: async function(_ctx: AudioContext, _payload: unknown) {}};
-    const fullcode: string = `executor.func = async function(context, payload) { ${generator.code} };`
-    // biome-ignore lint/security/noGlobalEval: <explanation>
-    eval(fullcode);
-    const audioNode: AudioNode = await executor.func(ctx, {}) as unknown as AudioNode;
+    const AsyncFunction = (async () => {}).constructor;
+    const executor = AsyncFunction("context", "payload", generator.code)
+    const audioNode: AudioNode = await executor(ctx, {}) as unknown as AudioNode;
     console.log(audioNode)
   }
 }
