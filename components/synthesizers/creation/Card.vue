@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit.prevent.stop="submit($event as unknown as SubmissionEvent)">
+  <v-form @submit.prevent.stop="submit($event)">
     <v-card>
       <v-card-title>{{ $t('synthesizers.create.title') }}</v-card-title>
       <v-card-text>
@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { SubmitEventPromise } from 'vuetify';
 import { useRules, type RuleAliases } from 'vuetify/labs/rules';
-import type { SubmissionEvent } from '~/core/types/forms';
 
 type Props = {
   name: string,
@@ -50,7 +50,7 @@ const name = ref(props.name)
 const voices = ref(props.voices)
 const rules: RuleAliases = useRules() as RuleAliases
 
-async function submit(event: SubmissionEvent) {
+async function submit(event: SubmitEventPromise) {
   const form = await event;
   if (form.valid) emit("submit", name.value, voices.value)
 }
