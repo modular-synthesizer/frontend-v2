@@ -3,7 +3,9 @@
 </template>
 
 <script setup lang="ts">
-const mobile: Ref<boolean> = ref(false)
+import { useDisplay } from 'vuetify';
+
+const mobile: Ref<boolean> = useDisplay().smAndDown
 const authenticated: ComputedRef<boolean> = computed(() => useAuth().authenticated);
 const logout = features.sessions.logout
 </script>
