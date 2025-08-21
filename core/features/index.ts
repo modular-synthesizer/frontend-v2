@@ -6,7 +6,7 @@ import { usePorts } from "~/composables/cables/ports";
 
 export const features = {
   modules: {
-    load: loadModule(usePorts()),
+    load: loadModule(usePorts(), useGenerators()),
     move: moveModule(),
     save: saveModule(api, useSnack()),
     select: selectModule(useSelection()),
