@@ -8,7 +8,7 @@ async function getBody(response: Response) {
 	}
 }
 
-type Fetch = typeof fetch;
+export type Fetch = typeof fetch;
 
 export function createFetcher<Entity>(fetchFunction: Fetch) {
 	return async (
@@ -18,7 +18,7 @@ export function createFetcher<Entity>(fetchFunction: Fetch) {
 		body: HttpPayload = {},
 	): ExpectedResult<Entity> => {
 		try {
-			const params = new URLSearchParams(parameters);
+			const params = new URLSearchParams(parameters as Record<string, string>);
 			const hasBody = !["GET", "DELETE"].includes(method);
 			const options = {
 				method,

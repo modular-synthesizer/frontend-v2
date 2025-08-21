@@ -7,14 +7,20 @@ import type { Category } from "../business/tools/Category.type";
 import { deleteTool, type ToolDeleter } from "./tools/delete";
 import { listCables, type CableListFetcher } from "./cables/list"
 import type { Cable } from "../business/synthesizers/Cable.type";
+import { createListFetcher, type ListFetcher } from "./utils/createListFetcher";
+import type { NodeGenerator } from "../business/synthesizers/NodeGenerator.type";
+import { listGenerators } from "./generators/list";
 
 export type ApiSchema = {
 	cables: {
 		list: CableListFetcher,
 	},
 	categories: {
-		list: CategoryListFetcher
+		list: CategoryListFetcher,
 	},
+	generators: {
+		list: ListFetcher<NodeGenerator>,
+	}
 	modules: {
 		list: ModuleListFetcher;
 		update: ModuleUpdateFetcher;
@@ -44,6 +50,9 @@ export const api: ApiSchema = {
 	},
 	categories: {
 		list: listCategories(createFetcher<Category[]>(fetch), useAuth()),
+	},
+	generators: {
+		list: listGenerators(fetch, useAuth()),
 	},
 	modules: {
 		list: listModules(createFetcher<Module[]>(fetch), useAuth()),
