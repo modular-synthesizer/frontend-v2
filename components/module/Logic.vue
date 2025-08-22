@@ -24,5 +24,5 @@ function drop() {
   features.modules.save(module)
 }
 
-setTimeout(() => emit('loaded', module), Math.random() * 3000)
+emit('loaded', module)
 </script>

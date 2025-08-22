@@ -1,3 +1,4 @@
+import type { ModuleLink } from "./ModuleLink.type";
 import type { ModuleNode } from "./ModuleNode.type";
 import type { Parameter } from "./Parameter.type";
 
@@ -8,5 +9,6 @@ export type Module = Identified & {
 	controls: Control[];
 	parameters: Parameter[];
 	ports: Port[];
-	nodes: ModuleNode[]
+	nodes: ModuleNode[];
+	links: ModuleLink[];
 };

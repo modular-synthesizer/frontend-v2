@@ -1,4 +1,5 @@
 import type { PortsComposable } from "~/composables/cables/ports";
+import { instanciateModule } from "~/core/functions/modules/structure";
 
 export function loadModule(ports: PortsComposable, generators: GeneratorsComposable) {
   /**
@@ -9,7 +10,7 @@ export function loadModule(ports: PortsComposable, generators: GeneratorsComposa
    * @param synthesizer the synthesizer to insert the module into.
    */
   return (module: Module, synthesizer: Synthesizer) => {
-    loadNodes(module, generators)
+    instanciateModule(module, generators)
     ports.load(module)
     for (const c of cablesFor(synthesizer.cables, module)) {
       if (ports.isLoaded(c)) {
@@ -26,15 +27,4 @@ function cablesFor(cables: Cable[], module: Module) {
       return [c.from, c.to].includes(p.id)
     })
   })
-}
-
-async function loadNodes(module: Module, generators: GeneratorsComposable) {
-  const ctx = new AudioContext()
-  for(const node of module.nodes) {
-    const generator = generators.generator(node.generator)
-    const AsyncFunction = (async () => {}).constructor;
-    const executor = AsyncFunction("context", "payload", generator.code)
-    const audioNode: AudioNode = await executor(ctx, {}) as unknown as AudioNode;
-    console.log(audioNode)
-  }
 }
