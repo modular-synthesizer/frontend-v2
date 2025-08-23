@@ -1,6 +1,8 @@
+import type { GeneratorsComposable } from "~/composables/generators"
 import type { ModuleLink } from "~/core/business/synthesizers/ModuleLink.type"
+import type { ModuleNode } from "~/core/business/synthesizers/ModuleNode.type"
 
-const AsyncFunction = (async () => {}).constructor
+const AsyncFunction = (async () => { }).constructor
 
 /**
  * Instanciates a given module inner node by creating the corresponding Web Audio API node and
@@ -26,28 +28,52 @@ export async function instanciateNode(node: ModuleNode, ctx: AudioContext, gener
 
 export async function instanciateModule(module: Module, generators: GeneratorsComposable) {
   const ctx = new AudioContext()
-  for(const node of module.nodes) {
+  for (const node of module.nodes) {
     instanciateNode(node, ctx, generators).then(() => {
-      for(const link of linksFor(module, node)) {
+      for (const link of linksFor(module, node.name)) {
         instanciateLink(module, link)
       }
     })
   }
 }
 
-function linksFor(module: Module, node: ModuleNode): ModuleLink[] {
-  return module.links.filter(l => [l.from.node, l.to.node].includes(node.name))
+type LinksFilteringFunction = (m: Module, n: string) => ModuleLink[]
+
+export const linksFor: LinksFilteringFunction = (module, name) => {
+  return module.links.filter(l => [l.from.node, l.to.node].includes(name))
 }
 
-function findNode(module: Module, name: string): ModuleNode {
-  return module.nodes.find(n => n.name === name) as ModuleNode
+type NodeFindingFunction = (m: Module, n: string) => ModuleNode
+
+/**
+ * @see ~/tests/functions/structure/findNode.test.ts
+ * @param module the module into which the nodes are searched.
+ * @param name the name of the node to search.
+ * @returns the first module node matching the given name, or throws an error if not found.
+ */
+export const findNode: NodeFindingFunction = (module, name) => {
+  const node = module.nodes.find(n => n.name === name)
+  if (node === undefined) throw new NodeNotFoundError()
+  return node
 }
 
-function instanciateLink(module: Module, link: ModuleLink) {
-  const from = findNode(module, link.from.node)
-  const to = findNode(module, link.to.node)
+export class NodeNotFoundError extends Error { }
 
-  if (!to?.audioNode || !from?.audioNode) return 
+export type ConnectFunction = (from: AudioNode, to: AudioNode, link: number, toIndex: number) => void
 
-  from.audioNode?.connect(to.audioNode, link.from.index, link.to.index)
+export const connect: ConnectFunction = (from, to, fromIndex, toIndex) => {
+  from.connect(to, fromIndex, toIndex)
 }
+
+export function instanciateLinkTemplate(findNode: NodeFindingFunction, connect: ConnectFunction) {
+  return (module: Module, link: ModuleLink) => {
+    const from = findNode(module, link.from.node)
+    const to = findNode(module, link.to.node)
+
+    if (!to?.audioNode || !from?.audioNode) return
+
+    connect(from.audioNode, to.audioNode, link.from.index, link.to.index)
+  }
+}
+
+export const instanciateLink = instanciateLinkTemplate(findNode, connect)
