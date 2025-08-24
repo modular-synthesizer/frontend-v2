@@ -39,6 +39,12 @@ export async function instanciateModule(module: Module, generators: GeneratorsCo
 
 type LinksFilteringFunction = (m: Module, n: string) => ModuleLink[]
 
+/**
+ * @see ~/tests/functions/structure/linksFor.test.ts
+ * @param module The module to search the links into.
+ * @param name The name of the node to look for in the list of link. A link is included if this node is its "from" or "to".
+ * @returns The filtered list of links.
+ */
 export const linksFor: LinksFilteringFunction = (module, name) => {
   return module.links.filter(l => [l.from.node, l.to.node].includes(name))
 }
@@ -59,21 +65,18 @@ export const findNode: NodeFindingFunction = (module, name) => {
 
 export class NodeNotFoundError extends Error { }
 
-export type ConnectFunction = (from: AudioNode, to: AudioNode, link: number, toIndex: number) => void
+export type LinkInstanciationFunction = (module: Module, link: ModuleLink) => void
 
-export const connect: ConnectFunction = (from, to, fromIndex, toIndex) => {
-  from.connect(to, fromIndex, toIndex)
+/**
+ * @see~/tests/functions/structure/instanciateLink.test.ts
+ * @param module The module in which the nodes to link are instanciated. As it is an inner link, only one module regroups them.
+ * @param link The link to instanciate, allowing us to retrieve the two nodes and connect them.
+ */
+export const instanciateLink: LinkInstanciationFunction = (module: Module, link: ModuleLink) => {
+  const from = findNode(module, link.from.node)
+  const to = findNode(module, link.to.node)
+
+  if (!to?.audioNode || !from?.audioNode) return
+
+  from.audioNode.connect(to.audioNode, link.from.index, link.to.index)
 }
-
-export function instanciateLinkTemplate(findNode: NodeFindingFunction, connect: ConnectFunction) {
-  return (module: Module, link: ModuleLink) => {
-    const from = findNode(module, link.from.node)
-    const to = findNode(module, link.to.node)
-
-    if (!to?.audioNode || !from?.audioNode) return
-
-    connect(from.audioNode, to.audioNode, link.from.index, link.to.index)
-  }
-}
-
-export const instanciateLink = instanciateLinkTemplate(findNode, connect)

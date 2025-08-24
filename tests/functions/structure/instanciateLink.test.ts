@@ -1,9 +1,12 @@
 import { expect, vi, describe, it } from "vitest";
-import { instanciateLinkTemplate, NodeNotFoundError } from "~/core/functions/modules/structure";
+import { NodeNotFoundError } from "~/core/functions/modules/structure";
 import { moduleFactory } from "~/tests/factories/modules";
 
+interface Connectable { connect(_: Connectable): void }
+
 describe("instanciateLink", async () => {
-  const ctx: BaseAudioContext = { createGain: () => { return "stub for nodes" } } as unknown as BaseAudioContext
+  const fakeNode: Connectable = { connect(_: Connectable) { } }
+  const ctx: BaseAudioContext = { createGain: () => fakeNode } as unknown as BaseAudioContext
   const module = await moduleFactory({
     nodes: [
       { id: "1", name: "first", generator: "test", audioNode: ctx.createGain() },
@@ -18,16 +21,14 @@ describe("instanciateLink", async () => {
   })
 
   it("Correctly calls the connect function if both nodes are initialized", () => {
-    const mockConnect = vi.fn()
-    const instanciateLink = instanciateLinkTemplate(findNode, mockConnect)
+    const spy = vi.spyOn(fakeNode, "connect")
     instanciateLink(module, module.links[0])
-    expect(mockConnect).toHaveBeenNthCalledWith(1, module.nodes[0].audioNode, module.nodes[1].audioNode, 0, 0)
+    expect(spy).toHaveBeenNthCalledWith(1, module.nodes[1].audioNode, 0, 0)
   })
   it("Does not call the connect function if a node is not initialized", () => {
-    const mockConnect = vi.fn()
-    const instanciateLink = instanciateLinkTemplate(findNode, mockConnect)
+    const spy = vi.spyOn(fakeNode, "connect")
     instanciateLink(module, module.links[1])
-    expect(mockConnect).not.toBeCalled()
+    expect(spy).not.toBeCalled()
   })
   it("Throws an error if a node is not found", () => {
     expect(() => instanciateLink(module, module.links[2])).toThrow(NodeNotFoundError)
