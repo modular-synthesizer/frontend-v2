@@ -7,7 +7,7 @@ export default defineVitestConfig({
       provider: "webdriverio",
       enabled: true,
       instances: [
-        { browser: "firefox" }
+        { browser: "chrome" }
       ]
     }
   }

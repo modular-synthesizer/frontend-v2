@@ -31,14 +31,15 @@ export type NodeInstanciationFunction = (n: ModuleNode, a: AudioContext, g: Gene
 export const instanciateNode: NodeInstanciationFunction = async (node, ctx, generators, payload = {}) => {
   try {
     const generator = generators.generator(node.generator)
+    console.log(generator)
     const instance: AudioNode = await AsyncFunction("context", "payload", generator.code)(ctx, payload) as AudioNode
-    console.log("HERE RESULT : " + instance)
+    console.log("instance here ?")
+    if (instance instanceof AudioScheduledSourceNode) instance.start()
     node.audioNode = instance;
-    (instance as AudioScheduledSourceNode)?.start()
     return instance
   }
   catch (error) {
-    console.log("There was an error trying to get the generator : " + node.generator)
+    console.log(node)
   }
 }
 
