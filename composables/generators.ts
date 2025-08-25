@@ -7,10 +7,14 @@ export type GeneratorsComposable = {
   generator(name: string): NodeGenerator
 }
 
+export class GeneratorItemError extends Error { }
+
 export function useGeneratorsTemplate(storage: Ref<NodeGenerator[]>) {
   return () => ({
     generator(name: string): NodeGenerator {
-      return storage.value.find(g => g.name === name) as NodeGenerator
+      const item = storage.value.find(g => g.name === name)
+      if (item === undefined) throw new GeneratorItemError()
+      return item
     },
     store(generators: NodeGenerator[]) {
       storage.value = generators

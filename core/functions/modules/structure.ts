@@ -2,7 +2,20 @@ import type { GeneratorsComposable } from "~/composables/generators"
 import type { ModuleLink } from "~/core/business/synthesizers/ModuleLink.type"
 import type { ModuleNode } from "~/core/business/synthesizers/ModuleNode.type"
 
+export async function instanciatePolyphonyVoice(module: Module, generators: GeneratorsComposable) {
+  const ctx = new AudioContext()
+  for (const node of module.nodes) {
+    instanciateNode(node, ctx, generators).then(() => {
+      for (const link of linksFor(module, node.name)) {
+        instanciateLink(module, link)
+      }
+    })
+  }
+}
+
 const AsyncFunction = (async () => { }).constructor
+
+export type NodeInstanciationFunction = (n: ModuleNode, a: AudioContext, g: GeneratorsComposable, payload?: Record<string, unknown>) => Eventual<AudioNode>
 
 /**
  * Instanciates a given module inner node by creating the corresponding Web Audio API node and
@@ -15,25 +28,17 @@ const AsyncFunction = (async () => { }).constructor
  * 
  * @return the created Web Audio API node initialized with the given generator.
  */
-export async function instanciateNode(node: ModuleNode, ctx: AudioContext, generators: GeneratorsComposable): Promise<AudioNode> {
-  const generator = generators.generator(node.generator)
-  const executor = AsyncFunction("context", "payload", generator.code)
-  const instance: AudioNode = await executor(ctx, {}) as AudioNode
-  if (instance instanceof AudioScheduledSourceNode) {
-    instance.start()
+export const instanciateNode: NodeInstanciationFunction = async (node, ctx, generators, payload = {}) => {
+  try {
+    const generator = generators.generator(node.generator)
+    const instance: AudioNode = await AsyncFunction("context", "payload", generator.code)(ctx, payload) as AudioNode
+    console.log("HERE RESULT : " + instance)
+    node.audioNode = instance;
+    (instance as AudioScheduledSourceNode)?.start()
+    return instance
   }
-  node.audioNode = instance;
-  return instance
-}
-
-export async function instanciateModule(module: Module, generators: GeneratorsComposable) {
-  const ctx = new AudioContext()
-  for (const node of module.nodes) {
-    instanciateNode(node, ctx, generators).then(() => {
-      for (const link of linksFor(module, node.name)) {
-        instanciateLink(module, link)
-      }
-    })
+  catch (error) {
+    console.log("There was an error trying to get the generator : " + node.generator)
   }
 }
 
@@ -72,7 +77,7 @@ export type LinkInstanciationFunction = (module: Module, link: ModuleLink) => vo
  * @param module The module in which the nodes to link are instanciated. As it is an inner link, only one module regroups them.
  * @param link The link to instanciate, allowing us to retrieve the two nodes and connect them.
  */
-export const instanciateLink: LinkInstanciationFunction = (module: Module, link: ModuleLink) => {
+export const instanciateLink: LinkInstanciationFunction = (module, link) => {
   const from = findNode(module, link.from.node)
   const to = findNode(module, link.to.node)
 

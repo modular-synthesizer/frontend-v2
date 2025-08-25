@@ -1,5 +1,5 @@
 import type { PortsComposable } from "~/composables/cables/ports";
-import { instanciateModule } from "~/core/functions/modules/structure";
+import { instanciatePolyphonyVoice } from "~/core/functions/modules/structure";
 
 export function loadModule(ports: PortsComposable, generators: GeneratorsComposable) {
   /**
@@ -10,7 +10,8 @@ export function loadModule(ports: PortsComposable, generators: GeneratorsComposa
    * @param synthesizer the synthesizer to insert the module into.
    */
   return (module: Module, synthesizer: Synthesizer) => {
-    instanciateModule(module, generators)
+    // TODO : add polyphony by instanciating this N times
+    instanciatePolyphonyVoice(module, generators)
     ports.load(module)
     for (const c of cablesFor(synthesizer.cables, module)) {
       if (ports.isLoaded(c)) {
