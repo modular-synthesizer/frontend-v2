@@ -16,7 +16,7 @@ export const fakeTimeout: TimeoutFunction = (callback: () => void, timeout: numb
   return 42
 }
 
-export const fakeClear: ClearFunction = (_timeout?: number) => { }
+export const fakeClear: ClearFunction = (_timeout: number) => { }
 
 export const fakeAccount: Account = {
   id: '1',
@@ -41,7 +41,8 @@ export const fakeSynthesizer: Synthesizer = {
   scale: 1.0,
   modules: [ ],
   x: 0,
-  y: 0
+  y: 0,
+  cables: []
 }
 
 export const fakeModule: Module = {
@@ -50,14 +51,23 @@ export const fakeModule: Module = {
   slots: 2,
   rack: 0,
   controls: [],
-  parameters: []
+  parameters: [],
+  ports: [],
+  nodes: [],
+  links: []
 }
 
 export const fakeStore = (_session: Session) => { }
 
 export const fakeSuccessApi: ApiSchema = {
+  cables: {
+    list: async () => success([])
+  },
   categories: {
     list: async () => success([{ name: 'categoryName' }] as Category[]),
+  },
+  generators: {
+    list: async () => success([])
   },
   modules: {
     list: async () => success([ fakeModule ]),
@@ -74,6 +84,7 @@ export const fakeSuccessApi: ApiSchema = {
     update: async(_id: string, payload: Partial<Synthesizer>) => success({ ... fakeSynthesizer, ...payload })
   },
   tools: {
+    delete: async () => success(undefined),
     get: async (_id) => success(toolFactory({ id: 'toolId' })),
     new: async (__name, _cateId, _slots) => success(toolFactory({ id: 'toolId' })),
     update: async(_id, _payload: Partial<Tool>) => success(toolFactory({ id: 'toolId' })),
@@ -82,7 +93,13 @@ export const fakeSuccessApi: ApiSchema = {
 }
 
 export const fakeErrorApi: ApiSchema = {
+  cables: {
+    list: async () => fakeError,
+  },
   categories: {
+    list: async () => fakeError,
+  },
+  generators: {
     list: async () => fakeError,
   },
   modules: {
@@ -100,6 +117,7 @@ export const fakeErrorApi: ApiSchema = {
     update: async(_id: string, _payload: Partial<Synthesizer>) => fakeError,
   },
   tools: {
+    delete: async () => fakeError,
     get: async (_id: string) => fakeError,
     list: async () => fakeError,
     new: async (__name: string, _cateId: string, _slots: number) => fakeError,
