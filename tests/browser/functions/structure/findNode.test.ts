@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findNode, NodeNotFoundError } from "~/core/functions/modules/structure";
-import { moduleFactory } from "~/tests/node/factories/modules";
+import { moduleFactory } from "~/tests/factories/modules";
 
 describe("findNode", async () => {
   const module: Module = await moduleFactory({

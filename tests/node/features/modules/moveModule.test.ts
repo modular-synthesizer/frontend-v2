@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from "vitest"
-import { ModulesFactory } from "~/tests/node/factories/modules"
+import { ModulesFactory } from "~/tests/factories/modules"
 
 const feature = moveModule()
 
@@ -22,7 +22,8 @@ describe("Coordinates computation", async () => {
 
 describe("When there are colliding modules given", async () => {
 
-  let module: Module, collider: Module;
+  let module: Module
+  let collider: Module
 
   beforeEach(async () => {
     module = await ModulesFactory.build()

@@ -1,0 +1,1 @@
+export type FactoryProps<T> = {[K in keyof T]: () => T[K]}

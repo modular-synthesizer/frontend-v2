@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from "vitest"
-import { ParametersFactory } from "~/tests/node/factories/parameters"
+import { ParametersFactory } from "~/tests/factories/parameters"
 
 const feature = moveParameterValue()
 

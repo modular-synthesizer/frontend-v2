@@ -1,6 +1,6 @@
 import { expect, vi, describe, it } from "vitest";
 import { NodeNotFoundError } from "~/core/functions/modules/structure";
-import { moduleFactory } from "~/tests/node/factories/modules";
+import { moduleFactory } from "~/tests/factories/modules";
 
 interface Connectable { connect(_: Connectable): void }
 

@@ -1,6 +1,9 @@
 import { afterEach, expect, test, vi } from "vitest"
 import { fetchSynthesizers } from "../../../../core/features/synthesizers/fetchSynthesizers"
-import { fakeErrorApi, fakeSnacker, fakeSuccessApi, fakeSynthesizer } from "../../../fakes"
+import { fakeSnacker } from "../../../fakes"
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { fakeSuccessApi } from "~/tests/factories/api/success";
+import { synthesizerFactory } from "~/tests/factories/synthesizers";
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -17,6 +20,7 @@ test("It returns an empty list when the underlying request fails", async () => {
 })
 
 test("It returns the list of items when the request succeeds", async () => {
+  const fakeSynthesizer = await synthesizerFactory()
   const story = fetchSynthesizers(fakeSuccessApi, fakeSnacker)
   expect(await story()).toEqual([ fakeSynthesizer ])
 })

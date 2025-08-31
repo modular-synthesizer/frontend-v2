@@ -1,5 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
-import { fakeErrorApi, fakeSnacker, fakeSuccessApi } from "~/tests/fakes";
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { fakeSuccessApi } from "~/tests/factories/api/success";
+import { fakeSnacker } from "~/tests/fakes";
 
 describe("API success", async () => {
 

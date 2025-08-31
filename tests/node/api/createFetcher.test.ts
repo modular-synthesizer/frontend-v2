@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from "vitest"
+import { describe, expect, test, vi } from "vitest"
 
 function verbs(...args: string[]) {
   return args.map((verb: string) => ({ verb }))

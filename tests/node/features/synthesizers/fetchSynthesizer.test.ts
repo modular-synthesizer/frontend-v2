@@ -1,5 +1,9 @@
 import { describe, expect, test, vi } from "vitest"
-import { fakeErrorApi, fakeModule, fakeNavigator, fakeSuccessApi, fakeSynthesizer } from "~/tests/fakes"
+import { fakeNavigator } from "~/tests/fakes"
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { fakeSuccessApi } from "~/tests/factories/api/success";
+import { synthesizerFactory } from "~/tests/factories/synthesizers";
+import { moduleFactory } from "~/tests/factories/modules";
 
 const fakes = {
   navigator: fakeNavigator,
@@ -19,11 +23,13 @@ describe("When the API successfully returns a synthesizer", () => {
     expect(fetchSpy).toHaveBeenCalledExactlyOnceWith('synthesizerId')
   })
   test("It manages to get a synthesizer when there are no errors", async () => {
+    const fakeSynthesizer = await synthesizerFactory()
     const story = fetchSynthesizer(fakeSuccessApi, fakes.navigator)
     const response = await story("synthesizerId")
     expect(response).toEqual(fakeSynthesizer)
   })
   test("The synthesizer correctly has modules when there are no errors", async () => {
+    const fakeModule = await moduleFactory()
     const story = fetchSynthesizer(fakeSuccessApi, fakes.navigator)
     const response = await story("synthesizerId")
     expect(response?.modules).toEqual([ fakeModule ])

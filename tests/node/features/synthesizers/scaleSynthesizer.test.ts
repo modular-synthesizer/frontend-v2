@@ -1,7 +1,8 @@
 // @vitest-environment nuxt
 import { describe, expect, test, vi } from "vitest"
-import { fakeError, fakeErrorApi, fakeTimeout, fakeClear, fakeSnacker } from "../../../fakes"
-import { factories } from "../../factories"
+import { fakeTimeout, fakeClear, fakeSnacker } from "../../../fakes"
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { factories } from "../../../factories"
 import { rescaleSynthesizer } from "../../../../core/features/synthesizers/scaleSynthesizer"
 
 const fakeDebouncer = useDebounceTemplate(fakeTimeout, fakeClear)()
@@ -31,6 +32,6 @@ describe("Feature to scale up or down the synthesizer", async () => {
     const snackSpy = vi.spyOn(fakeSnacker, "asyncError")
     const feature = rescaleSynthesizer(fakeErrorApi, fakeDebouncer, fakeSnacker)
     await feature(synthesizer, 100)
-    expect(snackSpy).toHaveBeenCalledExactlyOnceWith(fakeError)
+    expect(snackSpy).toHaveBeenCalledExactlyOnceWith({ ok: false, key: "username", message: "unknown" })
   })
 })

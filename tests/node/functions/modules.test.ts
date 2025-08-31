@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { moduleFactory } from "../factories/modules";
-import { ParametersFactory } from "../factories/parameters";
+import { moduleFactory } from "../../factories/modules";
+import { ParametersFactory } from "../../factories/parameters";
 
 describe("getCoordinates", async () => {
   const module = await moduleFactory({ rack: 10, slot: 100 })

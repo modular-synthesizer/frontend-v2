@@ -1,5 +1,7 @@
 import { expect, test, vi } from "vitest"
-import { fakeErrorApi, fakeSnacker, fakeSuccessApi } from "../../../fakes"
+import { fakeSnacker } from "../../../fakes"
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { fakeSuccessApi } from "~/tests/factories/api/success";
 
 const fakeList: Tool[] = []
 

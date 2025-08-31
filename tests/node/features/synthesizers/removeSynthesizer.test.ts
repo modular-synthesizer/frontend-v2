@@ -1,7 +1,9 @@
 import { afterEach, expect, test, vi } from 'vitest'
-import { fakeErrorApi, fakeSnacker, fakeSuccessApi } from '../../../fakes'
+import { fakeSnacker } from '../../../fakes'
+import { fakeErrorApi } from "~/tests/factories/api/error";
+import { fakeSuccessApi } from "~/tests/factories/api/success";
 import { removeSynthesizer } from "../../../../core/features/synthesizers/removeSynthesizer"
-import { SynthesizerFactory } from '~/tests/node/factories/synthesizers'
+import { SynthesizerFactory } from '~/tests/factories/synthesizers'
 
 const fakeData = async () => {
   return [

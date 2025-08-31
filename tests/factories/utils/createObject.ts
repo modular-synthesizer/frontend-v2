@@ -6,7 +6,7 @@ export type Factory<T> = {
 }
 
 export function createObject<T>(factory: Factory<T>) {
-  return async (overloads: Partial<T>): Promise<T> => {
+  return async (overloads: Partial<T> = {}): Promise<T> => {
     const entries = Object.entries(overloads).map(([ k, v ]) => [ k, () => v])
     const overrides: Overrides<T> = Object.fromEntries(entries)
     return (await factory.props(overrides).build()) as T

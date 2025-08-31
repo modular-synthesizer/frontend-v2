@@ -3,6 +3,7 @@ import { createObject, type Factory } from "./utils/createObject";
 import type { ModuleNode } from "~/core/business/synthesizers/ModuleNode.type";
 import type { Port } from "~/core/business/synthesizers/Port.type";
 import type { ModuleLink } from "~/core/business/synthesizers/ModuleLink.type";
+import type { FactoryProps } from "./utils/FactoryProps";
 
 export const ModulesFactory = factory.define({
   props: {
@@ -15,7 +16,7 @@ export const ModulesFactory = factory.define({
     ports: (): Port[] => [],
     nodes: (): ModuleNode[] => [],
     links: (): ModuleLink[] => [],
-  },
+  } as FactoryProps<Module>,
   vars: {}
 })
 

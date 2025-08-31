@@ -1,7 +1,8 @@
 import { describe, expect, test, vi } from "vitest";
 import type { Coordinates } from "~/core/types/geometry";
-import { ModulesFactory } from "~/tests/node/factories/modules";
-import { fakeErrorApi, fakeSnacker } from "~/tests/fakes";
+import { ModulesFactory } from "~/tests/factories/modules";
+import { fakeSnacker } from "~/tests/fakes";
+import { fakeErrorApi } from "~/tests/factories/api/error";
 
 describe("saveModule", async () => {
   const module = await ModulesFactory.build()
