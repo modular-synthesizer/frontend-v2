@@ -1,13 +1,13 @@
 import { afterEach, expect, test, vi } from "vitest"
 import { attemptLogin } from "../../../../core/features/sessions/attemptLogin"
-import { fakeNavigator, fakeSnacker, fakeStore } from "../../../fakes"
+import { fakeNavigator, fakeSnacker } from "../../../fakes"
 import { fakeError, fakeErrorApi } from "~/tests/factories/api/error";
 import { fakeSuccessApi } from "~/tests/factories/api/success";
 import { sessionFactory } from "~/tests/factories/sessions";
 
 const fakes = {
   navigator: fakeNavigator,
-  store: fakeStore,
+  store: (_: Session) => {},
 }
 
 afterEach(() => vi.restoreAllMocks())

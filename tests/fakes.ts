@@ -14,5 +14,3 @@ export const fakeTimeout: TimeoutFunction = (callback: () => void, timeout: numb
 }
 
 export const fakeClear: ClearFunction = (_timeout: number) => { }
-
-export const fakeStore = (_session: Session) => { }

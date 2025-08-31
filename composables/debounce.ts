@@ -1,6 +1,6 @@
-export type TimeoutFunction = typeof window.setTimeout
+export type TimeoutFunction = (callback: () => void, delay: number) => number
 
-export type ClearFunction = typeof window.clearTimeout
+export type ClearFunction = (timeout: number) => void
 
 export type Debouncer = {
   debounce: (name: string, delay: number, callback: () => void) => void,
