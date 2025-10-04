@@ -11,6 +11,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@jsynple/audio": "^1.2.0",
+    "@jsynple/core": "^1.7.1",
     "@mdi/font": "^7.4.47",
     "@nuxtjs/i18n": "9.5.4",
     "@vueuse/core": "^13.2.0",
