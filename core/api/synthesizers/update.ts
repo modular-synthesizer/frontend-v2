@@ -1,16 +1,18 @@
+import type { ApiSynthesizer } from "@jsynple/core";
+
 export type SynthesizerUpdateFetcher = (
 	id: string,
-	parameters: Partial<Synthesizer> & { auth_token: string },
-) => ExpectedResult<Synthesizer>;
+	parameters: Partial<ApiSynthesizer> & { auth_token: string },
+) => ExpectedResult<ApiSynthesizer>;
 
 export function updateSynthesizer(
-	requester: Fetcher<Synthesizer>,
+	requester: Fetcher<ApiSynthesizer>,
 	auth: Auth,
-): SynthesizerGetFetcher {
+): SynthesizerUpdateFetcher {
 	return async (
 		id: string,
-		parameters: Partial<Synthesizer>,
-	): ExpectedResult<Synthesizer> => {
+		parameters: Partial<ApiSynthesizer>,
+	): ExpectedResult<ApiSynthesizer> => {
 		const payload = { ...parameters, auth_token: auth.token };
 		return await requester("PUT", `/synthesizers/${id}`, {}, payload);
 	};

@@ -1,9 +1,10 @@
+import type { ApiCable } from "@jsynple/core";
 import type { Cable } from "~/core/business/synthesizers/Cable.type";
 
-export type CableListFetcher = (id: string) => ExpectedResult<Cable[]>;
+export type CableListFetcher = (id: string) => ExpectedResult<ApiCable[]>;
 
 export function listCables(
-	fetcher: Fetcher<Cable[]>,
+	fetcher: Fetcher<ApiCable[]>,
 	auth: Auth,
 ): CableListFetcher {
 	return async (synthesizerId: string) => {
