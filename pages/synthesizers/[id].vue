@@ -33,6 +33,9 @@ const synthesizer: Ref<Synthesizer|undefined> = ref(undefined)
 
 async function handleClick() {
   context.value = new AudioContext()
+
+  await context.value.audioWorklet.addModule("https://modular-synthesizer.github.io/processors/processors.js");
+
   synthesizer.value = await features.synthesizers.fetch(`${useRoute().params.id}`, context.value)
   console.debug(context.value.state)
 
