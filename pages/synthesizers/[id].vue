@@ -1,7 +1,7 @@
 <template>
   <rights-check right="synthesizers::read" type="redirect" uri="/synthesizers">
     <div class="test">
-      <h1 @mousedown="context.resume()">CLIQUE</h1>
+      <V-btn @mousedown="handleClick">CLIQUE</V-btn>
     </div>
     <!--draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
       <draggable-layer-html :reference="synthesizer">
@@ -23,12 +23,22 @@
 </template>
 
 <script setup lang="ts">
+import type { Synthesizer } from '@jsynple/core'
 
 definePageMeta({ layout: false })
 
-const context: Ref<AudioContext> = ref(new AudioContext())
+const context: Ref<AudioContext|null> = ref(null)
 
-const synthesizer = ref(await features.synthesizers.fetch(`${useRoute().params.id}`, context.value))
+const synthesizer: Ref<Synthesizer|undefined> = ref(undefined)
+
+async function handleClick() {
+  context.value = new AudioContext()
+  synthesizer.value = await features.synthesizers.fetch(`${useRoute().params.id}`, context.value)
+  console.debug(context.value.state)
+
+  context.value.resume()
+  console.debug(context.value.state)
+}
 
 async function rescale(deltaY: number) {
   if(!synthesizer.value) return

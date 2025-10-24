@@ -8,7 +8,7 @@ export function listCables(
 	auth: Auth,
 ): CableListFetcher {
 	return async (synthesizerId: string) => {
-		return await fetcher("GET", "/links", {
+		return await fetcher("GET", "/links/v2", {
 			auth_token: auth.token,
 			synthesizer_id: synthesizerId,
 		});
