@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Module, Synthesizer } from '@jsynple/core';
+
 type Props = {
   module: Module,
   synthesizer: Synthesizer
@@ -23,6 +25,4 @@ function move({ x, y }: Coordinates) {
 function drop() {
   features.modules.save(module)
 }
-
-setTimeout(() => emit('loaded', module), Math.random() * 3000)
 </script>

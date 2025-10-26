@@ -1,8 +1,8 @@
 <template>
   <div
     class="scene-wrapper"
-    @mousedown.prevent.stop="c => useDragEvents().start(referenceFrame, c, { drop, move })"
-    @mousemove.prevent.stop="c => useDragEvents().move(c)"
+    @mousedown.prevent.stop="(c: MouseEvent) => useDragEvents().start(referenceFrame, c, { drop, move })"
+    @mousemove.prevent.stop="(c: MouseEvent) => useDragEvents().move(c)"
     @mouseup.prevent.stop="endEvents"
     @mouseleave.prevent.stop="endEvents"
     @wheel.passive="emit('rescale', $event.deltaY)"

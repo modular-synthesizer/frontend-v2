@@ -1,9 +1,6 @@
 <template>
   <rights-check right="synthesizers::read" type="redirect" uri="/synthesizers">
-    <div class="test">
-      <V-btn @mousedown="handleClick">CLIQUE</V-btn>
-    </div>
-    <!--draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
+    <draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
       <draggable-layer-html :reference="synthesizer">
         <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer @loaded="features.modules.load(module, synthesizer)">
           <template #default="{ select, selected }">
@@ -18,7 +15,10 @@
           </template>
         </module-logic>
       </draggable-layer-html>
-    </draggable-scene-->
+    </draggable-scene>
+    <div class="test" v-else>
+      <V-btn @mousedown="handleClick">CLIQUE</V-btn>
+    </div>
   </rights-check>
 </template>
 
