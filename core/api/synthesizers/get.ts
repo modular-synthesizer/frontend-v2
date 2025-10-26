@@ -1,10 +1,12 @@
-export type SynthesizerGetFetcher = (id: string) => ExpectedResult<Synthesizer>;
+import type { ApiSynthesizer } from "@jsynple/core";
+
+export type SynthesizerGetFetcher = (id: string) => ExpectedResult<ApiSynthesizer>;
 
 export function getSynthesizer(
-	requester: Fetcher<Synthesizer>,
+	requester: Fetcher<ApiSynthesizer>,
 	auth: Auth,
 ): SynthesizerGetFetcher {
-	return async (id: string): ExpectedResult<Synthesizer> => {
+	return async (id: string): ExpectedResult<ApiSynthesizer> => {
 		return await requester("GET", `/synthesizers/${id}`, {
 			auth_token: auth.token,
 		});

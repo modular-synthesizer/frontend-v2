@@ -1,7 +1,9 @@
-export type ModuleListFetcher = (id: string) => ExpectedResult<Module[]>;
+import type { ApiModule } from "@jsynple/core";
+
+export type ModuleListFetcher = (id: string) => ExpectedResult<ApiModule[]>;
 
 export function listModules(
-	fetcher: Fetcher<Module[]>,
+	fetcher: Fetcher<ApiModule[]>,
 	auth: Auth,
 ): ModuleListFetcher {
 	return async (synthesizerId: string) => {

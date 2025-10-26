@@ -16,21 +16,40 @@
         </module-logic>
       </draggable-layer-html>
     </draggable-scene>
+    <div class="test" v-else>
+      <V-btn @mousedown="handleClick">CLIQUE</V-btn>
+    </div>
   </rights-check>
 </template>
 
 <script setup lang="ts">
+import type { Synthesizer } from '@jsynple/core'
 
 definePageMeta({ layout: false })
-const synthesizer = ref(await features.synthesizers.fetch(`${useRoute().params.id}`))
+
+const context: Ref<AudioContext|null> = ref(null)
+
+const synthesizer: Ref<Synthesizer|undefined> = ref(undefined)
+
+async function handleClick() {
+  context.value = new AudioContext()
+
+  await context.value.audioWorklet.addModule("https://modular-synthesizer.github.io/processors/processors.js");
+
+  synthesizer.value = await features.synthesizers.fetch(`${useRoute().params.id}`, context.value)
+  console.debug(context.value.state)
+
+  context.value.resume()
+  console.debug(context.value.state)
+}
 
 async function rescale(deltaY: number) {
   if(!synthesizer.value) return
-  await features.synthesizers.rescale(synthesizer.value, deltaY)
+  // await features.synthesizers.rescale(synthesizer.value, deltaY)
 }
 
 async function drop({ x, y }: Coordinates) {
   if(!synthesizer.value) return
-  features.synthesizers.move(synthesizer.value, { x, y })
+  // features.synthesizers.move(synthesizer.value, { x, y })
 }
 </script>

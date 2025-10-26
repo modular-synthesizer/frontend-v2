@@ -6,7 +6,8 @@ import { listCategories, type CategoryListFetcher } from "./categories/list";
 import type { Category } from "../business/tools/Category.type";
 import { deleteTool, type ToolDeleter } from "./tools/delete";
 import { listCables, type CableListFetcher } from "./cables/list"
-import type { Cable } from "../business/synthesizers/Cable.type";
+import type { ApiCable, ApiModule, NodeGenerator } from "@jsynple/core";
+import { listGenerators, type GeneratorsListFetcher } from "./generators/list";
 
 export type ApiSchema = {
 	cables: {
@@ -14,6 +15,9 @@ export type ApiSchema = {
 	},
 	categories: {
 		list: CategoryListFetcher
+	},
+	generators: {
+		list: GeneratorsListFetcher
 	},
 	modules: {
 		list: ModuleListFetcher;
@@ -40,13 +44,16 @@ export type ApiSchema = {
 
 export const api: ApiSchema = {
 	cables: {
-		list: listCables(createFetcher<Cable[]>(fetch), useAuth()),
+		list: listCables(createFetcher<ApiCable[]>(fetch), useAuth()),
 	},
 	categories: {
 		list: listCategories(createFetcher<Category[]>(fetch), useAuth()),
 	},
+	generators: {
+		list: listGenerators(createFetcher<NodeGenerator[]>(fetch), useAuth()),
+	},
 	modules: {
-		list: listModules(createFetcher<Module[]>(fetch), useAuth()),
+		list: listModules(createFetcher<ApiModule[]>(fetch), useAuth()),
 		update: updateModule(createFetcher<Module>(fetch), useAuth()),
 	},
 	sessions: {

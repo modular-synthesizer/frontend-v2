@@ -1,6 +1,6 @@
 function collides(
-	collider: module,
-	{ id, rack, slot, slots }: subject,
+	collider: Module,
+	{ id, rack, slot, slots }: Module,
 ): boolean {
 	if (collider.id === id) return false;
 	if (rack !== collider.rack) return false;
@@ -13,12 +13,12 @@ export function moveModule() {
 	return async (
 		module: Module,
 		{ x, y }: Coordinates,
-		colliders: Module[] = [],
+		colliders: Record<string, Module> = {}
 	) => {
 		const slot = (x - (x % 20)) / 20;
 		const rack = (y - (y % 400)) / 400;
 		const futureModule: Module = { ...module, rack, slot };
-		if (colliders.some((c) => collides(c, futureModule))) return;
+		if (Object.values(colliders).some((c) => collides(c, futureModule))) return;
 		module.slot = slot;
 		module.rack = rack;
 	};
