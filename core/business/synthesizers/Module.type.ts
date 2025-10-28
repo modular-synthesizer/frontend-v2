@@ -1,1 +1,0 @@
-export type { Module } from "@jsynple/core"

@@ -5,16 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Module, Synthesizer } from '@jsynple/core';
-
 type Props = {
   module: Module,
   synthesizer: Synthesizer
 }
 const { module, synthesizer } = defineProps<Props>()
-
-type Emits = { loaded: [ Module ] }
-const emit = defineEmits<Emits>()
 
 const coords = computed(() => ({ ...getCoordinates(module), scale: synthesizer.scale }))
 

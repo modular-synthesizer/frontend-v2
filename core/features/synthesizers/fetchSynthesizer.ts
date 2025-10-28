@@ -1,4 +1,4 @@
-import { SynthesizerBuilder, type Synthesizer } from "@jsynple/core"
+import { SynthesizerBuilder } from "@jsynple/core"
 import { initSynthesizer } from "@jsynple/audio"
 
 export function fetchSynthesizer(api: ApiSchema, navigator: Redirector) {

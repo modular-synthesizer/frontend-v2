@@ -9,20 +9,25 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
 
-  imports: { dirs: [ 'core/**', 'stories/**', 'types/**', 'utils/**' ] },
+  imports: {
+    dirs: ['core/**', 'stories/**', 'types/**', 'utils/**'],
+    presets: [
+      { from: "@jsynple/core", imports: ['Module', 'Synthesizer',] }
+    ]
+  },
 
   runtimeConfig: {
     public: {
       api_uri: process.env.API_URL || 'https://synple.app/api',
     }
   },
-  
+
   css: [
     'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',
   ],
 
-  modules: [ '@nuxtjs/i18n', '@vueuse/nuxt', '@nuxt/test-utils/module' ],
+  modules: ['@nuxtjs/i18n', '@vueuse/nuxt', '@nuxt/test-utils/module'],
 
   i18n: { ...localesConfig, defaultLocale: 'fr' },
 

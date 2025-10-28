@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Synthesizer } from '@jsynple/core'
 
 definePageMeta({ layout: false })
 
