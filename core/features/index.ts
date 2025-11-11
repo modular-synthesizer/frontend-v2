@@ -3,6 +3,7 @@ import { rescaleTool } from "./tools/rescaleTool";
 import { fetchCategories } from "./categories/fetchCategories";
 import { loadModule } from "./modules/loadModule";
 import { usePorts } from "~/composables/cables/ports";
+import { moveModule } from "@jsynple/core"
 
 export const features = {
   modules: {
