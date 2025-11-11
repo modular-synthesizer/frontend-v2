@@ -4,6 +4,8 @@ import { fetchCategories } from "./categories/fetchCategories";
 import { loadModule } from "./modules/loadModule";
 import { usePorts } from "~/composables/cables/ports";
 import { moveModule } from "@jsynple/core"
+import { api } from "@/core/api"
+import { initSynthesizer, bootSynthesizer } from "@jsynple/audio";
 
 export const features = {
   modules: {
@@ -20,8 +22,8 @@ export const features = {
     logout: attemptLogout(navigateTo, useAuth().reset)
   },
   synthesizers: {
+    boot: bootSynthesizer,
     create: createSynthesizer(api, useSnack()),
-    fetch: fetchSynthesizer(api, navigateTo),
     list: fetchSynthesizers(api, useSnack()),
     move: moveSynthesizer(api, useSnack()),
     remove: removeSynthesizer(api, useSnack()),

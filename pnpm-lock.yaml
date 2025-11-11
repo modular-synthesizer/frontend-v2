@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@jsynple/audio':
-    specifier: 1.3.3
-    version: 1.3.3(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
+    specifier: 1.4.0
+    version: 1.4.0(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
   '@jsynple/core':
-    specifier: 1.9.0
-    version: 1.9.0
+    specifier: 2.6.2
+    version: 2.6.2
   '@mdi/font':
     specifier: ^7.4.47
     version: 7.4.47
@@ -978,11 +978,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: false
 
-  /@jsynple/audio@1.3.3(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
-    resolution: {integrity: sha512-8S4A44VCo7n1AlAIIhXlrYungw8JzTDNVGp6YrTY8sB1qNpjjUu8EXUSAa+s3eyFuxDz7tnqX01Avxlg32qU7g==}
+  /@jsynple/audio@1.4.0(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
+    resolution: {integrity: sha512-52znC0pDK+oO+2HB8/p80gFkMQZbksE2mYTvXmZFZ5jRhVrALGArhJ7kRvZkbYASjhBKwryW/P5PxlIGXPj6iA==}
     dependencies:
       '@factory-js/factory': 0.4.1
-      '@jsynple/core': 1.8.2
+      '@jsynple/core': 2.6.1
       '@testing-library/dom': 10.4.1
       uuid: 11.1.0
       vitest: 3.2.4(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
@@ -1008,12 +1008,12 @@ packages:
       - yaml
     dev: false
 
-  /@jsynple/core@1.8.2:
-    resolution: {integrity: sha512-39fNQG5QTYd9QrLIRLa5VheY3nyWLcKMta+Ms96O+FcnO+IKBsCEl7VMEGmlP6hP7elI67gvvofc7oGX9+E2jw==}
+  /@jsynple/core@2.6.1:
+    resolution: {integrity: sha512-/jEEn8WhS+V4Q2BSITrnVn8up/yJPG+mMA+Rex0EYOZRpuckiKCPFv5CNazILnFCfOHD8BY/+FUQChLr++xKfg==}
     dev: false
 
-  /@jsynple/core@1.9.0:
-    resolution: {integrity: sha512-mWJc5pVImFwExl5ZCBqunpkpfEoGfhak0ww0ixJyR5zEP7LoEWP0ZiqQ9u7J8XgSvWXR8BdWqRbi7UrStT5PLw==}
+  /@jsynple/core@2.6.2:
+    resolution: {integrity: sha512-Q1zEVppk7YnDBKtIOR1BiFjChhLDdClWOR8m+wRng+RUcwSnxTRZfTplQFB4RcAFX4AsULTy7QUzryyhXM5TPA==}
     dev: false
 
   /@kwsites/file-exists@1.1.1:
@@ -8480,7 +8480,7 @@ packages:
       happy-dom: 17.4.7
       magic-string: 0.30.17
       pathe: 2.0.3
-      picomatch: 4.0.2
+      picomatch: 4.0.3
       std-env: 3.9.0
       tinybench: 2.9.0
       tinyexec: 0.3.2
