@@ -10,10 +10,13 @@
 </template>
 
 <script setup lang="ts">
+import type { BootedSynthesizer } from "@jsynple/audio/dist/types/BootedSynthesizer.type";
+import type { Module } from "@jsynple/core"
+
 type Props = {
   control: Control
   module: Module,
-  synthesizer: Synthesizer
+  synthesizer: BootedSynthesizer
 }
 const { control, module, synthesizer } = defineProps<Props>()
 

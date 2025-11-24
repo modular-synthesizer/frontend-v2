@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
 import { controls } from '.';
+import type { Control, Module, Synthesizer } from "@jsynple/core"
 
 type Props = {
   synthesizer: Synthesizer

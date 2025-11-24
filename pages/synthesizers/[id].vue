@@ -5,12 +5,12 @@
         <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer @loaded="features.modules.load(module, synthesizer)">
           <template #default="{ select, selected }">
             <module-appearance @select="select(module)" :selected :module :synthesizer>
-              <!--control-wrapper
+              <control-wrapper
                 :control
                 :module
                 :selected="useSelection().selected(control)"
                 :synthesizer
-                v-for="control in module.controls"/-->
+                v-for="control in module.controls"/>
             </module-appearance>
           </template>
         </module-logic>
@@ -23,22 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import type { Synthesizer } from "@jsynple/core"
+import type { BootedSynthesizer } from "@jsynple/audio/dist/types/BootedSynthesizer.type";
 
 definePageMeta({ layout: false })
 
 const context: Ref<AudioContext|null> = ref(null)
 
-const synthesizer: Ref<Synthesizer|undefined> = ref(undefined)
+const synthesizer: Ref<BootedSynthesizer|undefined> = ref(undefined)
 
 async function handleClick() {
-  context.value = new AudioContext()
-
-  await context.value.audioWorklet.addModule("https://modular-synthesizer.github.io/processors/processors.js");
-
-  synthesizer.value = await features.synthesizers.boot(`${useRoute().params.id}`, useAuth().token, context.value)
-
-  context.value.resume()
+  const uri = "https://modular-synthesizer.github.io/processors/processors.js"
+  synthesizer.value = await features.synthesizers.boot(`${useRoute().params.id}`, uri, useAuth().token)
+  synthesizer.value?.context.resume()
 }
 
 async function rescale(deltaY: number) {

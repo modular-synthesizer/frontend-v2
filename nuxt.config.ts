@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       api_uri: process.env.API_URL || 'https://synple.app/api',
+      processors_url: process.env.PROCESSORS_URL || 'https://modular-synthesizer.github.io/processors'
     }
   },
 

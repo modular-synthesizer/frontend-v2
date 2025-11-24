@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { Control } from "@jsynple/core"
+
 type Props = {
   control: Control
   selected: boolean
