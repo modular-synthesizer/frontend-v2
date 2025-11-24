@@ -15,7 +15,7 @@ type Props = {
 }
 const props = defineProps<Props>()
 
-const RADIUS = 15;
+const RADIUS = 20;
 const DIAMETER = RADIUS * 2
 
 const x = computed(() => +props.control.payload.x - RADIUS)

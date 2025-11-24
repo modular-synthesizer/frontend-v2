@@ -19,6 +19,8 @@ const props = defineProps<Props>()
 const name: string = props.control.component
 const descriptor = name in controls ? controls[name] : controls.Default
 
+console.log(props.control)
+
 const ControlAppearance = descriptor.appearance
 const ControlLogic = descriptor.logic
 </script>

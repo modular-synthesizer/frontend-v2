@@ -2,7 +2,7 @@
   <rights-check right="synthesizers::read" type="redirect" uri="/synthesizers">
     <draggable-scene @drop="drop" :reference-frame="synthesizer" @rescale="rescale" v-if="synthesizer">
       <draggable-layer-html :reference="synthesizer">
-        <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer @loaded="features.modules.load(module, synthesizer)">
+        <module-logic v-for="module in synthesizer.modules" :key="module.id" :module :synthesizer>
           <template #default="{ select, selected }">
             <module-appearance @select="select(module)" :selected :module :synthesizer>
               <control-wrapper
@@ -27,14 +27,14 @@ import type { BootedSynthesizer } from "@jsynple/audio/dist/types/BootedSynthesi
 
 definePageMeta({ layout: false })
 
-const context: Ref<AudioContext|null> = ref(null)
-
 const synthesizer: Ref<BootedSynthesizer|undefined> = ref(undefined)
 
 async function handleClick() {
   const uri = "https://modular-synthesizer.github.io/processors/processors.js"
   synthesizer.value = await features.synthesizers.boot(`${useRoute().params.id}`, uri, useAuth().token)
   synthesizer.value?.context.resume()
+
+  console.log(synthesizer.value)
 }
 
 async function rescale(deltaY: number) {

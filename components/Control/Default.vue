@@ -3,11 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { Control } from "@jsynple/core"
+import type { Control, Module } from "@jsynple/core"
 
 type Props = {
   control: Control
-  selected: boolean
+  selected: boolean,
+  module: Module
 }
 const { control, selected } = defineProps<Props>()
 
