@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@jsynple/audio':
-    specifier: 1.5.0
-    version: 1.5.0(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
+    specifier: 1.5.1
+    version: 1.5.1(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
   '@jsynple/core':
-    specifier: 2.7.0
-    version: 2.7.0
+    specifier: 2.7.2
+    version: 2.7.2
   '@jsynple/event-bus':
     specifier: 1.1.0
     version: 1.1.0
@@ -687,7 +687,7 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dependencies:
       '@eslint/object-schema': 2.1.6
-      debug: 4.4.1
+      debug: 4.4.3
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -710,7 +710,7 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dependencies:
       ajv: 6.12.6
-      debug: 4.4.1
+      debug: 4.4.3
       espree: 10.3.0
       globals: 14.0.0
       ignore: 5.3.2
@@ -985,11 +985,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: false
 
-  /@jsynple/audio@1.5.0(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
-    resolution: {integrity: sha512-odKOukY2uL9vqGskZFktc3/Rs4gwK6IYJ7is7X82alszxcYjAKxOKGTqdEhXDsowdTbu9TJc7LouPWklVoKuRQ==}
+  /@jsynple/audio@1.5.1(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
+    resolution: {integrity: sha512-V9JOGz+44IXW2TLht2LxtnPM3niTW2QJD0aBxauFAIenF7fo1T3WaWz4svd4WSxad7E47ORmyAttSy43AzixaA==}
     dependencies:
       '@factory-js/factory': 0.4.1
-      '@jsynple/core': 2.6.1
+      '@jsynple/core': 2.7.2
       '@testing-library/dom': 10.4.1
       uuid: 13.0.0
       vitest: 4.0.13(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
@@ -1018,12 +1018,8 @@ packages:
       - yaml
     dev: false
 
-  /@jsynple/core@2.6.1:
-    resolution: {integrity: sha512-/jEEn8WhS+V4Q2BSITrnVn8up/yJPG+mMA+Rex0EYOZRpuckiKCPFv5CNazILnFCfOHD8BY/+FUQChLr++xKfg==}
-    dev: false
-
-  /@jsynple/core@2.7.0:
-    resolution: {integrity: sha512-LU/i5MHqEDF9yS3tEcT16NfK1y1smwhWA5uenLk/CMDEy2Qdrvb1SXyIPtMQfHy0II41QKPR3iZ9rDgo6eCkZQ==}
+  /@jsynple/core@2.7.2:
+    resolution: {integrity: sha512-Nb8VX5NBSBBskGH2JL+ejBN0ldjRgeVQmBUFObsVMzRGCYLEsvyc9WUmD4TM1yakEFpDQgInzTJ5x51+/uq2hg==}
     dev: false
 
   /@jsynple/event-bus@1.1.0:
@@ -3236,7 +3232,7 @@ packages:
     dependencies:
       bytes: 3.1.2
       content-type: 1.0.5
-      debug: 4.4.1
+      debug: 4.4.3
       http-errors: 2.0.0
       iconv-lite: 0.6.3
       on-finished: 2.4.1
@@ -4293,7 +4289,7 @@ packages:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.1
+      debug: 4.4.3
       escape-string-regexp: 4.0.0
       eslint-scope: 8.3.0
       eslint-visitor-keys: 4.2.0
@@ -4458,7 +4454,7 @@ packages:
       content-type: 1.0.5
       cookie: 0.7.2
       cookie-signature: 1.2.2
-      debug: 4.4.1
+      debug: 4.4.3
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
@@ -4618,7 +4614,7 @@ packages:
     resolution: {integrity: sha512-/t88Ty3d5JWQbWYgaOGCCYfXRwV1+be02WqYYlL6h0lEiUAMPM8o8qKGO01YIkOHzka2up08wvgYD0mDiI+q3Q==}
     engines: {node: '>= 0.8'}
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.3
       encodeurl: 2.0.0
       escape-html: 1.0.3
       on-finished: 2.4.1
@@ -7272,7 +7268,7 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.3
       depd: 2.0.0
       is-promise: 4.0.0
       parseurl: 1.3.3

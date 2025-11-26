@@ -33,8 +33,6 @@ async function handleClick() {
   const uri = "https://modular-synthesizer.github.io/processors/processors.js"
   synthesizer.value = await features.synthesizers.boot(`${useRoute().params.id}`, uri, useAuth().token)
   synthesizer.value?.context.resume()
-
-  console.log(synthesizer.value)
 }
 
 async function rescale(deltaY: number) {
