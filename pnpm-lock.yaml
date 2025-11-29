@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@jsynple/audio':
-    specifier: 1.5.1
-    version: 1.5.1(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
+    specifier: 1.5.2
+    version: 1.5.2(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
   '@jsynple/core':
-    specifier: 2.7.2
-    version: 2.7.2
+    specifier: 2.7.4
+    version: 2.7.4
   '@jsynple/event-bus':
     specifier: 1.1.0
     version: 1.1.0
@@ -985,11 +985,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: false
 
-  /@jsynple/audio@1.5.1(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
-    resolution: {integrity: sha512-V9JOGz+44IXW2TLht2LxtnPM3niTW2QJD0aBxauFAIenF7fo1T3WaWz4svd4WSxad7E47ORmyAttSy43AzixaA==}
+  /@jsynple/audio@1.5.2(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0):
+    resolution: {integrity: sha512-UNJOrZGpWEj6TZJHncNvTYs8NYvKNqa0Yhv1Eu9RFPL/KQT8X43qPIs5TGc4InvdXBDyfl1kSA2+PjvQ0SkmFw==}
     dependencies:
       '@factory-js/factory': 0.4.1
-      '@jsynple/core': 2.7.2
+      '@jsynple/core': 2.7.4
       '@testing-library/dom': 10.4.1
       uuid: 13.0.0
       vitest: 4.0.13(@types/node@24.3.0)(happy-dom@17.4.7)(sass@1.89.0)
@@ -1018,8 +1018,8 @@ packages:
       - yaml
     dev: false
 
-  /@jsynple/core@2.7.2:
-    resolution: {integrity: sha512-Nb8VX5NBSBBskGH2JL+ejBN0ldjRgeVQmBUFObsVMzRGCYLEsvyc9WUmD4TM1yakEFpDQgInzTJ5x51+/uq2hg==}
+  /@jsynple/core@2.7.4:
+    resolution: {integrity: sha512-7JuD3ozJF3we9GhGLTgiGYWcPfg/jd5b3+OORlqLkU/dfaKoFazgP2ZVt/kBS7HGgxIRZKdQrVwK9WJf6znK/g==}
     dev: false
 
   /@jsynple/event-bus@1.1.0:

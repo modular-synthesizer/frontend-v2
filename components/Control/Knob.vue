@@ -4,16 +4,18 @@
 </template>
 
 <script lang="ts" setup>
-import type { KnobControl } from '~/core/business/tools/Control.type';
-import { getParameter, getValue } from '~/core/functions/modules/parameters';
+import type { SmallKnob, Knob, LargeKnob } from "@jsynple/core"
+import { getValue } from '~/core/functions/modules/parameters';
 import type { Module } from "@jsynple/core"
 
 type Props = {
-  control: KnobControl
+  control: SmallKnob | Knob | LargeKnob
   module: Module
   selected: boolean
 }
 const props = defineProps<Props>()
+
+console.log(props.module)
 
 const RADIUS = 20;
 const DIAMETER = RADIUS * 2
@@ -24,7 +26,7 @@ const translate = computed(() => `${x.value}px ${y.value}px`)
 const diameter = computed(() => `${DIAMETER}px`)
 const radius = computed(() => `${RADIUS}px`)
 
-const parameter = getParameter(props.module, props.control.payload.target)
+const parameter = props.control.payload.target
 const value = computed(() => getValue(parameter))
 </script>
 
@@ -47,5 +49,7 @@ const value = computed(() => getValue(parameter))
   text-align: center;
   line-height: v-bind(diameter);
   user-select: none;
+  color: black;
+  font-size: 16px;
 }
 </style>
