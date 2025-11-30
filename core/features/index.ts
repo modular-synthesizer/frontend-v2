@@ -3,14 +3,12 @@ import { rescaleTool } from "./tools/rescaleTool";
 import { fetchCategories } from "./categories/fetchCategories";
 import { loadModule } from "./modules/loadModule";
 import { usePorts } from "~/composables/cables/ports";
-import { moveModule } from "@jsynple/core"
 import { api } from "@/core/api"
-import { initSynthesizer, bootSynthesizer } from "@jsynple/audio";
+import { bootSynthesizer } from "@jsynple/audio";
 
 export const features = {
   modules: {
     load: loadModule(usePorts()),
-    move: moveModule(),
     save: saveModule(api, useSnack()),
     select: selectModule(useSelection()),
     parameters: {

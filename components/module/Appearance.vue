@@ -6,6 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Module } from "@jsynple/core"
+
 type Props = {
   selected: boolean
   synthesizer: ScaledCoordinates

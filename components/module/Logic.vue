@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import { type Module, type Synthesizer, feats } from "@jsynple/core"
+
 type Props = {
   module: Module,
   synthesizer: Synthesizer
@@ -14,7 +16,7 @@ const { module, synthesizer } = defineProps<Props>()
 const coords = computed(() => ({ ...getCoordinates(module), scale: synthesizer.scale }))
 
 function move({ x, y }: Coordinates) {
-  features.modules.move(module, { x, y }, synthesizer.modules)
+  feats.modules.move(module, { x, y }, Object.values(synthesizer.modules))
 }
 
 function drop() {
