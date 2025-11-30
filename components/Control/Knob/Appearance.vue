@@ -1,31 +1,30 @@
 <template>
   <div :class="['item', 'wrapper', { selected }]"></div>
-  <div class="item value" v-if="parameter">{{ value }}</div>
+  <div class="item value">{{ value }}</div>
 </template>
 
 <script lang="ts" setup>
 import type { SmallKnob, Knob, LargeKnob } from "@jsynple/core"
 import { getValue } from '~/core/functions/modules/parameters';
-import type { Module } from "@jsynple/core"
+import { px } from "~/core/functions/css";
 
 type Props = {
   control: SmallKnob | Knob | LargeKnob
-  module: Module
   selected: boolean
 }
-const props = defineProps<Props>()
+const { control, selected } = defineProps<Props>()
 
-const RADIUS = 15;
+const RADIUS = 20;
 const DIAMETER = RADIUS * 2
 
-const x = computed(() => +props.control.payload.x - RADIUS)
-const y = computed(() => +props.control.payload.y - RADIUS)
-const translate = computed(() => `${x.value}px ${y.value}px`)
-const diameter = computed(() => `${DIAMETER}px`)
-const radius = computed(() => `${RADIUS}px`)
+const x = computed(() => control.payload.x - RADIUS)
+const y = computed(() => control.payload.y - RADIUS)
 
-const parameter = props.control.payload.target
-const value = computed(() => getValue(parameter))
+const translate = computed(px(x, y))
+const diameter = computed(px(DIAMETER))
+const radius = computed(px(RADIUS))
+
+const value = computed(() => getValue(control.payload.target))
 </script>
 
 <style scoped>
@@ -48,6 +47,6 @@ const value = computed(() => getValue(parameter))
   line-height: v-bind(diameter);
   user-select: none;
   color: black;
-  font-size: 12px;
+  font-size: 16px;
 }
 </style>

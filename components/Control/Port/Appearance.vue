@@ -4,11 +4,9 @@
 
 <script lang="ts" setup>
 import type { KnobControl } from '~/core/business/tools/Control.type';
-import type { Module } from "@jsynple/core"
 
 type Props = {
   control: KnobControl
-  module: Module
   selected: boolean
 }
 const props = defineProps<Props>()

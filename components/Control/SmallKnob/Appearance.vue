@@ -6,16 +6,14 @@
 <script lang="ts" setup>
 import type { SmallKnob, Knob, LargeKnob } from "@jsynple/core"
 import { getValue } from '~/core/functions/modules/parameters';
-import type { Module } from "@jsynple/core"
 
 type Props = {
   control: SmallKnob | Knob | LargeKnob
-  module: Module
   selected: boolean
 }
 const props = defineProps<Props>()
 
-const RADIUS = 30;
+const RADIUS = 15;
 const DIAMETER = RADIUS * 2
 
 const x = computed(() => +props.control.payload.x - RADIUS)
@@ -48,6 +46,6 @@ const value = computed(() => getValue(parameter))
   line-height: v-bind(diameter);
   user-select: none;
   color: black;
-  font-size: 20px;
+  font-size: 12px;
 }
 </style>
