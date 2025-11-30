@@ -1,9 +1,10 @@
 <template>
   <component
     v-if="tag" :is="tag"
-    @mousedown.prevent.stop="onmousedown"
+    @mousedown.left.prevent.stop="onmousedown"
     @mouseover.prevent.stop="useSelection().select(control)"
     @wheel.passive.stop="onwheelevent"
+    @click.right.prevent.stop.capture="onclick"
   >
     <slot />
   </component>
@@ -47,5 +48,9 @@ function drop() {
 function onwheelevent(event: WheelEvent) {
   const delta = event.deltaY / Math.abs(event.deltaY)
   features.modules.parameters.moveValue(parameter, delta * parameter.step)
+}
+
+function onclick(event: MouseEvent) {
+  console.log("test")
 }
 </script>

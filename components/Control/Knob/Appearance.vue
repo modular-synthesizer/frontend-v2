@@ -59,5 +59,6 @@ const labelTranslation = computed(px(x, y.value + DIAMETER))
   text-align: center;
   font-size: 10px;
   color: black;
+  user-select: none;
 }
 </style>

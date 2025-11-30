@@ -1,12 +1,13 @@
 <template>
   <div :class="['item', 'wrapper', { selected }]"></div>
+  <div class="label">{{ control.payload.label }}</div>
 </template>
 
 <script lang="ts" setup>
-import type { KnobControl } from '~/core/business/tools/Control.type';
+import type { SmallKnob, Knob, LargeKnob } from "@jsynple/core"
 
 type Props = {
-  control: KnobControl
+  control: SmallKnob | Knob | LargeKnob
   selected: boolean
 }
 const props = defineProps<Props>()
@@ -19,6 +20,8 @@ const y = computed(() => +props.control.payload.y - RADIUS)
 const translate = computed(() => `${x.value}px ${y.value}px`)
 const diameter = computed(() => `${DIAMETER}px`)
 const radius = computed(() => `${RADIUS}px`)
+
+const labelTranslation = computed(px(x, y.value + DIAMETER))
 </script>
 
 <style scoped>
@@ -39,6 +42,15 @@ const radius = computed(() => `${RADIUS}px`)
 .value {
   text-align: center;
   line-height: v-bind(diameter);
+  user-select: none;
+}
+.label {
+  position: absolute;
+  translate: v-bind(labelTranslation);
+  width: v-bind(diameter);
+  text-align: center;
+  font-size: 10px;
+  color: black;
   user-select: none;
 }
 </style>
