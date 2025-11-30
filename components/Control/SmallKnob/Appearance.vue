@@ -1,6 +1,7 @@
 <template>
   <div :class="['item', 'wrapper', { selected }]"></div>
   <div class="item value" v-if="parameter">{{ value }}</div>
+  <div class="label">{{ control.payload.label }}</div>
 </template>
 
 <script lang="ts" setup>
@@ -24,6 +25,8 @@ const radius = computed(() => `${RADIUS}px`)
 
 const parameter = props.control.payload.target
 const value = computed(() => getValue(parameter))
+
+const labelTranslation = computed(px(x, y.value + DIAMETER))
 </script>
 
 <style scoped>
@@ -47,5 +50,13 @@ const value = computed(() => getValue(parameter))
   user-select: none;
   color: black;
   font-size: 12px;
+}
+.label {
+  position: absolute;
+  translate: v-bind(labelTranslation);
+  width: v-bind(diameter);
+  text-align: center;
+  font-size: 10px;
+  color: black;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div :class="['item', 'wrapper', { selected }]"></div>
   <div class="item value">{{ value }}</div>
+  <div class="label">{{ control.payload.label }}</div>
 </template>
 
 <script lang="ts" setup>
@@ -25,6 +26,8 @@ const diameter = computed(px(DIAMETER))
 const radius = computed(px(RADIUS))
 
 const value = computed(() => getValue(control.payload.target))
+
+const labelTranslation = computed(px(x, y.value + DIAMETER))
 </script>
 
 <style scoped>
@@ -48,5 +51,13 @@ const value = computed(() => getValue(control.payload.target))
   user-select: none;
   color: black;
   font-size: 16px;
+}
+.label {
+  position: absolute;
+  translate: v-bind(labelTranslation);
+  width: v-bind(diameter);
+  text-align: center;
+  font-size: 10px;
+  color: black;
 }
 </style>
