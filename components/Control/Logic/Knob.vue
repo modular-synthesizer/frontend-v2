@@ -11,19 +11,19 @@
 
 <script setup lang="ts">
 import type { BootedSynthesizer } from "@jsynple/audio/dist/types/BootedSynthesizer.type";
-import type { Module } from "@jsynple/core"
+import type { Knob, LargeKnob, Module, SmallKnob } from "@jsynple/core"
 
 type Props = {
-  control: Control
+  control: SmallKnob | Knob | LargeKnob
   module: Module,
   synthesizer: BootedSynthesizer
 }
-const { control, module, synthesizer } = defineProps<Props>()
+const { control, synthesizer } = defineProps<Props>()
 
 const kind: LayerKind = inject<LayerKind>('layer-kind', 'html')
 const tag: string = kind === 'html' ? 'div' : 'g'
 
-const parameter = getParameter(module, control.payload.target)
+const parameter = control.payload.target
 
 const origin: Ref<{ value: number, y: number}> = ref({ value: 0, y: 0 })
 

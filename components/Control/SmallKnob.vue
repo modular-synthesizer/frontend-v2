@@ -5,7 +5,7 @@
 
 <script lang="ts" setup>
 import type { SmallKnob, Knob, LargeKnob } from "@jsynple/core"
-import { getParameter, getValue } from '~/core/functions/modules/parameters';
+import { getValue } from '~/core/functions/modules/parameters';
 import type { Module } from "@jsynple/core"
 
 type Props = {

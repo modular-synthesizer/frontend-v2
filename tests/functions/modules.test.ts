@@ -21,12 +21,4 @@ describe("parameters functions", async () => {
       expect(getValue(parameter)).toEqual(50)
     })
   })
-
-  describe("getParameter", async () => {
-    const module = await moduleFactory({ parameters: [ parameter ] })
-
-    test("gets the correct parameter when requested", () => {
-      expect(getParameter(module, "param-name").id).toEqual("paramId")
-    })
-  })
 })
