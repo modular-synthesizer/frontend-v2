@@ -2,6 +2,7 @@
   <component
     v-if="tag" :is="tag"
     @mousedown.left.prevent.stop="onmousedown"
+    @mousedown.right.capture.prevent.stop
     @mouseover.prevent.stop="useSelection().select(control)"
     @wheel.passive.stop="onwheelevent"
     @click.right.prevent.stop.capture="onclick"

@@ -42,7 +42,7 @@ const labelTranslation = computed(px(x, y.value + DIAMETER))
 }
 .selected {
   box-sizing: border-box;
-  border: 5px solid red;
+  outline: 2px solid red;
 }
 .value {
   text-align: center;
