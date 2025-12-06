@@ -25,7 +25,6 @@ const translate = computed(px(x, y))
 const diameter = computed(px(DIAMETER))
 const radius = computed(px(RADIUS))
 
-console.log(control)
 const value = computed(() => getValue(control.payload.target))
 
 const labelTranslation = computed(px(x, y.value + DIAMETER))

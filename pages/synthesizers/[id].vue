@@ -15,6 +15,9 @@
           </template>
         </module-logic>
       </draggable-layer-html>
+      <draggable-layer-svg>
+        <cable v-for="cable in synthesizer.cables" :cable="cable" />
+      </draggable-layer-svg>
     </draggable-scene>
     <div class="test" v-else>
       <V-btn @mousedown="handleClick">CLIQUE</V-btn>
