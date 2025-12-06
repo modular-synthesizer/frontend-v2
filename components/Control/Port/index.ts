@@ -1,5 +1,5 @@
 import ControlPortAppearance from "./Appearance.vue";
-import ControlPortLogic from "../Knob/Logic.vue";
+import ControlPortLogic from "./Logic.vue";
 import type { ControlComponent } from "..";
 
 export const ControlPort: ControlComponent = {

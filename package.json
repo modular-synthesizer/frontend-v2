@@ -11,8 +11,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@jsynple/audio": "1.5.5",
-    "@jsynple/core": "2.8.2",
+    "@jsynple/audio": "1.5.7",
+    "@jsynple/core": "2.9.0",
     "@jsynple/event-bus": "1.1.0",
     "@mdi/font": "^7.4.47",
     "@nuxtjs/i18n": "9.5.4",
