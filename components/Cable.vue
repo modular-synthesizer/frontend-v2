@@ -1,9 +1,11 @@
 <template>
-  <path :d="path" stroke="red" stroke-width="3" />
   <circle :r="15" fill="red" :cx="from.x" :cy="from.y" />
   <circle :r="11" fill="white" :cx="from.x" :cy="from.y" />
   <circle :r="15" fill="red" :cx="to.x" :cy="to.y" />
   <circle :r="11" fill="white" :cx="to.x" :cy="to.y" />
+  <path :d="path" stroke="red" stroke-width="4" />
+  <circle :r="6" fill="red" :cx="from.x" :cy="from.y" />
+  <circle :r="6" fill="red" :cx="to.x" :cy="to.y" />
 </template>
 
 <script lang="ts" setup>
